@@ -1,0 +1,12 @@
+{# paragraph--sepband.html.twig #}
+{% set bg = paragraph.field_sep_bg_color.value.color ?: '#cfcfcf' %}
+
+<section class="sep-band" style="--sep-bg: {{ bg }};">
+  <img src="/{{ directory }}/images/c.svg"
+       alt="{{ 'Logotipo de Cierzo'|t }}"
+       class="sep-logo" />
+  {% if paragraph.field_sep_text.value %}
+    <p class="sep-text">{{ paragraph.field_sep_text.value|replace({'\n': '<br>'})|raw }}</p>
+  {% endif %}
+</section>
+

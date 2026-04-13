@@ -1,0 +1,72 @@
+cierzo:
+  css:
+    base:
+      '//fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap': { type: external, minified: true }
+      '//fonts.googleapis.com/css2?family=Karla:wght@200;300;400;600;700;800&display=swap': { type: external, minified: true }
+      '//fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap': { type: external, minified: true }
+
+    theme:
+      css/base.css: {}
+      css/paragraphs.css: {}
+      css/blog.css: {}
+      css/contacto.css: {}
+      css/footer.css: {}
+      css/login.css: {}
+  js:
+    js/hero-swiper.init.js: {}
+    js/acordeon.js: {}
+    js/video-fix.js: {}
+  dependencies:
+    - core/once
+
+hero-swiper:
+  css:
+    theme:
+      https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css: { type: external, minified: true }
+  js:
+    https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js: { type: external, minified: true, defer: true, async: true }
+glightbox:
+  css:
+    theme:
+      https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css: { type: external, minified: true }
+  js:
+    https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js: { type: external, minified: true, defer: true, async: true }
+  dependencies:
+    - core/drupal
+    - core/jquery
+aos-library:
+  remote: https://michalsnik.github.io/aos/
+  version: 2.3.1
+  license:
+    name: MIT
+    url: https://github.com/michalsnik/aos/blob/master/LICENSE
+    gpl-compatible: true
+  css:
+    theme:
+      https://unpkg.com/aos@2.3.1/dist/aos.css: { type: external, minified: true }
+  js:
+    https://unpkg.com/aos@2.3.1/dist/aos.js: { type: external, minified: true }
+    js/init-aos.js: {}
+  dependencies:
+    - core/jquery
+timeline-style:
+  css:
+    theme:
+      css/paragraph-itinerario.css: {}
+menu:
+  js:
+    js/menu.js: {}
+  css:
+    theme:
+      css/header.css: {}
+  dependencies:
+    - core/jquery
+video-full-width-section:
+  version: 1.0
+  js:
+    js/video-control.js: {} # <-- Solo dejamos nuestro fichero
+  css:
+    component:
+      css/video-full-width.css: {}
+  dependencies:
+    - core/drupal

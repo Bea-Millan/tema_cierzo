@@ -1,0 +1,40 @@
+{#
+  Template para cada fila de la línea de tiempo.
+  Campos asumidos: field_imagen, field_titulo, field_texto_corto, field_enlace
+#}
+
+<div class="timeline-item" data-aos="fade-up">
+
+{# Bloque para la fecha/año al lado izquierdo #}
+  <div class="timeline-date">
+    {% if fields.field_ano.content|render|trim %}
+      {{ fields.field_ano.content }}
+    {% else %}
+      {{ fields.field_fecha.content }}
+    {% endif %}
+  </div>
+
+
+  <div class="timeline-dot"></div>
+
+  <div class="timeline-content">
+    {% if fields.field_imagen.content %}
+      <div class="timeline-image">
+        {{ fields.field_imagen.content }}
+      </div>
+    {% endif %}
+
+    <div class="timeline-text">
+      <h3 class="timeline-title">{{ fields.title.content }}</h3>
+      <div class="timeline-body">
+        {{ fields.field_texto_corto.content }}
+      </div>
+      {% if fields.field_enlace.content %}
+        <div class="timeline-link">
+          {{ fields.field_enlace.content }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+</div>

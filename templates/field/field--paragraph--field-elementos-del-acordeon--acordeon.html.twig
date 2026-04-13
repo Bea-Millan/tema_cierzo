@@ -1,0 +1,10 @@
+{#
+/**
+ * @file
+ * Plantilla personalizada para el campo de ítems del acordeón.
+ * Elimina los wrappers <div> extra para permitir un CSS más limpio.
+ */
+#}
+{% for item in items %}
+  {{ item.content }}
+{% endfor %}

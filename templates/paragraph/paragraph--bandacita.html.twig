@@ -1,0 +1,23 @@
+{# Background precedence: image > color > default #}
+{% set bg_color = paragraph.field_bg_color.value ?: '#fff' %}
+{% set bg_image = paragraph.field_bg_image.entity ? paragraph.field_bg_image.entity.uri.value|image_style('wide') : '' %}
+
+<section class="quote-band {{ bg_image ? 'quote-band--con-imagen' : 'quote-band--sin-imagen' }}"
+  style="
+    {% if bg_image %}
+    background-image:url('{{ bg_image }}'), linear-gradient(#c41e24, #c41e24);
+    {% else %}background:{{ bg_color }};{% endif %}
+  ">
+
+  {% if paragraph.field_titulo.value %}
+    <h2 class="quote-band__title">{{ paragraph.field_titulo.value }}</h2>
+  {% endif %}
+
+  <blockquote class="quote-band__inner">
+    {{ paragraph.field_cita_texto.value|raw }}
+    {% if paragraph.field_autor.value %}
+      <cite>{{ paragraph.field_autor.value }}</cite>
+    {% endif %}
+  </blockquote>
+
+</section>

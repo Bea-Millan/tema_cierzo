@@ -1,0 +1,126 @@
+.page-contact {
+  /*font-family: sans-serif;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;*/
+}
+
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.cards-grid > div {
+  background: #fff;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/*.cards-grid > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}*/
+
+.cards-grid .icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+  background: #e63922;
+  color: white;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 4px solid #f2f2f2;
+}
+
+.cards-grid .icon span {
+  width: 45px;
+  height: 45px;
+
+}
+
+.cards-grid h3 {
+  font-size: 1.1rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.cards-grid p {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.cards-grid a.button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #333;
+  transition: background 0.2s ease;
+}
+
+.cards-grid a.button:hover {
+  background: #e0e0e0;
+}
+
+.contact-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  text-align: center;
+  gap: 2rem;
+}
+.u-svg-content {
+  fill: #fff;
+}
+
+.u-svg-link {
+  width: 60px;
+  height: 60px;
+}
+
+
+.contact-details h3 {
+  margin: 0.5rem 0 0.25rem;
+}
+
+.contact-details p {
+  color: #444;
+}
+
+.contact-map-form {
+  /*display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;*/
+  margin-top: 2rem;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 300px;
+  border: 0;
+}
+
+.form-container h2 {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .contact-map-form {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,533 @@
+/* Estilos generales para la imagen dentro de su contenedor */
+.imagen-articulo img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+
+.titulo { /* Es tu h1 dentro de .texto-introductorio */
+  margin-top: 0;
+  margin-bottom: 1em; /* AUMENTADO: Espacio entre el título y el content.body. Ajusta este valor (ej. 0.75em, 1.5em, 24px) */
+}
+
+/* Contenedor principal del artículo y texto */
+.texto-articulo {
+  /* NUEVO: Para la línea separadora */
+  border-bottom: 1px solid #e0e0e0; /* Color de línea sutil, ajústalo si es necesario */
+  padding-bottom: 3rem; /* Espacio entre el final del contenido/imagen y la línea */
+  margin-bottom: 2rem; /* Espacio entre la línea y la galería de abajo */
+}
+
+/* --- ESCENARIO 1: Texto envuelve a la imagen (FLAG = TRUE) --- */
+/* Se aplica cuando el div tiene la clase 'con-ajuste-texto' */
+.texto-articulo.con-ajuste-texto .imagen-articulo {
+  float: left;
+  width: 35%;
+  max-width: 300px; /* Ajusta si es necesario */
+  margin-right: 25px;
+  margin-bottom: 15px;
+}
+
+.texto-articulo.con-ajuste-texto::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* --- ESCENARIO 2: Imagen a la izquierda, texto a la derecha (FLAG = FALSE) --- */
+/* Se aplica cuando el div tiene la clase 'sin-ajuste-texto' (el de tu captura) */
+.texto-articulo.sin-ajuste-texto {
+  display: flex;
+  align-items: stretch; /* CAMBIO CLAVE: Alinear los items (imagen y bloque de texto) por su parte superior. */
+  gap: 4rem; /* Espacio entre la columna de la imagen y la del texto */
+}
+
+.texto-articulo.sin-ajuste-texto .imagen-articulo {
+  /* flex-shrink: 0; */
+  width: 30%; /* Ancho de la columna de la imagen */
+  /* max-width: 300px; */ /* Ajusta si es necesario */
+  /* Al usar align-items: flex-start, la altura de este div será la de la imagen (height: auto en img).
+     Ya no se estirará para igualar la altura del texto, ni la img necesitará height: 100%. */
+  /* height: 100%; */
+  /* align-items: stretch; */
+}
+
+/* No es necesario redefinir .texto-articulo.sin-ajuste-texto .imagen-articulo img aquí,
+   ya que los estilos generales de .imagen-articulo img (width: 100%, height: auto) son adecuados. */
+
+.texto-articulo.sin-ajuste-texto .texto-introductorio {
+  /* flex-grow: 1; */ /* El bloque de texto ocupa el espacio restante */
+  flex: 1;
+}
+
+.texto-articulo.sin-ajuste-texto .imagen-articulo img,
+.texto-articulo.con-ajuste-texto .imagen-articulo img { /* Aplicar a la imagen directamente */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); /* Sombra sutil */
+  /* border: 1px solid #ddd; */ /* O un borde fino */
+}
+
+.imagen-articulo div {
+  height: 100%;
+
+}
+/* --- RESPONSIVE (Ejemplo básico) --- */
+@media (max-width: 768px) {
+  .texto-articulo.con-ajuste-texto .imagen-articulo {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .texto-articulo.sin-ajuste-texto {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .texto-articulo.sin-ajuste-texto .imagen-articulo {
+    width: 100%;
+    max-width: 100%;
+    /* margin-bottom ya no es necesario aquí si el gap de flex-direction: column lo maneja,
+       pero si se quita el gap, se necesitaría un margin-bottom. Por ahora lo dejo con gap. */
+  }
+
+  /* Ajustes para la línea y espaciados en móvil si se ve muy apretado */
+  .texto-articulo {
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+
+
+.galeria-imagenes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+.galeria-imagenes a {
+  display: block;
+  overflow: hidden;
+}
+
+
+.galeria-imagenes img:hover {
+  transform: scale(1.05);
+}
+
+
+.galeria-imagenes img {
+  width: 100%;
+  height: 105px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Sombra ligera */
+  transition: transform 0.3s ease;
+}
+
+a.card__arrow:before {
+    content: "\2794";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /* background: rebeccapurple; */
+    /* color: red; */
+    font-size: 19px;
+}
+
+#masonry-container {
+  column-count: 1;
+  column-gap: 16px;
+}
+
+@media (min-width: 600px) {
+  #masonry-container {
+    column-count: 1;
+  }
+}
+
+@media (min-width: 900px) {
+  #masonry-container {
+    column-count: 2;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+
+.date-badge .day {
+  display: block;
+  font-size: 2.0rem;
+  color: #000;
+  line-height: 1;
+  padding-top: 6px;
+  padding-bottom: 4px;
+  font-size: 24px;
+}
+
+.date-badge .month {
+  display: block;
+  font-size: 15px;
+  color: #777;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.card-content {
+  padding: 25px;
+}
+.read-more-section {
+  text-align: center;
+  color: #cc202c;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+.card-content time {
+  display: block;
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.card-text {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.masonry-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.masonry-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-link-wrapper h2{
+    color: #2f3337;
+    font-family: "Red Hat Text", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: left;
+    width: 100%;
+    display: block;
+}
+
+.card-link-wrapper, .card-link-wrapper:hover {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-image{
+  position: relative;
+}
+.card img {
+  transition: all 0.2s;
+}
+
+.card:not(.blog):hover img {
+  filter: brightness(0.7);
+}
+
+/*.foto_portada_blog::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+}
+
+.card:hover .foto_portada_blog::after {
+  background: rgba(0, 0, 0, 0.4);
+}*/
+
+
+
+.date-badge.over-image {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+}
+
+.date-badge.under-header {
+  margin: 10px 0 0 0;
+  display: inline-block;
+}
+
+
+.date-badge {
+  text-align: center;
+  padding: 5px 8px;
+  border-radius: 3px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+  display: inline-block;
+  min-width: 53px;
+  box-shadow: 0 0 9px rgba(0,0,0,0.1);
+  color: #000;
+  text-align: center;
+  line-height: 1;
+    background: #eee;
+}
+
+
+
+/* ==========================================================================
+   Estilos del Bloque de Blog
+   ========================================================================== */
+
+/* Contenedor principal del bloque */
+.views-element-container {
+  max-width: 1200px;
+  margin: 8rem auto 4rem;
+  padding: 0 1rem;
+}
+
+/* Título principal del bloque ("Stay informed...") */
+.viewsreference--view-title {
+  font-size: 0rem;
+  margin-top: 0.5rem;
+  position: relative;
+  color: #2d3748; /* Un gris oscuro */
+}
+
+/* Subtítulo decorativo ("— BLOGS") */
+.viewsreference--view-title::before {
+  content: "BLOG";
+  display: block;
+  font-size: 0.875rem; /* 14px */
+  font-weight: 600;
+  color: #cc202c; /* Naranja */
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+/* Contenedor de la rejilla de tarjetas ("card-band") */
+.card-band {
+  display: grid;
+  /* Rejilla responsive: se ajusta automáticamente */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px; /* Espacio entre tarjetas */
+}
+
+/* Estilo de cada tarjeta */
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden; /* Para que la imagen respete los bordes redondeados */
+  display: flex;
+  flex-direction: column; /* Apila imagen y contenido verticalmente */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+
+
+.blog.card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.2s ease;
+}
+.blog.card:hover {
+  transform: translateY(-4px);
+}
+
+.blog.card{
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.2s ease;
+}
+
+
+.blog .card__image  img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  filter: brightness(0.9);
+  border-radius: 12px 12px 0 0;
+  transition: transform 0.3s ease;
+}
+
+.blog .card__image {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px 12px 0 0;
+}
+
+/* Contenido de la tarjeta (texto) */
+.card__content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Hace que esta sección crezca para ocupar el espacio disponible */
+}
+
+/* Título de la tarjeta */
+.card__title {
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: #2d3748;
+}
+
+.card__title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card__title a:hover {
+  color: #cc202c; /* Naranja al pasar el ratón */
+}
+
+/* Descripción de la tarjeta - La ocultamos como en el diseño de referencia */
+.card__description {
+  display: none;
+  /* Si quieres mostrarla, comenta o elimina la línea de arriba y añade estilos:
+  font-size: 0.9rem;
+  color: #718096;
+  line-height: 1.5;
+  */
+}
+
+/* Metadatos (fecha y flecha) en la parte inferior */
+.card__meta {
+  display: flex;
+  justify-content: space-between; /* Empuja la fecha a la izquierda y la flecha a la derecha */
+  align-items: center;
+  margin-top: auto; /* ¡TRUCO! Empuja esta sección al fondo del contenedor */
+  padding-top: 1rem;
+  border-top: 1px solid #edf2f7; /* Línea separadora sutil */
+}
+
+/* Fecha */
+.card__date {
+  font-size: 0.8rem;
+  color: #718096; /* Gris claro */
+}
+
+/* --- Reemplaza tu bloque .card__arrow y .card__arrow:hover por este --- */
+
+a.card__arrow:before {
+    content: "\2794";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /* background: rebeccapurple; */
+    /* color: red; */
+    font-size: 19px;
+}
+
+.card__arrow {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    width: 45px;
+    height: 23px;
+    border-radius: 4px;
+    background-color: #f7fafc;
+    text-decoration: none;
+    color: #4a5568;
+    transition: background-color 0.2s, color 0.2s;
+    position: relative;
+    font-size: 0;
+}
+
+.card__arrow:hover {
+  background-color: #cc202c;
+  color: #fff;
+  text-decoration: none; /* <-- Aseguramos que NO se subraya al pasar el ratón */
+}
+
+
+.js-pager__items li:not(:has(a)) {
+  display: none;
+}
+
+.js-pager__items a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: #f7fafc;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #4a5568;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.js-pager__items a:hover {
+  background-color: #cc202c;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+.js-pager__items {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+  margin-top: -1rem; /* súbelo visualmente */
+  padding-right: 1rem; /* alinear con tarjetas si tienen padding */
+  list-style-type: none;
+  padding: 0;
+}
+
+
+
+
+
+.view-blog {
+  position: relative;
+}
+
+.view-blog .js-pager__items {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+}
+
+

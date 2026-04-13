@@ -1,0 +1,96 @@
+{% set imagen_entity = paragraph.field_imagen.entity %}
+{% set fondo = paragraph.field_estilo_banda.value|default('blanco') %}
+{% set fondo_color = '' %}
+{% set salida_imagen = 'abajo' %}
+{% set estilo_boton = 'ligero' %}
+{% set posicion_imagen = 'izquierda' %}
+
+{% set salida_raw = '' %}
+{% if paragraph.hasField('field_salida_imagen') and paragraph.field_salida_imagen.value %}
+  {% set salida_raw = paragraph.field_salida_imagen.value|lower|trim %}
+{% elseif paragraph.hasField('field_posicion_imagen') and paragraph.field_posicion_imagen.value %}
+  {% set salida_raw = paragraph.field_posicion_imagen.value|lower|trim %}
+{% endif %}
+
+{% if salida_raw in ['none', 'no', 'ninguno', 'ninguna', 'sin', 'centro', 'normal'] %}
+  {% set salida_imagen = 'none' %}
+{% elseif salida_raw in ['arriba', 'top', 'up', 'superior'] %}
+  {% set salida_imagen = 'arriba' %}
+{% endif %}
+
+{% set estilo_boton_raw = '' %}
+{% if paragraph.hasField('field_estilo_boton') and paragraph.field_estilo_boton.value %}
+  {% set estilo_boton_raw = paragraph.field_estilo_boton.value|lower|trim %}
+{% elseif paragraph.hasField('field_tipo_boton') and paragraph.field_tipo_boton.value %}
+  {% set estilo_boton_raw = paragraph.field_tipo_boton.value|lower|trim %}
+{% elseif paragraph.hasField('field_boton_estilo') and paragraph.field_boton_estilo.value %}
+  {% set estilo_boton_raw = paragraph.field_boton_estilo.value|lower|trim %}
+{% endif %}
+
+{% if estilo_boton_raw in ['denso', 'solido', 'sólido', 'relleno', 'filled', 'fill', 'solid'] %}
+  {% set estilo_boton = 'denso' %}
+{% endif %}
+
+{% set posicion_raw = '' %}
+{% if paragraph.hasField('field_posicion') and paragraph.field_posicion.value is not empty %}
+  {% set posicion_raw = paragraph.field_posicion.value|lower|trim %}
+{% elseif paragraph.hasField('field_posicion_imagen') and paragraph.field_posicion_imagen.value %}
+  {% set posicion_raw = paragraph.field_posicion_imagen.value|lower|trim %}
+{% endif %}
+
+{% if posicion_raw in ['2', 'derecha', 'right'] %}
+  {% set posicion_imagen = 'derecha' %}
+{% endif %}
+
+{% if fondo == 'oscuro' %}
+  {% if paragraph.hasField('field_bg_color') and paragraph.field_bg_color|first and paragraph.field_bg_color|first.color %}
+    {% set fondo_color = paragraph.field_bg_color|first.color %}
+  {% elseif paragraph.hasField('field_sep_bg_color') and paragraph.field_sep_bg_color|first and paragraph.field_sep_bg_color|first.color %}
+    {% set fondo_color = paragraph.field_sep_bg_color|first.color %}
+  {% endif %}
+{% endif %}
+
+<div class="prgph-wrapper estilo-{{ fondo }} salida-imagen-{{ salida_imagen }} estilo-boton-{{ estilo_boton }}"{% if fondo == 'oscuro' and fondo_color %} style="--estilo-oscuro-bg: {{ fondo_color|e('html_attr') }};"{% endif %}>
+  {# Usamos una clase única para no chocar con el resto de la web #}
+  <div class="inner-banda-premium">
+    <div class="prgph texto-imagen posicion-{{ posicion_imagen }}">
+
+      {% set bloque_imagen %}
+        <div class="col-imagen field-imagen">
+          <div class="imagen-overlap">
+            <img src="{{ file_url(imagen_entity.uri.value) }}" alt="{{ imagen_entity.alt }}" />
+          </div>
+        </div>
+      {% endset %}
+
+      {% set bloque_texto %}
+        <div class="texto-parrafo">
+          {% if paragraph.field_etiqueta.value %}
+            <p class="texto-etiqueta">{{ paragraph.field_etiqueta.value }}</p>
+          {% endif %}
+
+          <h2 class="titulo-encima-texto">{{ paragraph.field_titulo.value }}</h2>
+
+          <div class="cuerpo-texto">
+            {{ content.field_texto }}
+          </div>
+
+          {% if content.field_enlace %}
+            <div class="boton-wrapper">
+              {{ content.field_enlace }}
+            </div>
+          {% endif %}
+        </div>
+      {% endset %}
+
+      {% if posicion_imagen == 'derecha' %}
+        {{ bloque_texto }}
+        {{ bloque_imagen }}
+      {% else %}
+        {{ bloque_imagen }}
+        {{ bloque_texto }}
+      {% endif %}
+
+    </div>
+  </div>
+</div>

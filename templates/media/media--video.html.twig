@@ -1,0 +1,10 @@
+{# themes/tu_tema/templates/media/media--video.html.twig #}
+
+{% set video_url = file_url(media.field_media_video_file.entity.uri.value) %}
+
+{% if video_url %}
+  <video class="custom-video-player" playsinline autoplay muted loop>
+    <source src="{{ video_url }}" type="{{ media.field_media_video_file.entity.filemime.value }}">
+    Tu navegador no soporta la etiqueta de vídeo.
+  </video>
+{% endif %}

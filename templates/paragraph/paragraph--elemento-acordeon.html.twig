@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Plantilla para un solo elemento del Acordeón.
+ *
+ * Mejoras de accesibilidad (ARIA) incluidas.
+ */
+#}
+{% set item_id = 'accordion-item-' ~ paragraph.id() %}
+
+<div class="accordion-item">
+  <h3 class="accordion-header">
+    {# Usamos un <button> para la accesibilidad y el control con teclado #}
+    <button type="button"
+            class="accordion-button"
+            aria-expanded="false"
+            aria-controls="{{ item_id }}">
+      {{ content.field_titulo_acordeon.0 }}
+      <span class="accordion-icon" aria-hidden="true"></span>
+    </button>
+  </h3>
+  <div id="{{ item_id }}"
+       class="accordion-content"
+       role="region"
+       aria-labelledby="{{ 'header-' ~ paragraph.id() }}">
+    <div class="accordion-content-inner">
+      {{ content.field_contenido }}
+    </div>
+  </div>
+</div>

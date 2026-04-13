@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * THEME OVERRIDE for an oEmbed resource in an iframe.
+ * Versión final y corregida.
+ */
+#}
+<!DOCTYPE html>
+<html>
+  <head>
+    <css-placeholder token="{{ placeholder_token }}">
+  </head>
+  <body style="margin: 0">
+    {% if media %}
+      {# Obtenemos el string del <iframe> que nos da YouTube. #}
+      {% set iframe_html = media|render|trim %}
+
+      {# Extraemos la URL original del atributo src="". Sabemos que esto funciona. #}
+      {% set src = iframe_html|split('src="', 2)|last|split('"', 2)|first %}
+
+      {# Si hemos conseguido extraer la URL, la modificamos. #}
+      {% if src %}
+        {# Definimos los parámetros. Omitimos loop y playlist porque no tenemos el video_id. #}
+        {% set params = 'autoplay=1&mute=1&controls=0&rel=0&showinfo=0' %}
+
+        {# Construimos la nueva URL. #}
+        {% set separator = '?' in src ? '&' : '?' %}
+        {% set new_src = src ~ separator ~ params %}
+
+        {# Reemplazamos la URL antigua por la nueva. #}
+        {% set final_iframe = iframe_html|replace({(src): new_src}) %}
+
+        {# Imprimimos el <iframe> final y modificado. #}
+        {{ final_iframe|raw }}
+      {% else %}
+        {# Fallback: Si algo falla, muestra el original para que no se rompa. #}
+        {{ media|raw }}
+      {% endif %}
+    {% endif %}
+  </body>
+</html>

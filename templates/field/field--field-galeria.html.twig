@@ -1,0 +1,17 @@
+  <div class="galeria-imagenes">
+    {% for item in items %}
+      <div class="galeria-item">
+        {% if item.content['#media'] and item.content['#media'].field_media_image.entity %}
+          {% set original = item.content['#media'].field_media_image.entity.uri.value|image_style('large') %}
+          {% set full = file_url(item.content['#media'].field_media_image.entity.uri.value) %}
+          {% set alt = item.content['#media'].field_media_image.alt %}
+
+          <a href="{{ full }}" class="glightbox" data-gallery="galeria" title="{{ alt }}">
+            <img src="{{ original }}" alt="{{ alt }}">
+          </a>
+        {% else %}
+          {# Puedes poner un mensaje de error o un placeholder aquí si lo deseas #}
+          {# {{ dump(item) }} #} {% endif %}
+      </div>
+    {% endfor %}
+  </div>

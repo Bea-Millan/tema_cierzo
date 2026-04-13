@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Plantilla para un Paragraph de tipo Galería Flexible.
+ *
+ * Variables disponibles:
+ * - paragraph: El objeto completo del paragraph.
+ * - content: Un array renderizable con el contenido de los campos.
+ */
+#}
+{% set classes = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  'gallery-container'
+] %}
+
+<div{{ attributes.addClass(classes) }}>
+  {% for item in content.field_imagenes %}
+    {% if item['#media'] is not empty %}
+      <div class="gallery-item">
+        {{ item }}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>

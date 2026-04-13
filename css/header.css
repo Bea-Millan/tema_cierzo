@@ -1,0 +1,652 @@
+/* ===================
+   Encabezado
+=================== */
+.site-header {
+  background-color: #cc202c;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 0 0;
+}
+
+
+
+/* ajustes cabecera */
+
+header {
+  position: sticky;
+  top: 0;
+  background-color: transparent;
+}
+
+.paragraph--full-width-video {
+    margin-top: -80px;
+}
+
+/* Ajustes visuales de cabecera: solo efecto "negro que pasa a rojo" en landings */
+.site-header{
+  display: flex;
+  gap: clamp(1rem, 1vw + 1rem, 6rem);
+  padding: 0.5rem 0;
+  transition: background-color .3s ease;
+}
+
+/* Efecto de degradado negro inicial solo en páginas de tipo landing */
+.page-node-type-landing .site-header {
+  background: none;
+}
+
+.page-node-type-landing .site-header:before {
+    background: linear-gradient(180deg, #000, transparent);
+    bottom: 0;
+    content: "";
+    height: 19.5rem;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    user-select: none;
+    z-index: -2;
+}
+
+.main-menu{
+  background: none;
+  border-bottom: 0;
+  z-index: 5;
+  > ul > li.menu-item-wrapper > a,
+  > ul > li.menu-item-wrapper > span{
+    color: white;
+  }
+}
+
+/* Cuando se hace scroll, en landing quitamos el degradado y ponemos barra roja */
+.page-node-type-landing header.site-header.scrolled:before {
+    display: none;
+}
+
+.page-node-type-landing header.site-header.scrolled {
+    background: #cc202c;
+    z-index: 70000;
+}
+
+/* En el resto de páginas el header es rojo y sticky desde el principio */
+body:not(.page-node-type-landing) header.site-header {
+  background-color: #cc202c;
+}
+
+body:not(.page-node-type-landing) header.site-header.scrolled {
+  background-color: #cc202c;
+}
+
+/* eol ajustes cabecera */
+
+
+
+
+
+
+/*
+ * =======================================================
+ * NUEVO CÓDIGO PARA LA CABECERA STICKY
+ * =======================================================
+ */
+
+header {
+  position: -webkit-sticky; /* Para compatibilidad */
+  position: sticky;
+  /* Se pega justo debajo de la barra de admin de Drupal (si existe) */
+  top: 0px;
+  z-index: 1000;
+}
+
+
+.header-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.header-lines {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 0;
+}
+
+.header-lines span {
+  display: block;
+  height: 1px;
+  background-color: #ffffff85;
+}
+
+.site-logo {
+  position: relative;
+  z-index: 10;
+  background-color: #cc202c; /* Mismo color que .site-header, puede ser para asegurar el fondo */
+  padding: 0.5rem 3rem;
+}
+
+.site-logo img {
+  height: 54px;
+  max-width: 100%;
+  display: block;
+}
+
+.slogan {
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  margin-top: 9px;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 0.7rem;
+}
+
+.slogan span {
+  text-transform: uppercase;
+  position: relative;
+  margin-right: 8px;
+  padding-right: 8px;
+}
+
+.slogan span:after {
+  content: '';
+  width: 1px;
+  height: 50%;
+  background: #ffffff;
+  top: 50%;
+  position: absolute;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+/* ===================
+   Menú principal
+=================== */
+
+.main-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 4rem;
+  justify-content: center;
+}
+
+.main-menu li {
+  position: relative; /* Necesario para posicionar el submenú absolutamente */
+}
+
+/* Submenús */
+.main-menu li .submenu {
+  display: none;
+  position: absolute;
+  top: 100%; /* Posiciona el inicio del submenú justo debajo del elemento <li> padre */
+  left: 0;
+  background: transparent;
+  padding: 1.0rem 0; /* Este padding es original y añade espacio INTERNO en el submenú */
+  min-width: 200px;
+  z-index: 30;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Elemento ::before para el submenú */
+/* Comentado porque probablemente causaba el espacio extra de 11px en la parte superior del submenú
+   al corregirse el selector original 'submenu:before' que posiblemente no se aplicaba.
+*/
+/*
+.main-menu .submenu:before {
+  content: '';
+  height: 11px;
+  top: 0;
+}
+*/
+
+.main-menu li:hover > .submenu,
+.main-menu li .submenu:hover {
+  display: flex;
+}
+
+/* Ítems dentro de submenús y sub-submenús */
+.main-menu .submenu li {
+  position: relative;
+  background: #ffffff;
+  padding: 10px 0;
+  border: 1px solid rgba(0,0,0,5%);
+}
+
+
+.main-menu .submenu li:hover { /* Hover para ítems del submenú */
+  background: #f9f6f7;
+}
+
+/* Posicionamiento de sub-submenús (nietos) */
+.main-menu .submenu li .submenu {
+  top: 0;
+  left: 100%; /* Se despliega a la derecha del ítem padre */
+}
+
+
+/* ===================
+   Estilos de enlaces del Menú
+=================== */
+
+/* Estilos base comunes para elementos de texto (a, span) en el menú principal */
+.main-menu a,
+.main-menu span {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: #2f3337;
+}
+
+/* Estilo de subrayado común ::after (inicialmente oculto) */
+.main-menu a::after,
+.main-menu span::after {
+  content: '';
+  position: absolute;
+  bottom: 0.2rem;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #cc202c; /* Color de subrayado unificado */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: none; /* Original: sin transición. Cambiar para animación suave si se desea (ej. 'transform 0.3s ease') */
+}
+
+/* Estilos específicos para ítems de menú de nivel superior (enlaces y spans) */
+.main-menu > ul > li > a,
+.main-menu > ul > li > span {
+  padding: 0.5rem 0rem; /* Padding vertical, sin padding horizontal para que el subrayado ocupe todo el texto */
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.main-menu > ul > li > a {
+  cursor: pointer;
+}
+
+.main-menu > ul > li > span { /* Spans en el nivel superior son para texto no clickeable */
+  cursor: default;
+}
+
+/* Estilos específicos para ítems de submenú (enlaces y spans) */
+.main-menu .submenu a,
+.main-menu .submenu span {
+  padding: 0.5rem 1rem; /* Padding estándar para ítems de submenú */
+}
+
+/* Revelar subrayado en hover para ítems de nivel superior */
+.main-menu > ul > li > a:hover::after { /* El subrayado del enlace aparece al hacer hover sobre el propio enlace */
+  transform: scaleX(1);
+}
+.main-menu > ul > li:hover > span::after { /* El subrayado del span aparece al hacer hover sobre el LI padre */
+  transform: scaleX(1);
+}
+
+
+
+
+/* ===================
+   Responsive
+=================== */
+
+
+/* Cuando la pantalla es menor a 1024px (Tablets y móviles) */
+@media (max-width: 1024px) {
+  .slogan {
+    display: flex;
+    flex-direction: column; /* Alinea los elementos uno arriba del otro */
+    align-items: center;    /* Centra las dos líneas */
+    line-height: 1.4;       /* Un poco más de espacio entre líneas */
+  }
+
+  .slogan span {
+    margin-right: 0;        /* Quitamos el margen lateral */
+    padding-right: 0;       /* Quitamos el padding lateral */
+    display: block;         /* Aseguramos que ocupe toda la línea */
+  }
+
+  /* Eliminamos la línea vertical divisoria */
+  .slogan span:after {
+    display: none;
+  }
+}
+
+
+
+@media screen and (max-width: 768px) {
+  /* Aseguramos siempre la barra roja en móvil */
+  header.site-header {
+    background-color: #cc202c !important;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 72px;
+    padding: 0 0.25rem;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .site-logo {
+    padding: 0.4rem 0.5rem;
+    max-width: 100%;
+  }
+
+  .site-logo img {
+    height: 46px;
+  }
+
+  .site-header::before,
+  header.site-header::before {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+  }
+
+  .menu-icon { /* Asumiendo que .menu-icon se usa para un botón de menú móvil */
+    display: flex; /* Se muestra en móviles */
+    position: absolute;
+    left: 0.1rem;
+    right: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    padding: 0.5rem 0.35rem;
+    z-index: 30;
+  }
+
+
+  header.site-header.menu-open .slogan {
+    display: none;
+  }
+
+  header.site-header.menu-open .main-menu {
+    display: block !important;
+    background-color: #ffffff !important;
+    color: #cc202c !important;
+    border-top: 1px solid rgba(204, 32, 44, 0.18);
+    border-bottom: 1px solid rgba(204, 32, 44, 0.18);
+        position: fixed;
+        top: 89px;
+
+  }
+
+  header.site-header.menu-open .main-menu a,
+  header.site-header.menu-open .main-menu span {
+    color: #cc202c !important;
+  }
+
+  header.site-header.menu-open .main-menu a::after,
+  header.site-header.menu-open .main-menu span::after {
+    background: #cc202c;
+  }
+
+  header.site-header.menu-open .main-menu .submenu li {
+    background: #ffffff;
+    border-color: rgba(204, 32, 44, 0.12);
+  }
+
+  header.site-header.menu-open .main-menu .submenu li:hover {
+    background: #f8f2f3;
+  }
+
+  header.site-header,
+  header.site-header .header,
+  header.site-header .site-logo,
+  header.site-header .main-menu,
+  header.site-header .main-menu.open {
+     width: 100%;
+  }
+
+  #toolbar-bar {
+    background: #cc202c;
+  }
+
+  .main-menu {
+    display: none; /* Oculto por defecto en móviles */
+    top: 100%; /* Se despliega debajo del encabezado */
+    left: 0;
+    right: 0;
+    background-color: #cc202c;
+    padding: 0.5rem 0;
+    /* z-index: 20; */ /* Ya definido globalmente, se mantiene */
+  }
+
+  .main-menu.open { /* Clase para mostrar el menú móvil (controlado por JS) */
+    display: block;
+  }
+
+  .main-menu ul { /* Lista principal en móvil */
+    display: block;
+    gap: 0; /* Sin espacio entre ítems */
+    width: 100%;
+  }
+
+  .main-menu li {
+    width: 100%;
+    padding: 0 25px;
+  }
+
+  .main-menu a,
+  .main-menu span {
+    color: #ffffff !important;
+    display: block;
+    width: 100%;
+    padding: 0.9rem 1rem;
+  }
+
+  header.site-header.menu-open .main-menu a,
+  header.site-header.menu-open .main-menu span {
+    color: #cc202c !important;
+  }
+
+  .main-menu a::after,
+  .main-menu span::after {
+    background: #ffffff;
+  }
+
+  .main-menu .submenu li {
+    background: #cc202c;
+    border-color: rgba(255, 255, 255, 0.25);
+    padding: 0;
+  }
+
+  .main-menu .submenu li:hover {
+    background: #b91c27;
+  }
+
+  /* Submenús en móvil */
+  .main-menu li .submenu {
+    position: static; /* Dejan de ser flotantes */
+    display: none; /* Ocultos por defecto, se mostrarán al hacer hover en el LI padre */
+    width: 100%;
+    padding: 0;
+    /* padding: 1.0rem 0; */ /* Considerar si este padding es necesario o se ajusta en móvil */
+  }
+
+  .main-menu li:hover > .submenu { /* Muestra el submenú al hacer hover sobre el LI padre en móvil */
+    display: block;
+  }
+
+  .main-menu .submenu a,
+  .main-menu .submenu span {
+    padding-left: 1.8rem;
+  }
+
+  /* Sub-submenús en móvil */
+  .main-menu .submenu li .submenu {
+    position: static;
+  }
+}
+
+
+
+
+/* ============ CABECERA: mejoras responsive y hamburguesa ============ */
+
+/* Ocultar las líneas en móvil */
+@media (max-width: 768px) {
+  .header-lines {
+    display: none;
+  }
+}
+
+/* Botón hamburguesa */
+.menu-icon {
+  display: none; /* oculto por defecto */
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.5rem;
+  z-index: 20;
+  position: absolute;
+  right: 1rem;
+  top: 0.7rem; /* mismo alto que el header */
+}
+
+/* Líneas del botón */
+.menu-icon span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background-color: #fff; /* blanco para fondo rojo */
+  transition: transform 0.3s ease;
+}
+
+/* Mostrar hamburguesa en móvil */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: flex;
+    position: absolute;
+    left: 0.1rem;
+    right: auto;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+
+/* MODO NINJA: Usamos ::before porque el ::after es el subrayado */
+
+/* 1. Hacemos espacio a la derecha del texto para que el badge no choque con el siguiente menú */
+a[href="/form/xi-curso-de-cuerda-zaragoza"] {
+    margin-right: 45px;
+}
+
+a[href="/form/xi-curso-de-cuerda-zaragoza"]::before {
+    content: "NUEVO";
+    position: absolute;
+    left: 100%; /* Se coloca justo donde acaba el texto */
+    top: 50%;
+    transform: translateY(-50%); /* Centrado vertical */
+    margin-left: 8px; /* Separación del nombre del curso */
+
+    /* Estilos del Badge */
+    font-size: 9px;
+    font-weight: bold;
+    background-color: #EE2A2B;
+    color: white !important;
+    padding: 2px 5px;
+    border-radius: 3px;
+    line-height: 1;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    /* Aseguramos que no herede el subrayado */
+    text-decoration: none !important;
+}
+
+/* 2. Animación (ajustada para no romper el centrado vertical) */
+@keyframes pulsoBadge {
+    0% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.1); }
+    100% { transform: translateY(-50%) scale(1); }
+}
+
+a[href="/form/xi-curso-de-cuerda-zaragoza"]::before {
+    animation: pulsoBadge 2s infinite ease-in-out;
+}
+
+
+/* ==============================
+   Menú: tablets / portátiles pequeños
+   (entre 721px y 1365px de ancho)
+   ============================== */
+@media (min-width: 721px) and (max-width: 1365px) {
+  /* Compactar el menú principal para que quepan más opciones */
+  .main-menu ul {
+    gap: 1.5rem; /* antes 4rem en escritorio */
+  }
+
+  .main-menu > ul > li > a,
+  .main-menu > ul > li > span {
+    font-size: 14px;
+    padding: 0.35rem 0;
+  }
+
+  /* Ajuste del badge "NUEVO" para esta resolución:
+     más cerca del menú y abreviado a "N" */
+  a[href="/form/xi-curso-de-cuerda-zaragoza"] {
+    margin-right: 20px; /* menos separación con el siguiente ítem */
+  }
+
+  a[href="/form/xi-curso-de-cuerda-zaragoza"]::before {
+    content: "N";      /* abreviamos para ocupar menos ancho */
+    margin-left: 4px;   /* pegamos un poco más al texto */
+    padding: 2px 4px;   /* badge más compacto */
+  }
+
+  /* Usar solo iconos para las opciones de usuario
+     (login, logout, cuenta) para ahorrar ancho.
+     Se seleccionan por la URL estándar de Drupal. */
+
+  /* Iniciar sesión */
+  .main-menu a[href*="/user/login"] {
+    font-size: 0; /* oculta el texto visualmente en este rango */
+    position: relative;
+  }
+  .main-menu a[href*="/user/login"]::before {
+    content: "🔑";
+    font-size: 16px;
+  }
+
+  /* Salir de la sesión */
+  .main-menu a[href*="/user/logout"] {
+    font-size: 0;
+    position: relative;
+  }
+  .main-menu a[href*="/user/logout"]::before {
+    content: "🚪";
+    font-size: 16px;
+  }
+
+  /* Mi cuenta / Perfil */
+  .main-menu a[href="/user"],
+  .main-menu a[href^="/user/"] {
+    font-size: 0;
+    position: relative;
+  }
+  .main-menu a[href="/user"]::before,
+  .main-menu a[href^="/user/"]::before {
+    content: "👤";
+    font-size: 16px;
+  }
+}
+

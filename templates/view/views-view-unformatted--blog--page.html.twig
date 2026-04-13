@@ -1,0 +1,11 @@
+<div class="container">
+<div id="masonry-container">
+{% for row in rows %}
+      <div class="masonry-item">
+      <article class="card">
+    {{- row.content -}}
+    </article>
+  </div>
+{% endfor %}
+</div>
+</div>

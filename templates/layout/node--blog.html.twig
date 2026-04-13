@@ -1,0 +1,37 @@
+{#
+  Supongamos que tu flag es un campo booleano en el objeto 'node'
+  (asegúrate de que 'node' esté disponible en tu plantilla, es común en node.html.twig).
+  Si el campo no existe o está vacío, default(false) lo tratará como falso.
+  El nombre 'field_envolver_texto' es un ejemplo, usa el nombre máquina de tu campo.
+#}
+{% set envolver_texto_activo = node.field_envolver_texto.value|default(false) %}
+
+<article{{ attributes.addClass(classes) }}>
+  <main class="site-content container">
+    {#
+      Añadimos una clase condicional al div 'texto-articulo'
+      basada en el valor de 'envolver_texto_activo'.
+      Quitamos la clase 'text-wrapping' fija que tenías.
+    #}
+    <div class="texto-articulo{{ envolver_texto_activo ? ' con-ajuste-texto' : ' sin-ajuste-texto' }}">
+      {% if content.field_foto_portada %}
+        <div class="imagen-articulo">
+          {{ content.field_foto_portada }}
+        </div>
+      {% endif %}
+      <div class="texto-introductorio">
+          <div class="texto-etiqueta">
+          {{ node.created.value|date("d/m/Y") }}
+          </div>
+        <h1 class="titulo">{{ label }}</h1>
+          {{ content.body }}
+      </div>
+   </div>
+
+    {% if content.field_galeria %}
+      <div class="galeria">
+        {{ content.field_galeria }}
+      </div>
+    {% endif %}
+  </main>
+</article>

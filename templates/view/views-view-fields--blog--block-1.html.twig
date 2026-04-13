@@ -1,0 +1,54 @@
+{#
+/**
+ * @file
+ * Theme override para una fila en la Vista 'mi-vista-de-tarjetas' (Display: Bloque).
+ */
+#}
+
+{% set card_link_url = fields.view_node.content|striptags|trim %}
+{% set card_link_title = fields.view_node.content|striptags|trim %}
+{% set card_title = fields.title.content|striptags|trim %}
+{% if not card_link_title %}
+  {% set card_link_title = card_title ? card_title : 'Learn more' %}
+{% endif %}
+
+<article class="card blog">
+  {% if fields.field_foto_portada.content %}
+    <div class="card__image blog">
+      {% if card_link_url %}
+        <a href="{{ card_link_url }}" aria-label="{{ card_link_title }}">
+          {{ fields.field_foto_portada.content }}
+        </a>
+      {% else %}
+        {{ fields.field_foto_portada.content }}
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="card__content">
+    {% if card_title %}
+      <h3 class="card__title">
+        {% if card_link_url %}
+          <a href="{{ card_link_url }}">
+            {{ card_title }}
+          </a>
+        {% else %}
+          {{ card_title }}
+        {% endif %}
+      </h3>
+    {% endif %}
+    {% if fields.body.content %}
+      <div class="card__description">
+        {{ fields.body.content }}
+      </div>
+    {% endif %}
+  <div class="card__meta">
+    {% if fields.created.content %} {# Asumiendo que el campo de fecha se llama 'created' #}
+      <span class="card__date">{{ fields.created.content }}</span>
+    {% endif %}
+    <a href="{{ fields.view_node.content|striptags|trim }}" class="card__arrow" aria-label="Leer más sobre {{ fields.title.content|striptags|trim }}">→</a>
+  </div>
+
+
+  </div>
+</article>

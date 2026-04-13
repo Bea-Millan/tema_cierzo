@@ -1,0 +1,25 @@
+{# themes/tu_tema/templates/paragraph/paragraph--video-incrustado.html.twig #}
+{{ attach_library('tema_cierzo/video-full-width-section') }}
+
+<div{{ attributes.addClass('paragraph', 'paragraph--type--video-incrustado', 'paragraph--full-width-video') }}>
+  {{ content }}
+
+
+ {# --- NUEVA CAPA DE CONTENIDO SUPERPUESTO --- #}
+  <div class="video-overlay-content">
+    <h2 class="overlay-title"><p class="interactive__label">Música</p>
+      <p class="interactive__word">EMOCIÓN</p>
+      <p class="interactive__label">Crecimiento</p>
+   </h2>
+
+    {# <p class="overlay-text">Descubre cómo el Método Suzuki puede transformar la vida de tu hijo a través de la música.</p> #}
+    <a href="/conocer-el-metodo-suzuki" class="button overlay-button">Saber Más</a>
+    <a href="/conocer-el-metodo-suzuki" class="overlay-link-mobile">Ver más -&gt;</a>
+  </div>
+  {# --- FIN DE LA NUEVA CAPA --- #}
+
+  <button class="video-control-button is-playing" aria-label="Pausar vídeo">
+    <span class="play-icon"></span>
+    <span class="pause-icon"></span>
+  </button>
+</div>

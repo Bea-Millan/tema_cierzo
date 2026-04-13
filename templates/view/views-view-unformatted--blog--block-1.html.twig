@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme override para el contenedor de la Vista 'mi-vista-de-tarjetas' (Display: Bloque).
+ */
+#}
+{# El título del bloque se suele gestionar en la configuración del bloque en /admin/structure/block #}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+
+<div class="card-band"> {# O la clase que necesites #}
+  {% for row in rows %}
+    {{ row.content }}
+  {% endfor %}
+</div>

@@ -1,0 +1,17 @@
+{# Archivo: paragraph--itinerario-block.html.twig #}
+
+{% set tax_id = paragraph.field_itinerario_tax.target_id %}
+
+<section class="contenedor-itinerario-wrapper">
+
+  {% if content.field_encabezado|render %}
+    <h2 class="titulo-itinerario">{{ content.field_encabezado }}</h2>
+  {% endif %}
+
+  <div class="itinerario-timeline">
+    {# Usamos Twig Tweak para llamar a la vista y pasarle el ID de la taxonomía #}
+    {{ drupal_view('itinerario', 'block_1', tax_id) }}
+  </div>
+
+</section>
+{{ attach_library('tema_cierzo/timeline-style') }}

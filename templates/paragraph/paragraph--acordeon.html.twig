@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Plantilla para el contenedor del Acordeón.
+ */
+#}
+{% set classes = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  'accordion-container'
+] %}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ content.field_elementos_del_acordeon }}
+</div>

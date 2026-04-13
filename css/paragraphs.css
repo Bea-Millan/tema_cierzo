@@ -1,0 +1,823 @@
+/* ---------- Banda Equipo N bolos ---------- */
+.banda-equipo{
+  text-align:center;
+  padding: 5rem  1rem 1rem;
+}
+.banda-equipo__inner{max-width:1000px;margin:0 auto}
+
+/* Contenedor de bolos: centrado y wrap */
+.banda-equipo__fotos{
+  display:flex; flex-wrap:wrap;
+  justify-content:center;
+  gap:10rem;                  /* espacio uniforme */
+  margin-bottom:2rem;
+}
+
+/* Bolo circular */
+.banda-equipo__fotos .foto img{
+  width:200px;height:200px;
+  border-radius:50%;
+  object-fit:cover;
+  transition: transform 0.3s ease-out;
+    /* Esto ayuda a que el navegador no se emborrone al "escalar" */
+    will-change: transform;
+}
+.banda-equipo__fotos .foto:hover img{transform:scale(1.06)}
+
+/* Texto */
+.banda-equipo__texto{
+  font-size:1.35rem;line-height:1.55;
+  max-width:60ch;
+  margin:35px auto;
+}
+
+.foto div{
+  /* Activa el contenedor flexible */
+  display: flex;
+
+  /* Apila los elementos verticalmente (uno encima del otro) */
+  flex-direction: column;
+
+  /* Centra los elementos horizontalmente */
+  align-items: center;
+
+  /* Opcional: para quitar el subrayado del enlace */
+  text-decoration: none;
+
+  /* Opcional: para que el texto herede el color del resto de la pÃ¡gina */
+  color: inherit;
+}
+
+/* Opcional: para aÃ±adir un pequeÃ±o espacio entre la imagen y el texto */
+
+.foto cite {
+    margin-top: 25px;
+    font-size: 26px;
+}
+/* Responsive */
+@media(max-width:640px){
+  .banda-equipo__fotos{gap:1.5rem}
+  .banda-equipo__fotos .foto img{width:200px;height:200px}
+  .banda-equipo__texto{font-size:1.125rem}
+}
+
+
+.hero-swiper { position:relative; height:60vh; max-height:720px; }
+.hero-swiper.vh-50 { height:50vh }
+.hero-swiper.vh-100{ height:100vh }
+
+.hero-slide{
+  width:100%; height:60vh;  display:flex; align-items:center; justify-content:center;
+  color:#fff; background-size:cover; background-position:center;
+  text-align:center; position:relative;}
+
+.hero-slide.vh-50 { height:50vh }
+.hero-slide.vh-100{ height:100vh }
+
+
+.hero-slide::after{position:absolute;inset:0;background:rgba(0,0,0,.45)}
+.hero-slide .container{position:relative; z-index:1}
+
+
+.quote-band{
+  background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    border-top: 4px solid #a0181d;
+}
+.quote-band__title{
+  margin:0;
+  padding-bottom:2rem;
+  text-align:center;
+}
+.quote-band__inner{
+  max-width:60ch; margin:0 auto;
+}
+
+.quote-band__inner p{
+  font-size: 1.6rem;
+    font-style: italic;
+    max-width: 850px;
+    margin: 0 auto;
+    line-height: 1.6;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Mejora la lectura sobre la partitura */
+    font-family: 'Georgia', serif;
+}
+.quote-band cite{
+  display: block;
+    margin-top: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.8);
+}
+
+.quote-band--sin-imagen {
+  color: #777777;
+}
+
+.quote-band--sin-imagen .quote-band__inner p {
+  color: #777777;
+  text-shadow: none;
+}
+
+.quote-band--sin-imagen cite {
+  color: rgba(64, 65, 57, 0.9);
+}
+
+.quote-band--sin-imagen .quote-band__title {
+  color: #404139;
+}
+
+@media(max-width:640px){
+  .quote-band__inner{font-size:1.15rem}
+}
+
+.sep-band{
+  --sep-lines:#e5e5e5;          /* color de las lÃ­neas */
+  background:var(--sep-bg,#cfcfcf);
+  position:relative;
+  text-align:center;
+  padding:3rem 1rem;
+  /* height: 111px; */
+}
+
+/* 5 lÃ­neas usando sombras */
+.sep-band::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+  height: 2px; /* LÃ­neas aÃºn mÃ¡s gorditas */
+  background: var(--sep-lines);
+  box-shadow:
+      0 -16px 0 var(--sep-lines),
+      0 -32px 0 var(--sep-lines),
+      0 16px 0 var(--sep-lines),
+      0 32px 0 var(--sep-lines);
+}
+
+/* Logo */
+.sep-logo{
+  font-family:serif;
+  font-size:8rem;
+  line-height:1;
+  color:#fff;
+  display:inline-block;
+  /* margin-bottom:1rem; */
+  /* width: 50px; */
+  height: 147px;
+  /* display: block; */
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(185deg) brightness(103%) contrast(101%);
+}
+
+/* Texto rojo */
+.sep-text{
+  color:#D22630;font-weight:700;letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+
+/* paragraph--type--imagen-texto */
+
+.texto-imagen{
+  display: flex;
+}
+
+.texto-imagen.posicion-izquierda {
+  flex-direction: row;
+}
+
+.texto-imagen.posicion-derecha {
+  flex-direction: row;
+}
+
+/* Layout base de la banda imagen-texto (todas las variantes) */
+.prgph-wrapper .texto-imagen {
+  align-items: center;
+}
+
+.prgph-wrapper .col-imagen {
+  flex: 0 0 40%;
+  max-width: 420px;
+}
+
+
+
+
+
+
+
+.texto-parrafo.p
+{
+      padding: 4rem 3rem 2rem;
+      width: 100%;
+      justify-content: left;
+}
+
+.texto-imagen .field-imagen img,
+.texto-imagen .imagen-overlap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.texto-parrafo{
+  padding: 0px 0px 0px 65px;
+  flex: 1;
+  display: flex;
+  flex-direction:column;
+}
+
+.texto-imagen.posicion-derecha .texto-parrafo {
+  padding: 0px 65px 0px 0px;
+}
+
+
+.texto-etiqueta {
+  color: #cc202c;
+  text-transform: uppercase;
+  /* font-style: italic; */
+  letter-spacing: 1.5px;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+
+.porcentaje40 {
+  width: 40%;
+}
+
+.titulo-encima-texto {color: #2f3337; /* rojo Cierzo */font-family: "Red Hat Text", sans-serif;font-size: 38px;font-weight: 600;margin-bottom: 1rem;text-align: left;width: 100%;display: block;}
+
+.texto-imagen .boton-wrapper {
+  margin-top: 2rem;
+}
+
+.texto-imagen .boton-wrapper .field,
+.texto-imagen .boton-wrapper .field__item {
+  margin: 0;
+}
+
+.texto-imagen .boton-wrapper a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #d22630;
+  border-radius: 999px;
+  background-color: transparent;
+  color: #d22630;
+  font-weight: 600;
+
+ /* font-family: "Red Hat Text", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.04em;*/
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.texto-imagen .boton-wrapper a::after {
+  content: "";
+  width: 15px;
+  height: 10px;
+  display: inline-block;
+  flex: 0 0 15px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='15' height='10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m10.231.875-.07-.071-.071.07-.624.624-.07.071.07.07 2.604 2.605H.4v1.082h11.67L9.466 7.93l-.07.071.07.07.624.624.07.071.071-.07 3.84-3.84.07-.071-.07-.07-3.84-3.84z' fill='%23D22630'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: transform 0.2s ease;
+}
+
+.texto-imagen .boton-wrapper a:hover,
+.texto-imagen .boton-wrapper a:focus {
+  background-color: rgba(210, 38, 48, 0.08);
+  border-color: #d22630;
+  color: #d22630;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.texto-imagen .boton-wrapper a:hover::after,
+.texto-imagen .boton-wrapper a:focus::after {
+  transform: translateX(3px);
+}
+
+.texto-imagen .boton-wrapper a:focus-visible {
+  outline: 2px solid #d22630;
+  outline-offset: 3px;
+}
+
+/* Variante de boton por parrafo: fondo rojo y texto blanco */
+.prgph-wrapper.estilo-boton-denso .texto-imagen .boton-wrapper a {
+  background-color: #d22630;
+  border-color: #d22630;
+  color: #ffffff;
+}
+
+.prgph-wrapper.estilo-boton-denso .texto-imagen .boton-wrapper a::after {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='15' height='10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m10.231.875-.07-.071-.071.07-.624.624-.07.071.07.07 2.604 2.605H.4v1.082h11.67L9.466 7.93l-.07.071.07.07.624.624.07.071.071-.07 3.84-3.84.07-.071-.07-.07-3.84-3.84z' fill='%23FFFFFF'/%3E%3C/svg%3E");
+}
+
+.prgph-wrapper.estilo-boton-denso .texto-imagen .boton-wrapper a:hover,
+.prgph-wrapper.estilo-boton-denso .texto-imagen .boton-wrapper a:focus {
+  background-color: #b31d28;
+  border-color: #b31d28;
+  color: #ffffff;
+}
+
+.prgph-wrapper.estilo-boton-denso .texto-imagen .boton-wrapper a:focus-visible {
+  outline-color: #ffffff;
+}
+
+
+
+/* eol paragraph--type--imagen-texto */
+
+
+/* --- Inicio: Bloque de color desplazado para imagen --- */
+
+/* El contenedor de la imagen necesita position: relative para que el
+   pseudo-elemento se posicione respecto a Ã©l. */
+   .texto-imagen .izquierda.porcentaje40.imagen {
+    position: relative;
+    /* Opcional: un pequeÃ±o z-index para asegurar que estÃ¡ sobre otros elementos si fuera necesario,
+       aunque con z-index:-1 en el ::before suele ser suficiente. */
+    /* z-index: 1; */
+  }
+
+
+  /* AsegÃºrate de que la imagen tenga un fondo (si es PNG con transparencia)
+     o que el contenedor no tenga padding que interfiera.
+     Tus estilos actuales para la imagen parecen correctos. */
+  .texto-imagen .izquierda.porcentaje40.imagen img {
+    display: block; /* Asegura que la imagen se comporte como bloque */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative; /* Para asegurar que la imagen estÃ© sobre el ::before en todos los navegadores */
+    z-index: 0; /* O cualquier valor >= 0, para estar encima del ::before que tiene -1 */
+  }
+
+  /* --- Fin: Bloque de color desplazado para imagen --- */
+
+  /* Media query para ajustar en mÃ³viles si es necesario */
+ @media (max-width: 768px) {
+  .texto-imagen .izquierda.porcentaje40.imagen img{
+  position: relative;
+    left: -1rem;
+    width: calc(100% + 2rem);
+  }
+
+  /* En móvil, banda imagen-texto en una sola columna: etiqueta/título → imagen → texto → botón */
+  .prgph-wrapper .texto-imagen {
+    display: grid !important;
+    grid-template-areas:
+      "etiqueta"
+      "titulo"
+      "imagen"
+      "texto"
+      "boton";
+    row-gap: 1rem;
+  }
+
+  .prgph-wrapper .texto-imagen .imagen,
+  .prgph-wrapper .texto-imagen .col-imagen {
+    grid-area: imagen;
+    width: 100% !important;
+  }
+
+  .prgph-wrapper .texto-imagen .texto-parrafo {
+    display: contents;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .prgph-wrapper .texto-imagen .texto-parrafo .texto-etiqueta {
+    grid-area: etiqueta;
+  }
+
+  .prgph-wrapper .texto-imagen .texto-parrafo .titulo-encima-texto {
+    grid-area: titulo;
+  }
+
+  .prgph-wrapper .texto-imagen .texto-parrafo .cuerpo-texto {
+    grid-area: texto;
+  }
+
+  .prgph-wrapper .texto-imagen .texto-parrafo .boton-wrapper {
+    grid-area: boton;
+  }
+}
+
+
+
+  /* Contenedor de la banda de tarjetas */
+.card-band {
+  display: grid;
+  /* Define un mÃ­nimo de 200px para cada tarjeta, y que crezcan hasta ocupar el espacio (1fr) */
+  /* auto-fit crearÃ¡ tantas columnas como quepan */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajusta 250px segÃºn necesites */
+  gap: 1rem; /* Espacio entre tarjetas */
+  padding: 1rem 0; /* Espacio arriba/abajo de la banda */
+}
+
+/* Estilos de la tarjeta individual */
+.card_paraph {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden; /* Para que el borde redondeado afecte a la imagen */
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card__image img {
+  width: 100%;
+  height: 220px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  filter: brightness(0.9);
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+
+.card__content {
+  padding: 1rem;
+  flex-grow: 1; /* Para quble el contenido ocupe el espacio si las tarjetas tienen alturas variables */
+  display: flex;
+  flex-direction: column;
+}
+
+.card__title {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.card__title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card__title a:hover {
+  text-decoration: underline;
+}
+
+.card__description {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1rem;
+  flex-grow: 1; /* Empuja el enlace (si existe) hacia abajo */
+}
+
+
+.gallery-container {
+  display: grid;
+  /* Crea columnas de tamaÃ±o mÃ­nimo 300px y que ocupen el espacio disponible */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin: 37px 0 0 0;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Ajustes para pantallas mÃ¡s pequeÃ±as si es necesario (aunque auto-fit ya ayuda mucho) */
+/* Por ejemplo, asegurar una sola columna en mÃ³viles muy pequeÃ±os si minmax no es suficiente */
+@media (max-width: 576px) {
+  .card__title {
+    font-size: 1.1rem;
+  }
+}
+
+/* --- Estilos para el AcordeÃ³n --- */
+
+
+
+/* Contenedor de cada elemento (pregunta + respuesta) */
+.accordion-item {
+  /* Eliminamos el borde para un look mÃ¡s limpio y solo aÃ±adimos uno sutil arriba para separar */
+  border-bottom: 1px solid #cc202c59;
+}
+
+/* El "botÃ³n" o tÃ­tulo clickeable */
+.accordion-button {
+  /* --- LÃNEAS AÃ‘ADIDAS PARA SOLUCIONAR EL PROBLEMA --- */
+  background-color: #fff; /* O el color de fondo que tenga tu pÃ¡gina */
+  position: relative;     /* Asegura que el botÃ³n cree una nueva capa de apilamiento */
+  z-index: 1;             /* Lo pone por encima del contenido que pueda colarse */
+  background: none;
+  border: none;
+  color: #333d47; /* Color de texto oscuro y profesional */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1.1rem; /* Un poco mÃ¡s grande para legibilidad */
+  font-weight: 600; /* Semi-bold como en la imagen */
+  padding: 1.25rem 1rem; /* Espaciado vertical y horizontal */
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.2s ease-in-out; /* TransiciÃ³n suave para el color del texto */
+}
+
+/* Quitamos cualquier efecto de fondo al pasar el ratÃ³n */
+.accordion-button:hover {
+  background-color: transparent;
+}
+
+/* El icono (+ / -) */
+.accordion-icon::after {
+  content: '+'; /* Icono '+' por defecto */
+  font-size: 1.5rem;
+  font-weight: 400; /* Un peso normal para el icono */
+  color: #333d47; /* Mismo color que el texto */
+  transition: transform 0.3s ease, color 0.2s ease-in-out;
+}
+
+/* Contenido desplegable */
+.accordion-content {
+  display: grid; /* Â¡La clave estÃ¡ aquÃ­! */
+  grid-template-rows: 0fr; /* La fila empieza con altura CERO */
+  overflow: hidden;
+  transition: grid-template-rows 0.4s ease-in-out; /* Animamos esta propiedad */
+  color: #525f6c;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+
+/* El contenido que estÃ¡ dentro del grid necesita ocupar su espacio */
+.accordion-content-inner {
+  min-height: 0; /* Necesario para quela animaciÃ³n funcione correctamente */
+  padding: 0 1rem;
+}
+
+/* --- ESTADOS ACTIVOS (cuando el elemento estÃ¡ abierto) --- */
+
+/* Cambia el color del tÃ­tulo del botÃ³n a un verde distintivo */
+.accordion-item.active .accordion-button {
+  color: #cc202c; /* Un verde similar al de la imagen de Avada */
+}
+
+/* Cambia el icono a 'âˆ’' (carÃ¡cter de resta) y su color */
+.accordion-item.active .accordion-icon::after {
+  content: 'âˆ’'; /* Cambiamos el carÃ¡cter a un signo de resta */
+  transform: none; /* Nos aseguramos de que no haya rotaciÃ³n */
+  color: #cc202c;
+}
+
+/* Expande el contenido */
+.accordion-item.active .accordion-content {
+  grid-template-rows: 1fr; /* La fila se expande para ocupar el tamaÃ±o de su contenido */
+}
+ .paragraph--type--acordeon{
+  padding-top: 20px;
+}
+
+.banda-equipo .foto {
+    opacity: 0;
+    /* Reducimos el recorrido para ganar nitidez */
+
+    /* 1. Preparamos el hardware: reserva memoria para la animaciÃ³n */
+    will-change: transform, opacity;
+
+    /* 2. Forzamos renderizado de alta calidad */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+
+    /* 3. La curva de transiciÃ³n (Cubic-Bezier sofisticado) */
+    transition:
+        opacity 1.5s ease-out,
+        transform 2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Cuando el JavaScript aÃ±ade la clase */
+.banda-equipo .foto.is-visible {
+    opacity: 1;
+    /* Volvemos a la posiciÃ³n original absoluta */
+    transform: translateY(0) translateZ(0);
+}
+
+/* Direcciones de salida */
+.banda-equipo .foto:nth-child(1) { transform: translateX(-120px) }
+.banda-equipo .foto:nth-child(2) { transform: translateX(120px) }
+
+/* Estado final (Cuando el JS detecta que han entrado) */
+.banda-equipo .foto.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+/* Estado inicial de las tarjetas del blog */
+/* Estado inicial: Invisible, un pelÃ­n mÃ¡s pequeÃ±a y SIN desenfoque (blur)
+   iara que no se ensucie el micro-zoom. */
+/* La tarjeta: Solo se vuelve sÃ³lida, no se mueve */
+/* La tarjeta (Contenedor) */
+.card-band .card {
+    opacity: 0;
+    overflow: hidden;
+    /* Ellos usan 0.8s para la opacidad */
+    transition: opacity 0.8s ease-out;
+    will-change: opacity;
+}
+
+/* La imagen (El movimiento interno) */
+.card-band .card img {
+    /* El desplazamiento inicial es de apenas 15px */
+    transform: scale(1.1) translateY(15px);
+    /* DuraciÃ³n de 1.2s para el movimiento (un poco mÃ¡s que la opacidad) */
+    /* Esta curva cubic-bezier(0.25, 0.46, 0.45, 0.94) es la suya */
+    transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+/* Cuando se activa */
+.card-band .card.is-visible {
+    opacity: 1;
+}
+
+.card-band .card.is-visible img {
+    transform: scale(1) translateY(0);
+}
+
+/* --- VARIANTE OSCURA REUTILIZABLE --- */
+
+/* --- VARIANTE OSCURA REUTILIZABLE --- */
+
+/* 1. Fondo que ocupa todo el ancho */
+.prgph-wrapper.estilo-oscuro {
+background-color: var(--estilo-oscuro-bg, #ddd0c0) !important;
+    width: 100%;
+    /* padding: 100px 0; */
+    overflow: visible;
+    color: #404139;
+  padding-top: 3rem;
+    position: relative;
+  padding-bottom: 3rem;
+}
+
+/* Espaciado vertical segun por donde sobresale la imagen */
+.prgph-wrapper.estilo-oscuro.salida-imagen-arriba {
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.prgph-wrapper.estilo-oscuro.salida-imagen-abajo {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.prgph-wrapper.estilo-oscuro.salida-imagen-none {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+
+/* EL CUADRADO ROJO DETRÁS DE LA ESQUINA */
+
+
+/* 2. Nuestro nuevo contenedor privado */
+.inner-banda-premium {
+    max-width: 1200px; /* Ancho controlado estilo Les 3 VallÃ©es */
+    margin: 0 auto;
+    padding: 0;   /* Aire en los extremos */
+    box-sizing: border-box;
+}
+
+.prgph-wrapper.estilo-oscuro .texto-imagen {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: visible;
+}
+
+/* 3. Columna Imagen */
+.prgph-wrapper.estilo-oscuro .col-imagen {
+    flex: 0 0 30%;
+    position: relative;
+    z-index: 5;
+}
+
+.prgph-wrapper.estilo-oscuro .imagen-overlap {
+  transform: scale(1.1);
+}
+
+.prgph-wrapper.estilo-oscuro.salida-imagen-abajo .imagen-overlap {
+  /* Comportamiento actual: la imagen sale por abajo */
+  transform: scale(1.1) translateY(35px);
+}
+
+.prgph-wrapper.estilo-oscuro.salida-imagen-arriba .imagen-overlap {
+  /* Variante para que la imagen salga por arriba */
+  transform: scale(1.1) translateY(-70px);
+}
+
+.prgph-wrapper.estilo-oscuro.salida-imagen-none .imagen-overlap {
+  /* Sin salida: la imagen no sobresale de la banda */
+  transform: scale(1.1) translateY(0);
+}
+
+.prgph-wrapper.estilo-oscuro .imagen-overlap img {
+    width: 100%;
+    height: auto;
+    display: block;
+  /* Sombra por contorno para PNG/WebP transparentes (efecto flotante real). */
+  filter: drop-shadow(8px 10px 20px rgba(0, 0, 0, 0.3));
+    margin-top: 1rem;
+}
+
+/* 4. Columna Texto */
+.prgph-wrapper.estilo-oscuro .texto-parrafo {
+    flex: 0 0 60%;
+    color: #404139;
+    padding-left: 0;
+}
+
+.prgph-wrapper.estilo-oscuro .titulo-encima-texto {
+    font-size: 2.8rem !important;
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 25px !important;
+    color: #404139 !important;
+    font-weight: 300;
+}
+
+/* LÃ­nea roja de acento */
+.prgph-wrapper.estilo-oscuro .titulo-encima-texto::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #D22630;
+    margin-top: 15px;
+}
+
+/* PÃ¡rrafos y listas */
+.prgph-wrapper.estilo-oscuro .cuerpo-texto {
+    /* font-size: 1.2rem; */
+    /* line-height: 1.5; */
+    color: #404139;
+}
+
+/* Ajuste de la lista dentro de la banda oscura */
+.estilo-oscuro .cuerpo-texto ul {
+    list-style: none;
+    padding: 0;
+    /* margin: 30px 0; */
+}
+
+.estilo-oscuro .cuerpo-texto li {
+    position: relative;
+    padding-left: 0; /* Quitamos el padding antiguo */
+    color: #404139;
+    display: flex; /* Activamos flex para alinear flecha y texto */
+    align-items: flex-start; /* Alinea la flecha con la parte superior (primera lÃ­nea) */
+    /* line-height: 1.5; */
+}
+
+.estilo-oscuro .cuerpo-texto li::before {
+    content: '→';
+    color: #D22630;
+    font-weight: bold;
+    margin-right: 12px; /* Espacio exacto entre flecha y texto */
+    flex-shrink: 0; /* Evita que la flecha se aplaste si el texto es largo */
+    display: inline-block;
+    margin-top:14px;
+    /* Ajuste fino de altura: si ves la flecha muy arriba, activa esto: */
+    /* margin-top: 2px; */
+}
+/* MÃ³vil */
+@media (max-width: 900px) {
+    .inner-banda-premium { padding: 0 25px; }
+    .prgph-wrapper.estilo-oscuro .texto-imagen { flex-direction: column; }
+    .prgph-wrapper.estilo-oscuro .texto-parrafo { width: 100%; padding-left: 0; text-align: left; display: contents; }
+    .prgph-wrapper.estilo-oscuro .texto-etiqueta { order: 1; width: 100%; }
+    .prgph-wrapper.estilo-oscuro .titulo-encima-texto { order: 2; width: 100%; }
+    .prgph-wrapper.estilo-oscuro .col-imagen { order: 3; width: 100%; max-width: 420px; margin: 0 auto 24px; }
+    .prgph-wrapper.estilo-oscuro .cuerpo-texto { order: 4; width: 100%; }
+    .prgph-wrapper.estilo-oscuro .boton-wrapper { order: 5; width: 100%; }
+    .prgph-wrapper.estilo-oscuro .imagen-overlap { transform: none !important; }
+    .prgph-wrapper.estilo-oscuro .imagen-overlap img {
+      width: 100%;
+      max-height: 320px;
+      object-fit: contain;
+      margin-top: 0;
+    }
+  .prgph-wrapper.estilo-oscuro .titulo-encima-texto::after { margin: 15px 0 0; }
+}

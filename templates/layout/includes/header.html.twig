@@ -1,0 +1,24 @@
+<header class="site-header">
+ <div class="header">
+   <div class="header-inner">
+    <div class="header-lines">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <a href="{{ path('<front>') }}" class="site-logo" aria-label="Ir al inicio">
+      <img src="/{{ directory }}/assets/img/logo.svg" alt="Logo Cierzo Educación Musical">
+    </a>
+
+    <button class="menu-icon" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="main-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="slogan"><span>Educación musical</span>Método Suzuki</div>
+</div>
+  <nav class="main-menu" id="main-menu">
+  {{ drupal_menu('main', 1, 3, true) }}
+</nav>
+
+</header>
+

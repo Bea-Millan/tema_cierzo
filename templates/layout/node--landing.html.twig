@@ -1,0 +1,39 @@
+{#
+  node--landing.html.twig
+  Renderiza el nodo tipo Landing con clase basada en el valor de field_ancho
+#}
+
+
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+] %}
+
+
+{# Determina la clase de ancho para el contenedor principal, por defecto 'container' #}
+{% set ancho = node.field_ancho.value ?: 'container' %}
+{% set menu_rojo = node.field_menu_rojo.value ?: true %}
+
+{% set mostrar_titulo = node.field_mostrar_titulo.value == 1 %}
+{% set titulo_centrado = node.field_titulo_centrado.value == 1 %}
+
+
+<article{{ attributes.addClass(classes) }}>n
+  <main class="site-content ">
+  {% if mostrar_titulo %}
+    {{ title_prefix }} {# Hooks para módulos que quieran añadir contenido antes/después del título #}
+    <h1{{ title_attributes.addClass('node__title', 'page-title', titulo_centrado ? 'titulo_centrado' : '' ) }}>{{ label }}</h1>
+    {{ title_suffix }}
+  {% endif %}
+   {% if content.field_texto_debajo_titulo|render|striptags|trim is not empty %}
+      <div class="node__text-below-title text-formatted"> {# Clases para estilizar si es necesario #}
+        {{ content.field_texto_debajo_titulo }}
+      </div>
+  {% endif %}
+
+
+    <a id="main-content" tabindex="-1"></a>
+    {{ content.field_bandas }}
+  </main>
+</article>
+

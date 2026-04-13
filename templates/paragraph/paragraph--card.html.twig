@@ -1,0 +1,46 @@
+{% set card_link_url = content.field_card_link|render ? content.field_card_link[0]['#url'] : null %}
+{% set card_link_title = content.field_card_link|render ? content.field_card_link[0]['#title'] : (content.field_card_title|render ? content.field_card_title[0]['#context'].value : 'Learn more') %}
+
+
+
+
+<article class="card">
+{% if content.field_card_image|render %} {# Verifica si el campo tiene contenido #}
+  <div class="card__image">
+    {% if card_link_url %} {# Suponiendo que card_link_url y card_link_title se definen como antes #}
+      <a href="{{ card_link_url }}" aria-label="{{ card_link_title }}">
+        {{ content.field_card_image }} {# <--- Drupal renderizará la imagen aquí #}
+      </a>
+    {% else %}
+      {{ content.field_card_image }} {# <--- Drupal renderizará la imagen aquí #}
+    {% endif %}
+  </div>
+{% endif %}
+
+  <div class="card__content">
+    {% if content.field_titulo_card_title|render %}
+      <h3 class="card__title">
+        {% if card_link_url %}
+          <a href="{{ card_link_url }}">
+            {{ content.field_titulo_card_title }} {# Aquí también podrías querer evitar los wrappers de field.html.twig #}
+          </a>
+        {% else %}
+          {{ content.field_titulo_card_title }}
+        {% endif %}
+      </h3>
+    {% endif %}
+
+    {% if content.field_card_description|render %}
+      <div class="card__description">
+        {{ content.field_card_description }}
+      </div>
+    {% endif %}
+
+     {% if card_link_url and not (content.field_titulo_card_title|render and content.field_card_image|render) %} {# Evita duplicar si ya todo es enlace #}
+      <div class="card__link">
+         <a href="{{ card_link_url }}">{{ card_link_title }}</a>
+      </div>
+    {% endif %}
+  </div>
+</article>
+

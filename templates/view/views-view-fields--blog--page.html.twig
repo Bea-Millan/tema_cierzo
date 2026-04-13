@@ -1,0 +1,37 @@
+<a href="{{ fields.view_node.content }}" class="card-link-wrapper">
+  <div class="card-image">
+    {% if fields.field_foto_portada %}
+    <div class="foto_portada_blog">
+    {{ fields.field_foto_portada.content }}
+    </div>
+    {% endif %}
+
+    <div class="date-badge {{ fields.field_foto_portada.content ? 'over-image' : 'under-header' }}">
+      {% if row and row._entity %}
+        {% set created_timestamp = row._entity.getCreatedTime() %}
+        <span class="day">{{ created_timestamp|date('d') }}</span>
+        <span class="month">{{ created_timestamp|date('M') }}</span>
+      {% endif %}
+    </div>
+  </div>
+</a>
+<div class="card-content">
+  {% if fields.title %}
+    <a href="{{ fields.view_node.content }}" class="card-link-wrapper">
+      <h2>{{ fields.title.content }}</h2>
+    </a>
+  {% endif %}
+  {% if fields.body %}
+    <div class="card-text">
+      {{ fields.body.content|striptags|truncate(200, true, '...') }}
+    </div>
+  {% endif %}
+  <p class="read-more-section">
+    <a href="{{ fields.view_node.content }}" class="card-link-wrapper">Continuar leyendo</a>
+  </p>
+</div>
+
+
+
+
+

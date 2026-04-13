@@ -1,0 +1,7 @@
+{# Este template se usa para el campo 'field_band_cards'
+   dentro del paragraph 'banda-de-tarjetas'.
+   Simplemente iteramos sobre los items (que son los paragraphs 'card')
+   y renderizamos su contenido directamente, sin los wrappers de field.html.twig. #}
+{% for item in items %}
+  {{ item.content }}
+{% endfor %}

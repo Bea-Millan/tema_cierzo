@@ -1,0 +1,19 @@
+{# themes/custom/cierzo_theme/templates/layout/page--user--login.html.twig #}
+<div class="layout-container">
+{% include "@tema_cierzo/layout/includes/header.html.twig" %}
+<div class="container">
+<article class="page-contact">
+  <div class="login-page-wrapper">
+  {# El contenido principal de la página, que en este caso es el bloque del formulario de login #}
+  <main role="main" class="main-content">
+    <a id="main-content" tabindex="-1"></a>{# Enlace de anclaje para accesibilidad #}
+    {{ page.content }}
+  </main>
+</div>
+</article>
+</div>
+ <footer role="contentinfo">
+  {{ page.footer }}
+  {% include "@tema_cierzo/layout/includes/footer.html.twig" %}
+</footer>
+</div>

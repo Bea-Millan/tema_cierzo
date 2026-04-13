@@ -1,0 +1,22 @@
+<section class="hero-swiper {{ paragraph.field_altura.value|default('vh-60') }}">
+  <div class="swiper" data-swiper>
+    <div class="swiper-wrapper">
+      {% for slide in paragraph.field_slides %}
+        {% set img = slide.entity.field_bg_image.entity ? slide.entity.field_bg_image.entity.uri.value|image_style('wide') : '' %}
+        {% set title = slide.entity.field_titulo.value %}
+        {% set sub   = slide.entity.field_subtitulo.value %}
+        {% set link  = slide.entity.field_boton_enlace %}
+        <div class="swiper-slide">
+          <div class="hero-slide {{ paragraph.field_altura.value|default('vh-60') }}" style="background-image:url('{{img}}')">
+            <div class="container">
+              {% if title %}<h1>{{ title }}</h1>{% endif %}
+              {% if sub %}<p class="lead">{{ sub }}</p>{% endif %}
+              {% if link.uri %}<a href="{{ link.uri }}" class="btn btn-primary">{{ link.title|default('Más info') }}</a>{% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {{ attach_library('tema_cierzo/hero-swiper') }}
+</section>
+

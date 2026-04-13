@@ -1,0 +1,17 @@
+name: tema_cierzo
+type: theme
+'base theme': stable9
+version: 1.0.0
+libraries:
+  - tema_cierzo/cierzo
+  - core/normalize
+  - tema_cierzo/menu
+  - tema_cierzo/glightbox
+  - tema_cierzo/aos-library
+description: ''
+core_version_requirement: ^10
+generator: 'starterkit_theme:10.4.7'
+regions:
+  navigation:      'Navegación'
+  content:         'Contenido'
+  footer:          'Pie de página'

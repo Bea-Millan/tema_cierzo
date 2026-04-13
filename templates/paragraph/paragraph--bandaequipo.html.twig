@@ -1,0 +1,39 @@
+<section class="banda-equipo">
+  <div class="banda-equipo__inner">
+
+    <div class="banda-equipo__fotos">
+      {% for integrante in paragraph.field_integrantes %}
+      {% set foto_entity = integrante.entity.field_foto.entity %}
+
+
+
+
+      {% set enlace = integrante.entity.field_enlace.0.url%}
+
+
+
+
+
+
+        <a href="{{ enlace }}" class="foto">
+         <div>
+          {% if foto_entity %}
+          
+           <img src="{{ foto_entity.uri.value | image_style('foto_equipo_400x400') }}" alt="{{ foto_entity.field_foto.alt|default('') }}" loading="eager" />
+          {% endif %}
+          {% set title = integrante.entity.field_titulo.value %}
+          {% if title %}
+          <cite>{{ title }}</cite>
+          {% endif %}
+          </div>
+        </a>
+
+      {% endfor %}
+    </div>
+
+    <div class="banda-equipo__texto">
+      {{ paragraph.field_texto.value|raw }}
+    </div>
+
+  </div>
+</section>
