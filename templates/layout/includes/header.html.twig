@@ -1,10 +1,13 @@
-<header class="site-header">
+
+{% set menu_negro = node.field_menu_negro.value == 1 %}
+{% set classes = [
+  'site-header',
+  menu_negro ? 'menu_negro' : ''
+] %}
+
+<header {{ attributes.addClass(classes) }}>
  <div class="header">
    <div class="header-inner">
-    <div class="header-lines">
-      <span></span><span></span><span></span><span></span><span></span>
-    </div>
-
     <a href="{{ path('<front>') }}" class="site-logo" aria-label="Ir al inicio">
       <img src="/{{ directory }}/assets/img/logo.svg" alt="Logo Cierzo Educación Musical">
     </a>

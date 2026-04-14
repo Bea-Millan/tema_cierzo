@@ -22,20 +22,30 @@ header {
     margin-top: -80px;
 }
 
-/* Ajustes visuales de cabecera: solo efecto "negro que pasa a rojo" en landings */
 .site-header{
   display: flex;
   gap: clamp(1rem, 1vw + 1rem, 6rem);
   padding: 0.5rem 0;
   transition: background-color .3s ease;
+
+  .site-logo{
+      background: none;
+      padding: 0;
+      max-width: 150px;
+  }
+  .slogan{
+    z-index: 5;
+    position:relative;
+    margin-top: 5px;
+    font-size: 11px;
+    padding-bottom: 0;
+  }
 }
 
-/* Efecto de degradado negro inicial solo en páginas de tipo landing */
-.page-node-type-landing .site-header {
+.menu_negro.site-header{
   background: none;
 }
-
-.page-node-type-landing .site-header:before {
+.menu_negro.site-header:before {
     background: linear-gradient(180deg, #000, transparent);
     bottom: 0;
     content: "";
@@ -59,25 +69,22 @@ header {
   }
 }
 
-/* Cuando se hace scroll, en landing quitamos el degradado y ponemos barra roja */
-.page-node-type-landing header.site-header.scrolled:before {
+header.site-header.scrolled:before {
     display: none;
+    /* O también puedes usar: background: none; */
 }
 
-.page-node-type-landing header.site-header.scrolled {
+header.site-header.scrolled {
     background: #cc202c;
     z-index: 70000;
-}
-
-/* En el resto de páginas el header es rojo y sticky desde el principio */
-body:not(.page-node-type-landing) header.site-header {
+}/* En el resto de páginas el header es rojo y sticky desde el principio */
+header:not(.menu_negro) header.site-header {
   background-color: #cc202c;
 }
 
-body:not(.page-node-type-landing) header.site-header.scrolled {
+header:not(.menu_negro) header.site-header.scrolled {
   background-color: #cc202c;
 }
-
 /* eol ajustes cabecera */
 
 
@@ -259,11 +266,27 @@ header {
   left: 0;
   width: 100%;
   height: 2px;
-  background: #cc202c; /* Color de subrayado unificado */
   transform: scaleX(0);
   transform-origin: left;
   transition: none; /* Original: sin transición. Cambiar para animación suave si se desea (ej. 'transform 0.3s ease') */
 }
+
+
+/* Estilo de subrayado común ::after (inicialmente oculto) */
+header:not(.scrolled).menu_negro .main-menu a::after,
+header:not(.scrolled).menu_negro .main-menu span::after {
+  background: #cc202c;
+}
+
+
+header:not(.menu_negro) .main-menu a::after,
+header:not(.menu_negro) .main-menu span::after,
+.scrolled .main-menu a::after,
+.scrolled .main-menu span::after {
+
+  background: #fff;
+}
+
 
 /* Estilos específicos para ítems de menú de nivel superior (enlaces y spans) */
 .main-menu > ul > li > a,
@@ -543,7 +566,7 @@ header {
 }
 
 
-/* MODO NINJA: Usamos ::before porque el ::after es el subrayado */
+
 
 /* 1. Hacemos espacio a la derecha del texto para que el badge no choque con el siguiente menú */
 a[href="/form/xi-curso-de-cuerda-zaragoza"] {
@@ -561,8 +584,6 @@ a[href="/form/xi-curso-de-cuerda-zaragoza"]::before {
     /* Estilos del Badge */
     font-size: 9px;
     font-weight: bold;
-    background-color: #EE2A2B;
-    color: white !important;
     padding: 2px 5px;
     border-radius: 3px;
     line-height: 1;
@@ -572,6 +593,22 @@ a[href="/form/xi-curso-de-cuerda-zaragoza"]::before {
     /* Aseguramos que no herede el subrayado */
     text-decoration: none !important;
 }
+
+
+header:not(.scrolled).menu_negro a[href="/form/xi-curso-de-cuerda-zaragoza"]::before{
+  background-color: #EE2A2B;
+    color: white !important;
+}
+
+
+header:not(.menu_negro) a[href="/form/xi-curso-de-cuerda-zaragoza"]::before,
+.scrolled a[href="/form/xi-curso-de-cuerda-zaragoza"]::before {
+  background-color: #fff;
+  color: #EE2A2B !important;
+}
+
+
+
 
 /* 2. Animación (ajustada para no romper el centrado vertical) */
 @keyframes pulsoBadge {

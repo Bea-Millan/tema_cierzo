@@ -629,33 +629,33 @@
    iara que no se ensucie el micro-zoom. */
 /* La tarjeta: Solo se vuelve sÃ³lida, no se mueve */
 /* La tarjeta (Contenedor) */
-.card-band .card {
+/* .card-band .card {
     opacity: 0;
     overflow: hidden;
     /* Ellos usan 0.8s para la opacidad */
-    transition: opacity 0.8s ease-out;
+   /* transition: opacity 0.8s ease-out;
     will-change: opacity;
 }
 
 /* La imagen (El movimiento interno) */
-.card-band .card img {
+/*.card-band .card img {
     /* El desplazamiento inicial es de apenas 15px */
-    transform: scale(1.1) translateY(15px);
+/*transform: scale(1.1) translateY(15px);
     /* DuraciÃ³n de 1.2s para el movimiento (un poco mÃ¡s que la opacidad) */
     /* Esta curva cubic-bezier(0.25, 0.46, 0.45, 0.94) es la suya */
-    transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+ /*   transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: transform;
 }
 
 /* Cuando se activa */
-.card-band .card.is-visible {
+/*.card-band .card.is-visible {
     opacity: 1;
 }
 
 .card-band .card.is-visible img {
     transform: scale(1) translateY(0);
 }
-
+ */
 /* --- VARIANTE OSCURA REUTILIZABLE --- */
 
 /* --- VARIANTE OSCURA REUTILIZABLE --- */
