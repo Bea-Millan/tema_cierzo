@@ -46,11 +46,10 @@
   text-align: center;
   padding: 2rem;
   color: #fff;
-  /* Degradado oscuro a la izquierda (zona del texto) y arriba (menú):
-     el vídeo empieza con dibujos sobre fondo blanco y el texto blanco no se leía */
-  background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.15) 30%, rgba(0, 0, 0, 0) 45%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 18%);
+  /* Degradado oscuro a la izquierda (zona del texto): el vídeo empieza con
+     dibujos sobre fondo blanco y el texto blanco no se leía.
+     El oscurecido de arriba ya lo pone el propio menú (.menu_negro). */
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.15) 30%, rgba(0, 0, 0, 0) 45%);
   z-index: 3; /* Por encima del vídeo. */
   box-sizing: border-box;
 }
