@@ -709,28 +709,34 @@ background-color: var(--estilo-oscuro-bg, #ddd0c0) !important;
 
 /* 3. Columna Imagen */
 .prgph-wrapper.estilo-oscuro .col-imagen {
-    flex: 0 0 30%;
+    flex: 0 0 33%;
     position: relative;
     z-index: 5;
 }
 
-.prgph-wrapper.estilo-oscuro .imagen-overlap {
-  transform: scale(1.1);
+/*
+ * La salida de la imagen se hace con márgenes negativos (no con transform),
+ * así la cantidad que sobresale es fija, no depende de la altura de la foto,
+ * y la banda reserva ese mismo espacio fuera para no pisar la banda vecina.
+ */
+.prgph-wrapper.estilo-oscuro {
+  --salida-imagen: 70px;
+}
+
+.prgph-wrapper.estilo-oscuro.salida-imagen-abajo {
+  margin-bottom: var(--salida-imagen);
+}
+
+.prgph-wrapper.estilo-oscuro.salida-imagen-arriba {
+  margin-top: var(--salida-imagen);
 }
 
 .prgph-wrapper.estilo-oscuro.salida-imagen-abajo .imagen-overlap {
-  /* Comportamiento actual: la imagen sale por abajo */
-  transform: scale(1.1) translateY(35px);
+  margin-bottom: calc(-1 * var(--salida-imagen));
 }
 
 .prgph-wrapper.estilo-oscuro.salida-imagen-arriba .imagen-overlap {
-  /* Variante para que la imagen salga por arriba */
-  transform: scale(1.1) translateY(-70px);
-}
-
-.prgph-wrapper.estilo-oscuro.salida-imagen-none .imagen-overlap {
-  /* Sin salida: la imagen no sobresale de la banda */
-  transform: scale(1.1) translateY(0);
+  margin-top: calc(-1 * var(--salida-imagen));
 }
 
 .prgph-wrapper.estilo-oscuro .imagen-overlap img {
@@ -739,7 +745,6 @@ background-color: var(--estilo-oscuro-bg, #ddd0c0) !important;
     display: block;
   /* Sombra por contorno para PNG/WebP transparentes (efecto flotante real). */
   filter: drop-shadow(8px 10px 20px rgba(0, 0, 0, 0.3));
-    margin-top: 1rem;
 }
 
 /* 4. Columna Texto */
@@ -812,7 +817,9 @@ background-color: var(--estilo-oscuro-bg, #ddd0c0) !important;
     .prgph-wrapper.estilo-oscuro .col-imagen { order: 3; width: 100%; max-width: 420px; margin: 0 auto 24px; }
     .prgph-wrapper.estilo-oscuro .cuerpo-texto { order: 4; width: 100%; }
     .prgph-wrapper.estilo-oscuro .boton-wrapper { order: 5; width: 100%; }
-    .prgph-wrapper.estilo-oscuro .imagen-overlap { transform: none !important; }
+    .prgph-wrapper.estilo-oscuro .imagen-overlap { transform: none !important; margin: 0 !important; }
+    .prgph-wrapper.estilo-oscuro.salida-imagen-abajo,
+    .prgph-wrapper.estilo-oscuro.salida-imagen-arriba { margin-top: 0; margin-bottom: 0; }
     .prgph-wrapper.estilo-oscuro .imagen-overlap img {
       width: 100%;
       max-height: 320px;
