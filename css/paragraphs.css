@@ -425,8 +425,12 @@
   /* Define un mÃ­nimo de 200px para cada tarjeta, y que crezcan hasta ocupar el espacio (1fr) */
   /* auto-fit crearÃ¡ tantas columnas como quepan */
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajusta 250px segÃºn necesites */
-  gap: 1rem; /* Espacio entre tarjetas */
-  padding: 1rem 0; /* Espacio arriba/abajo de la banda */
+  gap: 2rem; /* Espacio entre tarjetas */
+  /* Mismo ancho que el resto de bandas (.inner-banda-premium) y aire alrededor */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 25px 4rem;
+  box-sizing: border-box;
 }
 
 /* Estilos de la tarjeta individual */
