@@ -2,6 +2,22 @@
 (function (Drupal) {
   'use strict';
 
+  // Altura real de la cabecera para que el vídeo de portada quede justo
+  // debajo de ella, sin hueco gris (ver .paragraph--full-width-video en header.css).
+  function actualizarAltoCabecera() {
+    const header = document.querySelector('header');
+    if (header) {
+      document.documentElement.style.setProperty('--alto-cabecera', header.offsetHeight + 'px');
+    }
+  }
+
+  if (!window.cierzoAltoCabeceraInit) {
+    window.cierzoAltoCabeceraInit = true;
+    actualizarAltoCabecera();
+    window.addEventListener('load', actualizarAltoCabecera);
+    window.addEventListener('resize', actualizarAltoCabecera);
+  }
+
   Drupal.behaviors.localVideoControls = {
     attach: function (context, settings) {
       // Usamos 'once' para que solo se ejecute una vez por elemento

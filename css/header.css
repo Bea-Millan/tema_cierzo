@@ -18,8 +18,11 @@ header {
   background-color: transparent;
 }
 
+/* El vídeo de portada se mete por debajo de la cabecera transparente.
+   --alto-cabecera lo calcula js/video-control.js con la altura real;
+   89px es el valor de escritorio por si el JS aún no ha corrido. */
 .paragraph--full-width-video {
-    margin-top: -80px;
+    margin-top: calc(-1 * var(--alto-cabecera, 89px));
 }
 
 .site-header{

@@ -16,7 +16,7 @@
   height: 100vh;
   z-index: 1; /* Lo ponemos en una capa base, por detrás del contenido principal. */
   background-color: #000; /* Fondo por si el vídeo tarda en cargar */
-  margin-top: -189px;
+  /* margin-top: se define en header.css con --alto-cabecera */
 }
 
 /* --- 2. EL ELEMENTO DE VÍDEO --- */
