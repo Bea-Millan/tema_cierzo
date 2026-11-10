@@ -1,0 +1,158 @@
+<div class="alumno-card">
+  <div class="alumno-header">
+    <h2 class="alumno-nombre">
+      {{ fields.title.content }}
+      {% if fields.field_apellido1.content|render|trim is not empty %} {{ fields.field_apellido1.content }}{% endif %}
+      {% if fields.field_apellido2.content|render|trim is not empty %} {{ fields.field_apellido2.content }}{% endif %}
+    </h2>
+
+    {% if fields.mail.content|render|trim is not empty %}
+      <p class="alumno-email">{{ fields.mail.content }}</p>
+    {% endif %}
+
+    <div class="alumno-acciones">
+      <a href="/informacion-general" class="btn-info-curso" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        Información del Curso
+      </a>
+    </div>
+  </div>
+
+  <div class="alumno-body">
+
+    {% if fields.field_telefono_alumno.content|render|trim is not empty %}
+      <div class="info-grupo">
+        <h3>Contacto del Alumno</h3>
+        <div class="info-item">
+          <span class="label">Teléfono</span>
+          <span class="value">{{ fields.field_telefono_alumno.content }}</span>
+        </div>
+      </div>
+    {% endif %}
+
+    {# Padres / tutores: nombre + DNI + teléfono agrupados por persona #}
+    {% set campos_tutores = [
+      'field_nombre_completo_padres_1', 'field_dni_1', 'field_telefono_1',
+      'field_nombre_completo_padres_2', 'field_dni_2', 'field_telefono_2'
+    ] %}
+    {% set hay_tutores = campos_tutores|filter(c => fields[c].content|render|trim is not empty)|length > 0 %}
+
+    {% if hay_tutores %}
+      <div class="info-grupo info-grupo--tutores">
+        <h3>Padres / Tutores</h3>
+
+        <div class="tutores-grid">
+          {% for n in 1..2 %}
+            {% set nombre = fields['field_nombre_completo_padres_' ~ n].content %}
+            {% set dni    = fields['field_dni_' ~ n].content %}
+            {% set tel    = fields['field_telefono_' ~ n].content %}
+
+            {% set tiene_nombre = nombre|render|trim is not empty %}
+            {% set tiene_dni    = dni|render|trim is not empty %}
+            {% set tiene_tel    = tel|render|trim is not empty %}
+
+            {% if tiene_nombre or tiene_dni or tiene_tel %}
+              <div class="tutor">
+                <div class="tutor-header">
+                <span class="tutor-nombre">
+                  {% if tiene_nombre %}{{ nombre }}{% else %}<em>Padre/Madre {{ n }}</em>{% endif %}
+                </span>
+              </div>
+
+                {% if tiene_dni %}
+                  <div class="info-item">
+                    <span class="label">DNI</span>
+                    <span class="value">{{ dni }}</span>
+                  </div>
+                {% endif %}
+
+                {% if tiene_tel %}
+                  <div class="info-item">
+                    <span class="label">Teléfono</span>
+                    <span class="value">{{ tel }}</span>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="info-grupo">
+      <h3>Detalles Académicos</h3>
+
+      {% if fields.field_profesor.content|render|trim is not empty %}
+        <div class="info-item">
+          <span class="label">Profesor</span>
+          <span class="value">{{ fields.field_profesor.content }}</span>
+        </div>
+      {% endif %}
+
+      {% if fields.field_clase_colectiva.content|render|trim is not empty %}
+        <div class="info-item">
+          <span class="label">Clase Colectiva</span>
+          <span class="value">
+            {{ fields.field_clase_colectiva.content }}
+            {% if fields.field_horario.content|render|trim is not empty %}
+              - {{ fields.field_horario.content }}
+            {% endif %}
+          </span>
+        </div>
+      {% endif %}
+
+      {% if fields.field_horario_individual.content|render|trim is not empty %}
+        <div class="info-item">
+          <span class="label">Horario Individual</span>
+          <span class="value">{{ fields.field_horario_individual.content }}</span>
+        </div>
+      {% endif %}
+
+      {% if fields.field_ultimo_curso_inscrito.content|render|trim is not empty %}
+        <div class="info-item">
+          <span class="label">Último Curso Inscrito</span>
+          <span class="value">{{ fields.field_ultimo_curso_inscrito.content }}</span>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="info-grupo">
+      <h3>Datos Personales</h3>
+
+      {% if fields.field_fecha_de_nacimiento.content|render|trim is not empty %}
+        <div class="info-item">
+          <span class="label">Fecha de Nacimiento</span>
+          <span class="value">{{ fields.field_fecha_de_nacimiento.content }}</span>
+        </div>
+      {% endif %}
+
+      {% if fields.field_direccion.content|render|trim is not empty %}
+        <div class="info-item">
+          <span class="label">Dirección</span>
+          <span class="value">{{ fields.field_direccion.content }}</span>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if (fields.field_justificante_transferencia.content|render|trim is not empty) or (fields.field_autorizacion_imagenes.content|render|trim is not empty) %}
+      <div class="info-grupo">
+        <h3>Documentación Adjunta</h3>
+
+        {% if fields.field_justificante_transferencia.content|render|trim is not empty %}
+          <div class="info-item">
+            <span class="label">Justificante Transferencia</span>
+            <span class="value file-link">{{ fields.field_justificante_transferencia.content }}</span>
+          </div>
+        {% endif %}
+
+        {% if fields.field_autorizacion_imagenes.content|render|trim is not empty %}
+          <div class="info-item">
+            <span class="label">Autorización Imágenes</span>
+            <span class="value file-link">{{ fields.field_autorizacion_imagenes.content }}</span>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+  </div>
+</div>

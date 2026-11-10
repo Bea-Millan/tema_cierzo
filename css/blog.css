@@ -308,7 +308,7 @@ a.card__arrow:before {
    ========================================================================== */
 
 /* Contenedor principal del bloque */
-.views-element-container {
+.path-blog .views-element-container {
   max-width: 1200px;
   margin: 8rem auto 4rem;
   padding: 0 1rem;

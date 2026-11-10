@@ -1,0 +1,67 @@
+<article{{ attributes.addClass('clase-colectiva-card', 'alumno-card') }}>
+
+  {# Cabecera con el Nombre de la Clase #}
+  <div class="alumno-header">
+    <h1 class="alumno-nombre">{{ label }}</h1>
+    <p class="clase-subtitulo">Clase Colectiva</p>
+  </div>
+
+  <div class="alumno-body">
+
+    {# Horario de la Clase #}
+    {% if content.field_horario|render|trim is not empty or content.field_hora_fin|render|trim is not empty %}
+      <div class="info-grupo">
+        <h3>Horario</h3>
+        <div class="info-item">
+          <span class="label">Horario de clase</span>
+          <span class="value">
+            {{ content.field_horario }}
+            {% if content.field_hora_fin|render|trim is not empty %}
+              - {{ content.field_hora_fin }}
+            {% endif %}
+          </span>
+        </div>
+      </div>
+    {% endif %}
+
+    {# Descripción / Información General (Body) #}
+    {% if content.body|render|trim is not empty %}
+      <div class="info-grupo">
+        <h3>Información de la Clase</h3>
+        <div class="info-item-bloque">
+          {{ content.body }}
+        </div>
+      </div>
+    {% endif %}
+
+    {# Documentación y Archivos Multimedia #}
+    {% if content.field_documentacion|render|trim is not empty %}
+      <div class="info-grupo">
+        <h3>Documentación y Materiales</h3>
+        <div class="info-item-bloque file-link">
+          {{ content.field_documentacion }}
+        </div>
+      </div>
+    {% endif %}
+
+    {# BLOQUES PREPARADOS PARA FUTUROS CAMPOS #}
+    {% if content.field_repertorio|render|trim is not empty %}
+      <div class="info-grupo">
+        <h3>Repertorio del Trimestre</h3>
+        <div class="info-item-bloque">
+          {{ content.field_repertorio }}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if content.field_proximo_evento|render|trim is not empty %}
+      <div class="info-grupo">
+        <h3>Próximo Concierto / Evento</h3>
+        <div class="info-item-bloque destacado-evento">
+          {{ content.field_proximo_evento }}
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+</article>

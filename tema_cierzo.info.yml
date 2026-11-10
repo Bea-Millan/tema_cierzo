@@ -8,6 +8,7 @@ libraries:
   - tema_cierzo/menu
   - tema_cierzo/glightbox
   - tema_cierzo/aos-library
+  - tema_cierzo/calendario_clases
 description: ''
 core_version_requirement: ^10
 generator: 'starterkit_theme:10.4.7'

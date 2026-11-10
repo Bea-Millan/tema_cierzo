@@ -1,288 +1,184 @@
+/* ==========================================================================
+   --- BASE ---
+   ========================================================================== */
 
+html, body {
+  font-family: "Red Hat Text", sans-serif;
+  font-size: 17px;
+  color: #777777;
+}
 
-  /* Fondo general suave */
+body {
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
 
-  html, body {
-    font-family: "Red Hat Text", sans-serif;
-    font-size: 17px;
-    color: #777777;
-  }
+cite {
+  font-style: normal;
+}
 
+/* Contenedor de contenido */
+.container {
+  background-color: #ffffff;
+  max-width: 1200px;
+  margin: 3rem auto;
+  line-height: 1.5em;
+}
 
-  cite {
-    font-style:normal;
-  }
-  body {
-    background-color: #ffffff; /* Gris muy claro */
-    margin: 0;
-    padding: 0;
-  }
-
-  /* Contenedor de contenido */
-  .container {
-    background-color: #ffffff; /* Blanco puro */
-    max-width: 1200px;
-    margin: 3rem auto;
-    line-height: 1.5em;
-  }
-
-
-
-  @media (max-width: 768px) {
-      /* Contenedor de contenido */
+@media (max-width: 768px) {
   .container {
     margin: 0 1rem;
   }
-  }
+}
 
-  /* Títulos */
-  h1, h2, h3, h4, h5, h6 {
-    color: #333333;
-    font-weight: 600;
-    line-height: normal;
-    margin: 0;
-    font-size: 43px;
-  }
+/* Títulos */
+h1, h2, h3, h4, h5, h6 {
+  color: #333333;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  font-size: 43px;
+}
 
-  h1.titulo_centrado{
-    text-align: center;
-  }
-  /* Enlaces */
-  a {
-    color: #c8102e;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
+h1.titulo_centrado {
+  text-align: center;
+}
+
+/* Enlaces */
+a {
+  color: #c8102e;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
 
 
+/* ==========================================================================
+   --- WEBFORM: PÁGINA 2 ---
+   ========================================================================== */
 
-/* --- ESTILOS PARA PÁGINA 2 EN PANTALLAS GRANDES --- */
-
-/* Opcional: Centra el formulario y le da un ancho máximo */
 [data-webform-key="pagina_2"] {
   max-width: 800px;
   margin: 0 auto;
 }
 
-/* Regla GENERAL para alinear en 2 columnas.
-   Ahora TAMBIÉN incluimos los campos múltiples para que la estructura base sea la misma. */
+/* Etiqueta a la izquierda, campo a la derecha */
 [data-webform-key="pagina_2"] .form-item {
   display: flex;
-  align-items: center; /* Centrado vertical para campos simples */
+  align-items: center;
   margin-bottom: 1rem;
 }
 
-/* Regla para alinear al TOPE los campos múltiples, que son más altos. */
+/* Los campos múltiples son más altos: alineados arriba */
 [data-webform-key="pagina_2"] .form-type-webform-multiple {
   align-items: flex-start;
 }
 
-/* Regla para TODAS las etiquetas en la columna izquierda.
-   Usamos un selector de hijo directo (>) para los campos múltiples para evitar conflictos. */
+/* Columna de etiquetas */
 [data-webform-key="pagina_2"] .form-item:not(.form-type-webform-multiple) > label,
 [data-webform-key="pagina_2"] .form-type-webform-multiple > label {
-  flex: 0 0 220px;      /* Ancho unificado para todas las etiquetas. AJÚSTALO si es necesario. */
+  flex: 0 0 220px;
   padding-right: 1em;
   text-align: right;
-  margin-top: 0.5em;   /* Pequeño margen superior para alinear mejor con el texto del input */
+  margin-top: 0.5em;
 }
 
-/* Hacemos que la etiqueta de los campos múltiples no tenga ese margen superior para que se alinee con la primera fila de su tabla. */
 [data-webform-key="pagina_2"] .form-type-webform-multiple > label {
-    margin-top: 0.7em;
+  margin-top: 0.7em;
 }
 
-/* Seleccionamos el contenedor del widget de subida de archivo y le decimos que crezca */
+/* El widget de subida de archivo ocupa el espacio sobrante */
 [data-webform-key="pagina_2"] .js-form-managed-file {
-  flex-grow: 1; /* Le dice al elemento que ocupe todo el espacio sobrante en la fila */
-  width: 100%;  /* Alternativa o complemento a flex-grow, asegura que intente ocupar el 100% */
+  flex-grow: 1;
+  width: 100%;
 }
-/* --- ESTILOS RESPONSIVE PARA PANTALLAS PEQUEÑAS --- */
+
+/* Campos de archivo: rejilla de 2 columnas */
+[data-webform-key="pagina_2"] .form-type-webform-document-file {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-gap: 0.5em 1em;
+  margin-bottom: 1.5rem;
+}
+
+[data-webform-key="pagina_2"] .form-type-webform-document-file > label {
+  grid-column: 1;
+  text-align: right;
+  align-self: start;
+  margin-top: 0.25em;
+}
+
+[data-webform-key="pagina_2"] .form-type-webform-document-file .js-form-managed-file,
+[data-webform-key="pagina_2"] .form-type-webform-document-file .description {
+  grid-column: 2;
+}
+
+/* Campos múltiples: tabla a ancho completo */
+[data-webform-key="pagina_2"] .webform-multiple-table {
+  padding: 0;
+}
+
+[data-webform-key="pagina_2"] .webform-multiple-table table {
+  width: 100%;
+  table-layout: fixed;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+[data-webform-key="pagina_2"] .webform-multiple-table td:first-child {
+  width: 100%;
+}
+
+[data-webform-key="pagina_2"] .webform-multiple-table .form-text {
+  width: 100%;
+  box-sizing: border-box;
+}
 
 @media (max-width: 768px) {
-
-  /* Apilamos los elementos verticalmente en móvil */
   [data-webform-key="pagina_2"] .form-item {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  /* La etiqueta ocupa todo el ancho en móvil */
   [data-webform-key="pagina_2"] .form-item:not(.form-type-webform-multiple) > label,
   [data-webform-key="pagina_2"] .form-type-webform-multiple > label {
     flex-basis: auto;
     width: 100%;
     padding-right: 0;
-    margin-bottom: 0.5rem;
-    text-align: left; /* Volvemos a alinear a la izquierda en móvil */
     margin-top: 0;
+    margin-bottom: 0.5rem;
+    text-align: left;
   }
 }
 
 
-/* --- REGLAS ESPECÍFICAS PARA CAMPOS DE ARCHIVO USANDO CSS GRID --- */
+/* ==========================================================================
+   --- WEBFORM: CHECKBOX "ACEPTAR" Y BOTONES ---
+   ========================================================================== */
 
-/* Seleccionamos el contenedor del campo de archivo */
-[data-webform-key="pagina_2"] .form-type-webform-document-file {
-  /* 1. Definimos una rejilla (grid) de 2 columnas */
-  display: grid;
-  grid-template-columns: 220px 1fr; /* Columna 1 (etiqueta): 220px. Columna 2: el resto. */
-  grid-gap: 0.5em 1em;             /* Espacio vertical y horizontal entre celdas */
-  margin-bottom: 1.5rem;            /* Espacio debajo de todo el campo */
-}
-
-/* 2. Colocamos la etiqueta en la primera celda de la rejilla */
-[data-webform-key="pagina_2"] .form-type-webform-document-file > label {
-  grid-column: 1;      /* Ponla en la columna 1 */
-  text-align: right;
-  align-self: start;   /* Alinéala arriba */
-  margin-top: 0.25em;
-}
-
-/* 3. Colocamos el WIDGET del botón en la segunda celda */
-[data-webform-key="pagina_2"] .form-type-webform-document-file .js-form-managed-file {
-  grid-column: 2;      /* Ponlo en la columna 2 */
-}
-
-/* 4. Colocamos la DESCRIPCIÓN también en la segunda columna, pero debajo del widget */
-[data-webform-key="pagina_2"] .form-type-webform-document-file .description {
-  grid-column: 2;      /* Ponla también en la columna 2 */
-  /* Automáticamente se pondrá en la siguiente fila disponible dentro de su columna */
-}
-
-
-
-/* --- AJUSTE FINO PARA ALINEACIÓN DE PÍXEL PERFECTO --- */
-
-/* Seleccionamos el contenedor de la tabla de los campos múltiples */
-[data-webform-key="pagina_2"] .webform-multiple-table {
-  /* Forzamos a que no tenga ningún padding que pueda añadir anchura */
-  padding: 0;
-}
-
-
-/* --- AJUSTE FINAL Y DEFINITIVO PARA CAMPOS MÚLTIPLES --- */
-
-/* 1. Forzamos a que la tabla tenga un layout predecible. */
-[data-webform-key="pagina_2"] .webform-multiple-table table {
-  width: 100%;
-  table-layout: fixed; /* Hace que el ancho de las columnas se respete estrictamente. */
-  border-spacing: 0;
-  border-collapse: collapse;
-}
-
-/* 2. Le decimos a la PRIMERA celda (la que contiene el input) que ocupe TODO el ancho. */
-[data-webform-key="pagina_2"] .webform-multiple-table td:first-child {
-  width: 100%;
-}
-
-/* 3. Nos aseguramos de que el campo de texto DENTRO de esa celda también se expanda al 100%. */
-[data-webform-key="pagina_2"] .webform-multiple-table .form-text {
-    width: 100%;
-    /* Importante: asegura que el padding y borde se incluyan en el ancho total, evitando desbordamientos. */
-    box-sizing: border-box;
-}
-
-
-/* --- ESTILOS PARA LA VISTA DE ALUMNOS (LISTA SIN FORMATO) --- */
-
-/* Contenedor principal de la vista */
-.view-alumnos-por-usuario .views-element-container {
-  max-width: 800px;
-  margin: 2rem auto;
-  font-family: sans-serif;
-}
-
-/* Contenedor de cada fila (el padre flex) */
-.view-alumnos-por-usuario .views-row {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem; /* Espacio fijo entre nombre y botón */
-  padding: 1rem;
-  border-bottom: 1px solid #eee;
-}
-
-/* El campo del nombre (el hijo que debe crecer) */
-.view-alumnos-por-usuario .views-row .views-field-title {
-  flex-grow: 1; /* Le dice que ocupe todo el espacio sobrante */
-  width: auto;    /* Anula cualquier 'width: 100%' que pueda tener */
-  text-align: left;
-}
-
-/* El campo del botón (el otro hijo) */
-.view-alumnos-por-usuario .views-row .views-field-nothing {
-  width: auto;      /* Anula cualquier 'width: 100%' */
-  flex-shrink: 0; /* Evita que el botón se encoja si no hay espacio */
-}
-
-/* Estilo del botón */
-.view-alumnos-por-usuario .views-field-nothing a {
-  display: inline-block;
-  padding: 0.6em 1.2em;
-  background-color: #c00;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-  white-space: nowrap;
-}
-
-.view-alumnos-por-usuario .views-field-nothing a:hover {
-  background-color: #a00;
-}
-
-
-/* --- ESTILOS RESPONSIVE PARA MÓVILES --- */
-
-@media (max-width: 768px) {
-
-  .view-alumnos-por-usuario .views-row {
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-  }
-
-  .view-alumnos-por-usuario .views-field-title {
-    font-weight: bold;
-    margin-bottom: 0.75rem;
-  }
-
-  .view-alumnos-por-usuario .views-field-nothing a {
-    display: block;
-    width: 80%;
-    text-align: center;
-  }
-}
-
-
-
-/* Contenedor del checkbox para centrarlo y darle espacio */
 .form-item-aceptar {
   display: block;
   text-align: center;
   margin: 2rem 0;
 }
 
-/* Ocultamos el checkbox original del navegador */
+/* Ocultamos el checkbox nativo */
 .form-item-aceptar input[type="checkbox"] {
   opacity: 0;
   position: absolute;
 }
 
-/* Estilo para la etiqueta, que será nuestro checkbox clicable */
 .form-item-aceptar label {
-  position: relative; /* Necesario para posicionar el checkbox falso */
+  position: relative;
   cursor: pointer;
   font-size: 1.1em;
-  padding-left: 30px; /* Espacio para el checkbox falso */
+  padding-left: 30px;
 }
 
-/* Creamos el recuadro del checkbox falso */
+/* Recuadro del checkbox falso */
 .form-item-aceptar label::before {
   content: '';
   position: absolute;
@@ -297,39 +193,37 @@
   transition: all 0.2s;
 }
 
-/* Creamos la marca de "check" (la palomita), inicialmente oculta */
+/* Marca de check, oculta por defecto */
 .form-item-aceptar label::after {
   content: '✔';
   position: absolute;
   left: 4px;
   top: 50%;
-  transform: translateY(-50%) scale(0); /* Oculto por defecto */
+  transform: translateY(-50%) scale(0);
   font-size: 18px;
   color: white;
   transition: all 0.2s;
 }
 
-/* Cuando el checkbox real está marcado... */
 .form-item-aceptar input[type="checkbox"]:checked + label::before {
-  background-color: #c00; /* ...cambiamos el fondo del falso a rojo */
+  background-color: #c00;
   border-color: #c00;
 }
 
 .form-item-aceptar input[type="checkbox"]:checked + label::after {
-  transform: translateY(-50%) scale(1); /* ...mostramos la marca de "check" */
+  transform: translateY(-50%) scale(1);
 }
 
-/* Contenedor de los botones de acción del formulario */
+/* Botones del formulario */
 .webform-submission-inscripcicon-form .form-actions {
   display: flex;
-  justify-content: center; /* Centra los botones */
-  gap: 1rem; /* Espacio entre botones si hay más de uno */
+  justify-content: center;
+  gap: 1rem;
   margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid #eee;
 }
 
-/* Estilo base para todos los botones */
 .form-actions input[type="submit"] {
   font-weight: bold;
   border: 2px solid #c00;
@@ -339,18 +233,16 @@
   transition: all 0.3s;
 }
 
-/* Estilo para el botón primario (Siguiente, Enviar) */
 .form-actions .button--primary {
   background-color: #c00;
   color: white;
 }
 
 .form-actions .button--primary:hover {
-  background-color: #a00; /* Rojo más oscuro al pasar el ratón */
+  background-color: #a00;
   border-color: #a00;
 }
 
-/* Estilo para botones secundarios (Anterior), si los hubiera */
 .form-actions .button:not(.button--primary) {
   background-color: white;
   color: #c00;
@@ -360,3 +252,304 @@
   background-color: #f5f5f5;
 }
 
+
+/* ==========================================================================
+   --- VISTA: MIS ALUMNOS ---
+   ========================================================================== */
+
+.view-alumnos-por-usuario {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.view-alumnos-por-usuario::before {
+  content: "Mis Alumnos / Fichas";
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222222;
+  margin: 3rem 0 1.25rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #cc202c;
+}
+
+.view-alumnos-por-usuario .views-element-container {
+  max-width: 950px;
+  margin: 3rem auto;
+  font-family: "Red Hat Text", sans-serif;
+}
+
+/* Fila: nombre a la izquierda, botones a la derecha */
+.view-alumnos-por-usuario .views-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 0.8rem 1.25rem;
+  margin-bottom: 0.75rem;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.view-alumnos-por-usuario .views-row:hover {
+  background-color: #fafbfc;
+}
+
+.view-alumnos-por-usuario .views-row .views-field-title {
+  flex-grow: 1;
+  width: auto;
+  color: #444444;
+  font-size: 17px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.view-alumnos-por-usuario .views-row .views-field-nothing {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: auto;
+  flex-shrink: 0;
+}
+
+/* Botones */
+.view-alumnos-por-usuario .views-field-nothing .field-content a {
+  display: inline-block;
+  padding: 0.55em 1.2em;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Botón 1: "Ficha Alumno" (discreto) */
+.view-alumnos-por-usuario .views-field-nothing .field-content a:first-child {
+  background-color: #ffffff;
+  color: #555555;
+  border: 1px solid #cccccc;
+  box-shadow: none;
+}
+
+.view-alumnos-por-usuario .views-field-nothing .field-content a:first-child:hover {
+  background-color: #f5f5f5;
+  border-color: #b3b3b3;
+  color: #333333;
+  text-decoration: none;
+}
+
+/* Botón 2: formulario (rojo) */
+.view-alumnos-por-usuario .views-field-nothing .field-content a:last-child {
+  background-color: #c00;
+  color: #ffffff;
+  border: 1px solid #c00;
+  box-shadow: 0 2px 4px rgba(204, 0, 0, 0.1);
+}
+
+.view-alumnos-por-usuario .views-field-nothing .field-content a:last-child:hover {
+  background-color: #a00;
+  border-color: #a00;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .view-alumnos-por-usuario .views-element-container {
+    margin: 1.5rem 1rem;
+  }
+
+  .view-alumnos-por-usuario .views-row {
+    flex-direction: column;
+    align-items: stretch;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  }
+
+  .view-alumnos-por-usuario .views-row:hover {
+    background-color: #ffffff;
+  }
+
+  .view-alumnos-por-usuario .views-row .views-field-title {
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 18px;
+  }
+
+  .view-alumnos-por-usuario .views-row .views-field-nothing {
+    width: 100%;
+  }
+
+  .view-alumnos-por-usuario .views-field-nothing .field-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.6rem;
+  }
+
+  .view-alumnos-por-usuario .views-field-nothing .field-content a {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+/* ==========================================================================
+   --- FICHA DEL ALUMNO ---
+   ========================================================================== */
+
+.alumno-card {
+  font-family: "Red Hat Text", sans-serif;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  max-width: 700px;
+  margin: 2rem auto;
+}
+
+
+/* Cabecera */
+.alumno-card .alumno-header {
+  background-color: #fbf1f1;
+  border-bottom: 3px solid #cc202c;
+  padding: 1.75rem 2rem;
+  text-align: center;
+}
+
+.alumno-card .alumno-nombre {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.2;
+}
+
+.alumno-card .alumno-email {
+  margin: 0.4rem 0 0 0;
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+/* Cuerpo y grupos */
+.alumno-card .alumno-body {
+  padding: 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.alumno-card .info-grupo {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1.25rem;
+}
+
+.alumno-card .info-grupo:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+/* Títulos de grupo con acento rojo */
+.alumno-card .info-grupo h3 {
+  display: inline-block;
+  margin: 0 0 0.75rem 0;
+  padding-bottom: 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #222222;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 2px solid #cc202c;
+}
+
+/* Filas etiqueta / valor */
+.alumno-card .info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed #f1f5f9;
+}
+
+.alumno-card .info-item:last-child {
+  border-bottom: none;
+}
+
+.alumno-card .label {
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.alumno-card .value {
+  color: #1e293b;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.alumno-card .value a {
+  color: #cc202c;
+  font-weight: 600;
+}
+
+/* Padres / tutores */
+.alumno-card .tutores-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.alumno-card .tutor {
+  padding: 0.75rem 1rem;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.alumno-card .tutor-header {
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.alumno-card .tutor-nombre {
+  color: #1e293b;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.alumno-card .tutor-nombre em {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.alumno-card .tutor .info-item {
+  padding: 0.4rem 0;
+  border-bottom-color: #e2e8f0;
+}
+
+.alumno-card .tutor .info-item:last-child {
+  padding-bottom: 0;
+}
+
+/* Clase colectiva: valor en línea */
+.clase-colectiva-card .value {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
+
+.clase-colectiva-card .value div,
+.clase-colectiva-card .value .field__item {
+  display: inline;
+}

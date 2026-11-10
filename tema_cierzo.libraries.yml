@@ -70,3 +70,13 @@ video-full-width-section:
       css/video-full-width.css: {}
   dependencies:
     - core/drupal
+calendario_clases:
+  css:
+    theme:
+      css/calendario-clases.css: {}
+  js:
+    js/calendario-clases.js: { attributes: { defer: true } }
+  dependencies:
+    - core/once
+    - core/drupal.dialog
+    - core/jquery
