@@ -572,12 +572,14 @@ header:not(.menu_negro) .main-menu span::after,
 
 
 
+/* Etiqueta "NUEVO" en el menú: se activa añadiendo #nuevo al final de la URL
+   del enlace en el admin de Drupal (ej. /cursos-de-verano#nuevo) */
 /* 1. Hacemos espacio a la derecha del texto para que el badge no choque con el siguiente menú */
-a[href="/form/xi-curso-de-cuerda-zaragoza"] {
+a[href$="#nuevo"] {
     margin-right: 45px;
 }
 
-a[href="/form/xi-curso-de-cuerda-zaragoza"]::before {
+a[href$="#nuevo"]::before {
     content: "NUEVO";
     position: absolute;
     left: 100%; /* Se coloca justo donde acaba el texto */
@@ -599,14 +601,14 @@ a[href="/form/xi-curso-de-cuerda-zaragoza"]::before {
 }
 
 
-header:not(.scrolled).menu_negro a[href="/form/xi-curso-de-cuerda-zaragoza"]::before{
+header:not(.scrolled).menu_negro a[href$="#nuevo"]::before{
   background-color: #EE2A2B;
     color: white !important;
 }
 
 
-header:not(.menu_negro) a[href="/form/xi-curso-de-cuerda-zaragoza"]::before,
-.scrolled a[href="/form/xi-curso-de-cuerda-zaragoza"]::before {
+header:not(.menu_negro) a[href$="#nuevo"]::before,
+.scrolled a[href$="#nuevo"]::before {
   background-color: #fff;
   color: #EE2A2B !important;
 }
@@ -621,7 +623,7 @@ header:not(.menu_negro) a[href="/form/xi-curso-de-cuerda-zaragoza"]::before,
     100% { transform: translateY(-50%) scale(1); }
 }
 
-a[href="/form/xi-curso-de-cuerda-zaragoza"]::before {
+a[href$="#nuevo"]::before {
     animation: pulsoBadge 2s infinite ease-in-out;
 }
 
@@ -644,11 +646,11 @@ a[href="/form/xi-curso-de-cuerda-zaragoza"]::before {
 
   /* Ajuste del badge "NUEVO" para esta resolución:
      más cerca del menú y abreviado a "N" */
-  a[href="/form/xi-curso-de-cuerda-zaragoza"] {
+  a[href$="#nuevo"] {
     margin-right: 20px; /* menos separación con el siguiente ítem */
   }
 
-  a[href="/form/xi-curso-de-cuerda-zaragoza"]::before {
+  a[href$="#nuevo"]::before {
     content: "N";      /* abreviamos para ocupar menos ancho */
     margin-left: 4px;   /* pegamos un poco más al texto */
     padding: 2px 4px;   /* badge más compacto */
