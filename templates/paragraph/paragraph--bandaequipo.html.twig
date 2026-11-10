@@ -19,7 +19,7 @@
          <div>
           {% if foto_entity %}
           
-           <img src="{{ foto_entity.uri.value | image_style('foto_equipo_400x400') }}" alt="{{ foto_entity.field_foto.alt|default('') }}" loading="eager" />
+           <img src="{{ foto_entity.uri.value | image_style('foto_equipo_400x400') }}" alt="{{ integrante.entity.field_foto.alt|default(integrante.entity.field_titulo.value) }}" loading="eager" />
           {% endif %}
           {% set title = integrante.entity.field_titulo.value %}
           {% if title %}

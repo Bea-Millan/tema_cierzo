@@ -64,7 +64,8 @@
   text-align: left;
 }
 
-p.interactive__word {
+.interactive__word {
+    display: block;
     /* Mantenemos el tamaño fluido */
     font-size: clamp(2.2rem, 10vw, 5.2rem);
     font-weight: 600;
@@ -83,7 +84,8 @@ p.interactive__word {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 2px 16px rgba(0, 0, 0, 0.45);
 }
 
-p.interactive__label {
+.interactive__label {
+    display: block;
     font-size: clamp(1.2rem, 4vw, 2.6rem);
     font-weight: 300;
     /* Un poco más de espacio para la etiqueta */
@@ -111,11 +113,11 @@ p.interactive__label {
     .video-overlay-content {
        padding-left: 1rem;
     }
-    p.interactive__word {
+    .interactive__word {
         margin-left: 0.1rem; /* Margen reducido al mínimo en móvil */
         padding-left: 0;     /* Aseguramos que no haya padding extra */
     }
-    p.interactive__label {
+    .interactive__label {
         margin-left:0.1rem;
     }
     .overlay-title {

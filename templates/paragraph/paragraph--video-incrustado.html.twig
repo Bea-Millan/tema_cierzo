@@ -7,10 +7,12 @@
 
  {# --- NUEVA CAPA DE CONTENIDO SUPERPUESTO --- #}
   <div class="video-overlay-content">
-    <h2 class="overlay-title"><p class="interactive__label">Música</p>
-      <p class="interactive__word">EMOCIÓN</p>
-      <p class="interactive__label">Crecimiento</p>
-   </h2>
+    {# h1 de la portada (SEO). Spans en vez de <p>: un <p> no puede ir dentro de un encabezado #}
+    <h1 class="overlay-title">
+      <span class="interactive__label">Música</span>
+      <span class="interactive__word">EMOCIÓN</span>
+      <span class="interactive__label">Crecimiento</span>
+    </h1>
 
     {# <p class="overlay-text">Descubre cómo el Método Suzuki puede transformar la vida de tu hijo a través de la música.</p> #}
     <a href="/conocer-el-metodo-suzuki" class="button overlay-button">Saber Más</a>
