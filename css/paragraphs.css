@@ -793,24 +793,39 @@ background-color: var(--estilo-oscuro-bg, #ddd0c0) !important;
 
 .estilo-oscuro .cuerpo-texto li {
     position: relative;
-    padding-left: 0; /* Quitamos el padding antiguo */
+    padding-left: 1.6em;
     color: #404139;
-    display: flex; /* Activamos flex para alinear flecha y texto */
-    align-items: flex-start; /* Alinea la flecha con la parte superior (primera lÃ­nea) */
-    /* line-height: 1.5; */
+    margin-bottom: 0.8rem;
 }
 
+/* Si el editor mete un <p> dentro del li, que no desplace la flecha */
+.estilo-oscuro .cuerpo-texto li > p {
+    margin: 0;
+}
+
+/* Flecha posicionada en absoluto: el texto del li fluye normal
+   (con display:flex se perdían los espacios entre <strong> y texto) */
 .estilo-oscuro .cuerpo-texto li::before {
     content: '→';
+    position: absolute;
+    left: 0;
+    top: 0;
     color: #D22630;
     font-weight: bold;
-    margin-right: 12px; /* Espacio exacto entre flecha y texto */
-    flex-shrink: 0; /* Evita que la flecha se aplaste si el texto es largo */
-    display: inline-block;
-    margin-top:14px;
-    /* Ajuste fino de altura: si ves la flecha muy arriba, activa esto: */
-    /* margin-top: 2px; */
 }
+
+/* Subtítulos dentro del texto de una banda imagen-texto:
+   nunca más grandes que el título de la banda */
+.texto-imagen .cuerpo-texto h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.25rem;
+}
+
+.texto-imagen .cuerpo-texto h3:first-child {
+    margin-top: 0;
+}
+
 /* MÃ³vil */
 @media (max-width: 900px) {
     .inner-banda-premium { padding: 0 25px; }
