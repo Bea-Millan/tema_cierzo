@@ -1,7 +1,7 @@
 /* ---------- Banda Equipo N bolos ---------- */
 .banda-equipo{
   text-align:center;
-  padding: 5rem  1rem 1rem;
+  padding: 2.5rem 1rem 1rem;
 }
 .banda-equipo__inner{max-width:1000px;margin:0 auto}
 
@@ -10,7 +10,7 @@
   display:flex; flex-wrap:wrap;
   justify-content:center;
   gap:10rem;                  /* espacio uniforme */
-  margin-bottom:2rem;
+  margin-bottom:1rem;
 }
 
 /* Bolo circular */
@@ -28,7 +28,7 @@
 .banda-equipo__texto{
   font-size:1.35rem;line-height:1.55;
   max-width:60ch;
-  margin:35px auto;
+  margin:20px auto;
 }
 
 .foto div{
@@ -51,7 +51,7 @@
 /* Opcional: para aÃ±adir un pequeÃ±o espacio entre la imagen y el texto */
 
 .foto cite {
-    margin-top: 25px;
+    margin-top: 15px;
     font-size: 26px;
 }
 /* Responsive */
