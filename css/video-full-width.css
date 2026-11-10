@@ -49,8 +49,8 @@
   /* Degradado oscuro a la izquierda (zona del texto) y arriba (menú):
      el vídeo empieza con dibujos sobre fondo blanco y el texto blanco no se leía */
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.35) 30%, rgba(0, 0, 0, 0) 55%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 22%);
+    linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.15) 30%, rgba(0, 0, 0, 0) 45%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 18%);
   z-index: 3; /* Por encima del vídeo. */
   box-sizing: border-box;
 }
@@ -81,7 +81,7 @@ p.interactive__word {
     margin-top: 0.0rem;
     margin-bottom: 0.0rem;
     margin-left: 0;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 2px 16px rgba(0, 0, 0, 0.45);
 }
 
 p.interactive__label {
@@ -91,7 +91,7 @@ p.interactive__label {
     line-height: 1.2;
     text-transform: uppercase;
     margin: 0;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 2px 16px rgba(0, 0, 0, 0.45);
 }
 
 .overlay-link-mobile {
