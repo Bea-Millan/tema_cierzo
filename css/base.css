@@ -577,3 +577,12 @@ main.full .node__text-below-title {
     padding-right: 20px;
   }
 }
+
+/* Móvil: .container pierde el margen superior, así que el título de las
+   páginas básicas, blog y landings con título quedaba pegado al menú */
+@media (max-width: 768px) {
+  h1.titulo,
+  h1.page-title {
+    margin-top: 2rem;
+  }
+}
