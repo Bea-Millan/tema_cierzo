@@ -25,7 +25,10 @@
     {% endif %}
 
     <div class="timeline-text">
-      <h3 class="timeline-title">{{ fields.title.content }}</h3>
+      {# Título enlazado a la página del hito; su ::after estira el clic a toda la tarjeta #}
+      <h3 class="timeline-title">
+        <a href="{{ path('entity.node.canonical', {'node': row._entity.id}) }}" class="timeline-stretched-link">{{ row._entity.label }}</a>
+      </h3>
       <div class="timeline-body">
         {{ fields.field_texto_corto.content }}
       </div>
