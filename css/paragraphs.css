@@ -524,7 +524,7 @@
   /* Crea columnas de tamaÃ±o mÃ­nimo 300px y que ocupen el espacio disponible */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
-  margin: 37px 0 0 0;
+  margin: 37px 0 4rem 0; /* aire también por debajo: no pegarse a la banda siguiente */
 }
 
 .gallery-item img {
