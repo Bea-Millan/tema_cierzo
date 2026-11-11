@@ -668,3 +668,20 @@ a.card__arrow:before {
   font-size: 0.95rem;
   letter-spacing: 0.02em;
 }
+
+/* Subtítulos dentro del texto de una entrada: jerarquía clara bajo el H1 */
+.texto-introductorio h2,
+.texto-introductorio h3 {
+  font-family: "Red Hat Text", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #2f3337;
+  margin: 2rem 0 0.6rem;
+}
+
+.texto-introductorio h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
