@@ -858,6 +858,18 @@ background-color: var(--estilo-oscuro-bg, #ddd0c0) !important;
   padding-bottom: 4rem;
 }
 
+/* Aire lateral: aquí la banda va en una caja, no a todo el ancho,
+   y sin esto la foto queda pegada al borde */
+.node--type-elemento-de-itinerario .inner-banda-premium {
+  padding: 0 4rem;
+}
+
+@media (max-width: 900px) {
+  .node--type-elemento-de-itinerario .inner-banda-premium {
+    padding: 0 25px;
+  }
+}
+
 .node--type-elemento-de-itinerario .boton-wrapper {
   display: flex;
   flex-wrap: wrap;
