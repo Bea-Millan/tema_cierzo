@@ -35,3 +35,23 @@ function tema_cierzo_theme_suggestions_page_alter(array &$suggestions, array $va
   }
 
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for node templates.
+ *
+ * 'es_portada' para no duplicar el H1 en la home (lo pone el vídeo).
+ * Es constante por nodo (solo un nodo es la portada), así que no rompe la caché.
+ */
+function tema_cierzo_preprocess_node(array &$variables) {
+  $variables['es_portada'] = \Drupal::service('path.matcher')->isFrontPage();
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph templates.
+ *
+ * El titular del vídeo de cabecera solo es H1 en la portada; en otras páginas
+ * el H1 es el título de la página.
+ */
+function tema_cierzo_preprocess_paragraph(array &$variables) {
+  $variables['es_portada'] = \Drupal::service('path.matcher')->isFrontPage();
+}

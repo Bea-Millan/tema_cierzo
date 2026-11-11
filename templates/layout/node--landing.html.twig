@@ -24,7 +24,7 @@
     {{ title_prefix }} {# Hooks para módulos que quieran añadir contenido antes/después del título #}
     <h1{{ title_attributes.addClass('node__title', 'page-title', titulo_centrado ? 'titulo_centrado' : '') }}>{{ label }}</h1>
     {{ title_suffix }}
-  {% elseif not is_front %}
+  {% elseif not es_portada %}
     {# Título oculto: no se ve, pero Google y los lectores de pantalla tienen su H1.
        En portada no, porque el H1 ya lo pone el vídeo. #}
     <h1 class="visually-hidden">{{ label }}</h1>
