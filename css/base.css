@@ -553,3 +553,27 @@ a:hover {
 .clase-colectiva-card .value .field__item {
   display: inline;
 }
+/* Landing con Ancho = Full: las bandas de color van de borde a borde, pero el
+   título y los bloques que no traen su propio ancho (acordeón, galería, texto
+   bajo el título) se quedan en 1200px, como en las páginas "Container" */
+main.full .page-title {
+  padding-top: 3rem;
+}
+
+main.full .accordion-container,
+main.full .gallery-container,
+main.full .node__text-below-title {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1240px) {
+  main.full .accordion-container,
+  main.full .gallery-container,
+  main.full .node__text-below-title {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
