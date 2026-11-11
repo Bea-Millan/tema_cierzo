@@ -585,4 +585,9 @@ main.full .node__text-below-title {
   h1.page-title {
     margin-top: 2rem;
   }
+
+  /* En landings a ancho completo ya hay padding-top: no sumar los dos */
+  main.full h1.page-title {
+    padding-top: 0;
+  }
 }
