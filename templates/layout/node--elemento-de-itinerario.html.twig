@@ -74,5 +74,14 @@
       </div>
     </div>
 
+    {# Galería de fotos del concierto (campo multimedia múltiple field_galeria).
+       Usa la plantilla field--field-galeria.html.twig, con lightbox. #}
+    {% if node.hasField('field_galeria') and not node.field_galeria.isEmpty() %}
+      <section class="itinerario-galeria">
+        <h2 class="itinerario-galeria__titulo">Galería</h2>
+        {{ content.field_galeria }}
+      </section>
+    {% endif %}
+
   </main>
 </article>

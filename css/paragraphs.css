@@ -875,3 +875,42 @@ background-color: var(--estilo-oscuro-bg, #ddd0c0) !important;
   flex-wrap: wrap;
   gap: 1rem;
 }
+
+/* Galería al pie de la página de un hito */
+.itinerario-galeria {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 4rem 4rem;
+  box-sizing: border-box;
+}
+
+.itinerario-galeria__titulo {
+  font-family: "Red Hat Text", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: #404139;
+  margin-bottom: 1.5rem;
+}
+
+.itinerario-galeria .galeria-imagenes {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.itinerario-galeria .galeria-imagenes img {
+  height: 170px;
+}
+
+@media (max-width: 900px) {
+  .itinerario-galeria {
+    padding: 2rem 25px 3rem;
+  }
+
+  .itinerario-galeria .galeria-imagenes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .itinerario-galeria .galeria-imagenes img {
+    height: 130px;
+  }
+}
