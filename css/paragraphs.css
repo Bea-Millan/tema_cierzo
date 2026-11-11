@@ -119,6 +119,19 @@
 
 .quote-band--sin-imagen {
   color: #777777;
+  /* Sobre fondo blanco la raya de 4px de lado a lado pesaba demasiado:
+     la cambiamos por un acento corto centrado, como el de los títulos */
+  border-top: none;
+  padding: 56px 20px;
+}
+
+.quote-band--sin-imagen::before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #cc202c;
+  margin: 0 auto 32px;
 }
 
 .quote-band--sin-imagen .quote-band__inner p {
