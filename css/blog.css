@@ -310,8 +310,30 @@ a.card__arrow:before {
 /* Contenedor principal del bloque */
 .path-blog .views-element-container {
   max-width: 1200px;
-  margin: 8rem auto 4rem;
+  margin: 0 auto 4rem; /* antes 8rem arriba: sumado a los otros márgenes dejaba ~250px en blanco */
   padding: 0 1rem;
+}
+
+/* Cabecera del listado del blog */
+.blog-listado {
+  margin-top: 0;
+}
+
+.blog-listado__cabecera {
+  margin-bottom: 2.5rem;
+}
+
+.blog-listado__intro {
+  color: #6b6b6b;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .blog-listado__cabecera {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
 }
 
 /* Título principal del bloque ("Stay informed...") */
