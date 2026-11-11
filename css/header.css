@@ -693,3 +693,52 @@ a[href$="#nuevo"]::before {
   }
 }
 
+
+/* ============ Menú móvil: sin desbordes ni líneas cortadas ============ */
+@media screen and (max-width: 768px) {
+  /* width:100% + padding desbordaba por la derecha */
+  .main-menu,
+  .main-menu ul,
+  .main-menu li,
+  .main-menu a,
+  .main-menu span {
+    box-sizing: border-box;
+  }
+
+  .main-menu {
+    overflow-x: hidden;
+  }
+
+  /* Sin subrayado animado en móvil: el elemento abierto se marca en negrita */
+  .main-menu a::after,
+  .main-menu span::after,
+  header.site-header.menu-open .main-menu a::after,
+  header.site-header.menu-open .main-menu span::after {
+    display: none;
+  }
+
+  .main-menu li:hover > a,
+  .main-menu li:hover > span,
+  .main-menu li.is-active > a,
+  .main-menu a.is-active {
+    font-weight: 600;
+  }
+
+  /* Submenú: en vez de cajas con borde, una línea fina a la izquierda */
+  header.site-header.menu-open .main-menu .submenu,
+  .main-menu .submenu {
+    border-left: 2px solid rgba(204, 32, 44, 0.25);
+    margin: 0 0 0.5rem 1rem;
+  }
+
+  header.site-header.menu-open .main-menu .submenu li,
+  .main-menu .submenu li {
+    border: none;
+  }
+
+  .main-menu .submenu a,
+  .main-menu .submenu span {
+    padding-left: 1.2rem;
+    text-transform: none;
+  }
+}
