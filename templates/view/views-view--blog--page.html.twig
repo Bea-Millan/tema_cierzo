@@ -1,0 +1,50 @@
+{#
+/**
+ * @file
+ * Página del blog (/blog).
+ *
+ * Todo el texto se edita desde Estructura → Vistas → blog → Página:
+ * - Título de la página → el H1.
+ * - Cabecera → "Texto global" → la entradilla bajo el título.
+ */
+#}
+{%
+  set classes = [
+    'view',
+    'view-' ~ id|clean_class,
+    'view-id-' ~ id,
+    'view-display-id-' ~ display_id,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  <div class="container blog-listado">
+    <div class="blog-listado__cabecera">
+      <p class="texto-etiqueta">Blog</p>
+      <h1 class="titulo-encima-texto">{{ view.getTitle() }}</h1>
+      {% if header %}
+        <div class="blog-listado__intro">
+          {{ header }}
+        </div>
+      {% endif %}
+    </div>
+
+    {{ exposed }}
+    {{ attachment_before }}
+
+    {% if rows -%}
+      {{ rows }}
+    {% elseif empty -%}
+      {{ empty }}
+    {% endif %}
+
+    {{ pager }}
+    {{ attachment_after }}
+    {{ more }}
+    {{ footer }}
+    {{ feed_icons }}
+  </div>
+</div>
