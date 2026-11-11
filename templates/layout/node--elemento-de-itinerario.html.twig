@@ -5,19 +5,20 @@
  *
  * Reutiliza el maquetado de la banda imagen-texto en su variante clara
  * (.prgph-wrapper.estilo-oscuro) para que encaje con el resto de la web.
- * Campos: field_imagen, field_ano, field_texto_corto, field_enlace y la
- * categoría (taxonomía) que tenga el tipo de contenido.
+ * Campos: field_imagen (multimedia de tipo imagen), field_categoria,
+ * field_ano, field_texto_corto, body y field_enlace.
  */
 #}
-{% set imagen = node.field_imagen.entity ?? null %}
+{# field_imagen es una referencia a Multimedia: el archivo está en su field_media_image #}
+{% set media = node.field_imagen.entity ?? null %}
+{% set imagen = media and media.hasField('field_media_image') ? media.field_media_image.entity : null %}
+{% set imagen_alt = media and media.hasField('field_media_image') ? media.field_media_image.alt : '' %}
 
-{# Categoría: primer campo de referencia a taxonomía que exista #}
+{# Categoría (vocabulario Itinerarios) #}
 {% set categoria = '' %}
-{% for campo in ['field_categoria', 'field_itinerario_tax', 'field_itinerario', 'field_tags'] %}
-  {% if not categoria and node.hasField(campo) and node.get(campo).entity %}
-    {% set categoria = node.get(campo).entity.label %}
-  {% endif %}
-{% endfor %}
+{% if node.field_categoria.entity %}
+  {% set categoria = node.field_categoria.entity.label %}
+{% endif %}
 
 {% set ano = node.hasField('field_ano') ? node.field_ano.value : '' %}
 {% set etiqueta = [categoria, ano]|filter(v => v)|join(' · ') %}
@@ -36,7 +37,7 @@
           {% if imagen %}
             <div class="col-imagen field-imagen">
               <div class="imagen-overlap">
-                <img src="{{ file_url(imagen.uri.value) }}" alt="{{ node.field_imagen.alt ?: label }}" />
+                <img src="{{ file_url(imagen.uri.value) }}" alt="{{ imagen_alt ?: node.label }}" />
               </div>
             </div>
           {% endif %}
@@ -50,14 +51,19 @@
             <h1 class="titulo-encima-texto">{{ label }}</h1>
             {{ title_suffix }}
 
-            {% if node.hasField('field_texto_corto') and node.field_texto_corto.value %}
+            {% if node.field_texto_corto.value or node.body.value %}
               <div class="cuerpo-texto">
-                {{ content.field_texto_corto|merge({'#label_display': 'hidden'}) }}
+                {% if node.field_texto_corto.value %}
+                  {{ node.field_texto_corto.value|check_markup(node.field_texto_corto.format) }}
+                {% endif %}
+                {% if node.body.value %}
+                  {{ node.body.value|check_markup(node.body.format) }}
+                {% endif %}
               </div>
             {% endif %}
 
             <div class="boton-wrapper">
-              {% if node.hasField('field_enlace') and node.field_enlace.uri %}
+              {% if node.field_enlace.uri %}
                 <a href="{{ node.field_enlace.0.url }}">{{ node.field_enlace.title ?: 'Ver más' }}</a>
               {% endif %}
               <a href="{{ volver_url }}" class="boton-volver">Ver todos los conciertos</a>
