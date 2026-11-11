@@ -608,3 +608,38 @@ a.card__arrow:before {
 .galeria-item--video a:hover .galeria-play {
   transform: translate(-50%, -50%) scale(1.1);
 }
+
+/* Foto de portada de la entrada: conserva su proporción (horizontal o vertical)
+   en vez de estirarse a la altura del texto y recortarse. Se queda fija al leer. */
+.texto-articulo.sin-ajuste-texto {
+  align-items: flex-start;
+}
+
+.texto-articulo.sin-ajuste-texto .imagen-articulo {
+  width: 40%;
+  flex-shrink: 0;
+  position: sticky;
+  top: 130px;
+}
+
+.imagen-articulo div {
+  height: auto;
+}
+
+.texto-articulo .imagen-articulo img {
+  height: auto;
+  max-height: 75vh; /* una vertical muy alargada no ocupa más que la pantalla */
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .texto-articulo.sin-ajuste-texto .imagen-articulo {
+    width: 100%;
+    position: static;
+  }
+
+  .texto-articulo .imagen-articulo img {
+    max-height: 60vh;
+  }
+}
