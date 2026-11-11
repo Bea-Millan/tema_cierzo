@@ -914,3 +914,17 @@ background-color: var(--estilo-oscuro-bg, #ddd0c0) !important;
     height: 130px;
   }
 }
+
+/* Banda imagen-texto estándar (blanca): mismo aire vertical que la oscura,
+   para que el botón no quede pegado a la banda siguiente o al pie */
+.prgph-wrapper.estilo-blanco {
+  padding-top: 3rem;
+  padding-bottom: 4rem;
+}
+
+@media (max-width: 900px) {
+  .prgph-wrapper.estilo-blanco {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+}
