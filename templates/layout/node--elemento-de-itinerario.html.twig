@@ -1,0 +1,72 @@
+{#
+/**
+ * @file
+ * Página de un hito del itinerario (p. ej. cada concierto de carnaval).
+ *
+ * Reutiliza el maquetado de la banda imagen-texto en su variante clara
+ * (.prgph-wrapper.estilo-oscuro) para que encaje con el resto de la web.
+ * Campos: field_imagen, field_ano, field_texto_corto, field_enlace y la
+ * categoría (taxonomía) que tenga el tipo de contenido.
+ */
+#}
+{% set imagen = node.field_imagen.entity ?? null %}
+
+{# Categoría: primer campo de referencia a taxonomía que exista #}
+{% set categoria = '' %}
+{% for campo in ['field_categoria', 'field_itinerario_tax', 'field_itinerario', 'field_tags'] %}
+  {% if not categoria and node.hasField(campo) and node.get(campo).entity %}
+    {% set categoria = node.get(campo).entity.label %}
+  {% endif %}
+{% endfor %}
+
+{% set ano = node.hasField('field_ano') ? node.field_ano.value : '' %}
+{% set etiqueta = [categoria, ano]|filter(v => v)|join(' · ') %}
+
+{# Botón de vuelta a la línea de tiempo de los conciertos #}
+{% set volver_url = '/conciertos-de-carnaval' %}
+
+<article{{ attributes.addClass('node', 'node--type-elemento-de-itinerario') }}>
+  <main class="site-content">
+    <a id="main-content" tabindex="-1"></a>
+
+    <div class="prgph-wrapper estilo-oscuro salida-imagen-none estilo-boton-ligero" style="--estilo-oscuro-bg: #ebe8e3;">
+      <div class="inner-banda-premium">
+        <div class="prgph texto-imagen posicion-izquierda">
+
+          {% if imagen %}
+            <div class="col-imagen field-imagen">
+              <div class="imagen-overlap">
+                <img src="{{ file_url(imagen.uri.value) }}" alt="{{ node.field_imagen.alt ?: label }}" />
+              </div>
+            </div>
+          {% endif %}
+
+          <div class="texto-parrafo">
+            {% if etiqueta %}
+              <p class="texto-etiqueta">{{ etiqueta }}</p>
+            {% endif %}
+
+            {{ title_prefix }}
+            <h1 class="titulo-encima-texto">{{ label }}</h1>
+            {{ title_suffix }}
+
+            {% if node.hasField('field_texto_corto') and node.field_texto_corto.value %}
+              <div class="cuerpo-texto">
+                {{ content.field_texto_corto|merge({'#label_display': 'hidden'}) }}
+              </div>
+            {% endif %}
+
+            <div class="boton-wrapper">
+              {% if node.hasField('field_enlace') and node.field_enlace.uri %}
+                <a href="{{ node.field_enlace.0.url }}">{{ node.field_enlace.title ?: 'Ver más' }}</a>
+              {% endif %}
+              <a href="{{ volver_url }}" class="boton-volver">Ver todos los conciertos</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+</article>

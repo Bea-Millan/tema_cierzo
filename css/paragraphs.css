@@ -851,3 +851,15 @@ background-color: var(--estilo-oscuro-bg, #ddd0c0) !important;
       margin-top: 0;
     }
 }
+
+/* Página de un hito del itinerario (node--elemento-de-itinerario) */
+.node--type-elemento-de-itinerario .prgph-wrapper {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.node--type-elemento-de-itinerario .boton-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
