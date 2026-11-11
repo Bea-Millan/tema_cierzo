@@ -1,6 +1,7 @@
 /* ---------- Banda Equipo N bolos ---------- */
 .banda-equipo{
   text-align:center;
+  overflow-x: hidden; /* las fotos entran desde los lados (translateX) y en móvil ensanchaban la página */
   padding: 2.5rem 1rem 1rem;
 }
 .banda-equipo__inner{max-width:1000px;margin:0 auto}
