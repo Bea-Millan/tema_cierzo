@@ -16,8 +16,8 @@
     {# Fecha y título a todo el ancho; debajo, foto a la izquierda y texto a la derecha.
        (div y no <header>: el tema hace sticky cualquier <header>) #}
     <div class="cabecera-articulo">
-      <div class="texto-etiqueta">{{ node.created.value|date("d/m/Y") }}</div>
       <h1 class="titulo">{{ label }}</h1>
+      <time class="fecha-articulo" datetime="{{ node.created.value|date('Y-m-d') }}">{{ node.created.value|format_date('custom', 'j \\d\\e F \\d\\e Y') }}</time>
     </div>
 
     <div class="texto-articulo{{ envolver_texto_activo ? ' con-ajuste-texto' : ' sin-ajuste-texto' }}">
