@@ -1,10 +1,10 @@
 {# Listado del blog (/blog): título de la página + tarjetas en masonry #}
 <div class="container blog-listado">
-  <header class="blog-listado__cabecera">
+  <div class="blog-listado__cabecera">
     <p class="texto-etiqueta">Blog</p>
     <h1 class="titulo-encima-texto">Noticias de Cierzo</h1>
     <p class="blog-listado__intro">Conciertos, audiciones, cursos y consejos para alumnos y familias.</p>
-  </header>
+  </div>
   <div id="masonry-container">
   {% for row in rows %}
     <div class="masonry-item">
