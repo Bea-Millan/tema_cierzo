@@ -531,3 +531,57 @@ a.card__arrow:before {
 }
 
 
+
+/* Vídeos dentro de la galería: miniatura igual que las fotos + botón de play */
+.galeria-imagenes video {
+  width: 100%;
+  height: 105px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  display: block;
+  background: #000;
+  pointer-events: none;
+}
+
+.itinerario-galeria .galeria-imagenes video {
+  height: 170px;
+}
+
+@media (max-width: 900px) {
+  .itinerario-galeria .galeria-imagenes video {
+    height: 130px;
+  }
+}
+
+.galeria-item--video a {
+  position: relative;
+}
+
+.galeria-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(204, 32, 44, 0.9);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease;
+}
+
+.galeria-play::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-left: 14px solid #fff;
+}
+
+.galeria-item--video a:hover .galeria-play {
+  transform: translate(-50%, -50%) scale(1.1);
+}
