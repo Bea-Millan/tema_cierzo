@@ -55,12 +55,15 @@
   <div class="inner-banda-premium">
     <div class="prgph texto-imagen posicion-{{ posicion_imagen }}">
 
+      {# Sin imagen no se pinta la columna: el texto ocupa todo el ancho #}
       {% set bloque_imagen %}
-        <div class="col-imagen field-imagen">
-          <div class="imagen-overlap">
-            <img src="{{ file_url(imagen_entity.uri.value) }}" alt="{{ imagen_entity.alt }}" />
+        {% if imagen_entity %}
+          <div class="col-imagen field-imagen">
+            <div class="imagen-overlap">
+              <img src="{{ file_url(imagen_entity.uri.value) }}" alt="{{ paragraph.field_imagen.alt ?: paragraph.field_titulo.value }}" />
+            </div>
           </div>
-        </div>
+        {% endif %}
       {% endset %}
 
       {% set bloque_texto %}
