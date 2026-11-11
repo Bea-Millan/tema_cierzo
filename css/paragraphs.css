@@ -944,13 +944,16 @@ background-color: var(--estilo-oscuro-bg, #ddd0c0) !important;
 
 /* Banda imagen-texto SIN foto: texto centrado con ancho de lectura,
    en vez de quedar pegado al borde izquierdo de la caja */
-.texto-imagen.sin-imagen {
-  justify-content: center;
+.texto-imagen.sin-imagen,
+.prgph-wrapper .texto-imagen.sin-imagen,
+.prgph-wrapper.estilo-oscuro .texto-imagen.sin-imagen {
+  justify-content: center; /* la variante oscura usa space-between y lo dejaba a la izquierda */
 }
 
 .prgph-wrapper .texto-imagen.sin-imagen .texto-parrafo,
 .prgph-wrapper.estilo-oscuro .texto-imagen.sin-imagen .texto-parrafo {
   flex: 0 1 760px;
+  margin: 0 auto;
   padding: 0 2rem;
   align-items: center;
   text-align: center;
