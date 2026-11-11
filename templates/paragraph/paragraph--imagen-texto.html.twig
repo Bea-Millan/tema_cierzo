@@ -57,7 +57,7 @@
 
       {# Sin imagen no se pinta la columna: el texto ocupa todo el ancho #}
       {% set bloque_imagen %}
-        {% if imagen_entity %}
+        {% if imagen_entity and imagen_entity.uri.value is not empty %}
           <div class="col-imagen field-imagen">
             <div class="imagen-overlap">
               <img src="{{ file_url(imagen_entity.uri.value) }}" alt="{{ paragraph.field_imagen.alt ?: paragraph.field_titulo.value }}" />
