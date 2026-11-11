@@ -643,3 +643,19 @@ a.card__arrow:before {
     max-height: 60vh;
   }
 }
+
+/* Cabecera de la entrada (fecha + título) sobre la foto y el texto */
+.cabecera-articulo {
+  margin-bottom: 2rem;
+}
+
+.cabecera-articulo .titulo {
+  margin-bottom: 0;
+}
+
+/* El texto arranca alineado con la parte de arriba de la foto */
+.texto-articulo .texto-introductorio > :first-child,
+.texto-articulo .texto-introductorio .field > :first-child,
+.texto-articulo .texto-introductorio p:first-child {
+  margin-top: 0;
+}

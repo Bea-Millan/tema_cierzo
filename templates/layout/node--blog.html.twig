@@ -13,6 +13,13 @@
       basada en el valor de 'envolver_texto_activo'.
       Quitamos la clase 'text-wrapping' fija que tenías.
     #}
+    {# Fecha y título a todo el ancho; debajo, foto a la izquierda y texto a la derecha.
+       (div y no <header>: el tema hace sticky cualquier <header>) #}
+    <div class="cabecera-articulo">
+      <div class="texto-etiqueta">{{ node.created.value|date("d/m/Y") }}</div>
+      <h1 class="titulo">{{ label }}</h1>
+    </div>
+
     <div class="texto-articulo{{ envolver_texto_activo ? ' con-ajuste-texto' : ' sin-ajuste-texto' }}">
       {% if content.field_foto_portada %}
         <div class="imagen-articulo">
@@ -20,13 +27,9 @@
         </div>
       {% endif %}
       <div class="texto-introductorio">
-          <div class="texto-etiqueta">
-          {{ node.created.value|date("d/m/Y") }}
-          </div>
-        <h1 class="titulo">{{ label }}</h1>
-          {{ content.body }}
+        {{ content.body }}
       </div>
-   </div>
+    </div>
 
     {% if content.field_galeria %}
       <div class="galeria">
