@@ -1,5 +1,6 @@
 {# Background precedence: image > color > default #}
-{% set bg_color = paragraph.field_bg_color.value ?: '#fff' %}
+{# field_bg_color es un campo de color: el valor está en .color (y .opacity) #}
+{% set bg_color = paragraph.field_bg_color.color ?: '#fff' %}
 {% set bg_image = paragraph.field_bg_image.entity ? paragraph.field_bg_image.entity.uri.value|image_style('wide') : '' %}
 
 <section class="quote-band {{ bg_image ? 'quote-band--con-imagen' : 'quote-band--sin-imagen' }}"
