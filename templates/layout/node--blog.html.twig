@@ -20,7 +20,11 @@
       <time class="fecha-articulo" datetime="{{ node.created.value|date('Y-m-d') }}">{{ node.created.value|format_date('custom', 'j \\d\\e F \\d\\e Y')|lower }}</time>
     </div>
 
-    <div class="texto-articulo{{ envolver_texto_activo ? ' con-ajuste-texto' : ' sin-ajuste-texto' }}">
+    {# Forma de la foto de portada: horizontal → grande arriba; vertical/cartel → a la derecha con el texto alrededor #}
+    {% set portada = node.field_foto_portada %}
+    {% set portada_vertical = portada.height and portada.width and portada.height > portada.width %}
+
+    <div class="texto-articulo{{ envolver_texto_activo ? ' con-ajuste-texto' : ' sin-ajuste-texto' }}{{ portada_vertical ? ' portada-vertical' : ' portada-horizontal' }}">
       {% if content.field_foto_portada %}
         <div class="imagen-articulo">
           {{ content.field_foto_portada }}
