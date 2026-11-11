@@ -941,3 +941,32 @@ background-color: var(--estilo-oscuro-bg, #ddd0c0) !important;
     padding-bottom: 3rem;
   }
 }
+
+/* Banda imagen-texto SIN foto: texto centrado con ancho de lectura,
+   en vez de quedar pegado al borde izquierdo de la caja */
+.texto-imagen.sin-imagen {
+  justify-content: center;
+}
+
+.prgph-wrapper .texto-imagen.sin-imagen .texto-parrafo,
+.prgph-wrapper.estilo-oscuro .texto-imagen.sin-imagen .texto-parrafo {
+  flex: 0 1 760px;
+  padding: 0 2rem;
+  align-items: center;
+  text-align: center;
+}
+
+.texto-imagen.sin-imagen .titulo-encima-texto {
+  text-align: center;
+}
+
+.texto-imagen.sin-imagen .titulo-encima-texto::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Las listas con flechas se leen mejor alineadas a la izquierda aunque el bloque vaya centrado */
+.texto-imagen.sin-imagen .cuerpo-texto ul {
+  display: inline-block;
+  text-align: left;
+}

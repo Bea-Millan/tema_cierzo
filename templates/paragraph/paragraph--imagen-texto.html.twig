@@ -53,11 +53,12 @@
 <div class="prgph-wrapper estilo-{{ fondo }} salida-imagen-{{ salida_imagen }} estilo-boton-{{ estilo_boton }}"{% if fondo == 'oscuro' and fondo_color %} style="--estilo-oscuro-bg: {{ fondo_color|e('html_attr') }};"{% endif %}>
   {# Usamos una clase única para no chocar con el resto de la web #}
   <div class="inner-banda-premium">
-    <div class="prgph texto-imagen posicion-{{ posicion_imagen }}">
+    {% set tiene_imagen = imagen_entity and imagen_entity.uri.value is not empty %}
+    <div class="prgph texto-imagen posicion-{{ posicion_imagen }}{{ tiene_imagen ? '' : ' sin-imagen' }}">
 
       {# Sin imagen no se pinta la columna: el texto ocupa todo el ancho #}
       {% set bloque_imagen %}
-        {% if imagen_entity and imagen_entity.uri.value is not empty %}
+        {% if tiene_imagen %}
           <div class="col-imagen field-imagen">
             <div class="imagen-overlap">
               <img src="{{ file_url(imagen_entity.uri.value) }}" alt="{{ paragraph.field_imagen.alt ?: paragraph.field_titulo.value }}" />
