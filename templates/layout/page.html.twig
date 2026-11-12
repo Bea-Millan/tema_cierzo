@@ -19,6 +19,13 @@
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
     <div class="layout-content">
+      {# Aviso para quien edita: el contenido no lo ven los visitantes #}
+      {% if node is defined and node.isPublished is defined and not node.isPublished() %}
+        <div class="aviso-borrador" role="status">
+          <strong>Borrador · sin publicar.</strong>
+          Solo lo ven las personas con permiso para revisar contenido.
+        </div>
+      {% endif %}
       {{ page.content }}
     </div>{# /.layout-content #}
 

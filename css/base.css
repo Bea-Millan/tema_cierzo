@@ -591,3 +591,77 @@ main.full .node__text-below-title {
     padding-top: 0;
   }
 }
+
+/* ============ Pestañas de edición (Ver / Editar / Revisiones) ============ */
+#block-tema-cierzo-primary-local-tasks,
+#block-tema-cierzo-secondary-local-tasks {
+  max-width: 1200px;
+  margin: 1.5rem auto 0;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+#block-tema-cierzo-primary-local-tasks ul,
+#block-tema-cierzo-secondary-local-tasks ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #e3ded8;
+}
+
+#block-tema-cierzo-primary-local-tasks li,
+#block-tema-cierzo-secondary-local-tasks li {
+  margin: 0;
+}
+
+#block-tema-cierzo-primary-local-tasks a,
+#block-tema-cierzo-secondary-local-tasks a {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  color: #404139;
+  text-decoration: none;
+  border-radius: 6px 6px 0 0;
+  border: 1px solid transparent;
+  border-bottom: none;
+  margin-bottom: -1px;
+}
+
+#block-tema-cierzo-primary-local-tasks a:hover,
+#block-tema-cierzo-secondary-local-tasks a:hover {
+  color: #cc202c;
+  background: #f7f4f1;
+}
+
+#block-tema-cierzo-primary-local-tasks a.is-active,
+#block-tema-cierzo-secondary-local-tasks a.is-active {
+  color: #cc202c;
+  background: #fff;
+  border-color: #e3ded8;
+  font-weight: 600;
+}
+
+#block-tema-cierzo-secondary-local-tasks a {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.8rem;
+}
+
+/* ============ Aviso de borrador ============ */
+.aviso-borrador {
+  max-width: 1200px;
+  margin: 1rem auto 0;
+  padding: 0.75rem 1rem;
+  box-sizing: border-box;
+  background: #fff4e5;
+  border-left: 4px solid #e8a33d;
+  color: #6b4a12;
+  font-size: 0.95rem;
+}
+
+main.full .aviso-borrador,
+main.full #block-tema-cierzo-primary-local-tasks {
+  width: calc(100% - 40px);
+}
