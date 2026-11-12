@@ -125,8 +125,8 @@
   padding-top: 2rem;
 }
 
-/* Si la línea de tiempo va después de otra banda: rayita fina de
-   separación y algo más de aire (p. ej. /conciertos-de-santa-cecilia). */
+/* Si la línea de tiempo va después de otra banda: rayita roja corta de
+   separación (como el subrayado de los títulos) y algo más de aire (p. ej. /conciertos-de-santa-cecilia). */
 .site-content div + div > .contenedor-itinerario-wrapper {
   position: relative;
   padding-top: clamp(2.5rem, 5vw, 4rem);
@@ -138,9 +138,9 @@
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: min(1100px, calc(100% - 40px));
-  height: 1px;
-  background: #e2dcd5;
+  width: 60px;
+  height: 3px;
+  background: #cc202c;
 }
 
 .titulo-itinerario{
