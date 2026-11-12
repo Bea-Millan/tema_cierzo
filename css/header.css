@@ -212,12 +212,13 @@ header.site-header {
   gap: 0;
   /* Aparece suave: fundido + baja 8px. Al salir espera un poco
      para que no se cierre si el ratón se escapa un instante. */
-  opacity: 0;
+  /* Se despliega de arriba abajo como una persiana: el recorte
+     inferior pasa del 100 % (todo tapado) al 0 % (todo visible). */
+  clip-path: inset(0 0 100% 0);
   visibility: hidden;
-  transform: translateY(12px);
   pointer-events: none;
-  /* Cierre: espera 0,1 s, se desvanece en 0,35 s y solo entonces se oculta */
-  transition: opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s, visibility 0s linear 0.45s;
+  /* Cierre: espera 0,1 s, se recoge hacia arriba y luego se oculta */
+  transition: clip-path 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s, visibility 0s linear 0.5s;
 }
 
 /* Elemento ::before para el submenú */
@@ -234,17 +235,15 @@ header.site-header {
 
 .main-menu li:hover > .submenu,
 .main-menu li:focus-within > .submenu {
-  opacity: 1;
+  clip-path: inset(0 0 0 0);
   visibility: visible;
-  transform: translateY(0);
   pointer-events: auto;
-  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s;
+  transition: clip-path 0.45s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .main-menu li .submenu {
     transition: none;
-    transform: none;
   }
 }
 
@@ -522,9 +521,8 @@ header:not(.menu_negro) .main-menu span::after,
     position: static; /* Dejan de ser flotantes */
     display: none; /* Ocultos por defecto, se mostrarán al hacer hover en el LI padre */
     /* En móvil sin animación de escritorio */
-    opacity: 1;
+    clip-path: none;
     visibility: visible;
-    transform: none;
     pointer-events: auto;
     transition: none;
     width: 100%;
