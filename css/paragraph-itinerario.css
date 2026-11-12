@@ -120,12 +120,18 @@
   color: #333;
 }
 
+/* Aire entre la banda de arriba y el título de la línea de tiempo */
+.contenedor-itinerario-wrapper {
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+
 .titulo-itinerario{
   text-align: center;
   font-size: 2rem;
+  margin-top: 0;
   margin-bottom: 0px;
- color: #cc202c;
-    font-weight: 500;
+  color: #cc202c;
+  font-weight: 500;
 }
 
 /* Responsive para móviles */
