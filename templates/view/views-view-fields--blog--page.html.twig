@@ -9,8 +9,10 @@
     <div class="date-badge {{ fields.field_foto_portada.content ? 'over-image' : 'under-header' }}">
       {% if row and row._entity %}
         {% set created_timestamp = row._entity.getCreatedTime() %}
-        <span class="day">{{ created_timestamp|date('d') }}</span>
-        <span class="month">{{ created_timestamp|date('M') }}</span>
+        {# format_date usa el idioma de la web: «nov», no «Nov» en inglés #}
+        <span class="day">{{ created_timestamp|format_date('custom', 'd') }}</span>
+        <span class="month">{{ created_timestamp|format_date('custom', 'M')|trim('.') }}</span>
+        <span class="year">{{ created_timestamp|format_date('custom', 'Y') }}</span>
       {% endif %}
     </div>
   </div>

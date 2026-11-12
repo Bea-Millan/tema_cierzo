@@ -194,6 +194,16 @@ a.card__arrow:before {
   line-height: 1;
 }
 
+.date-badge .year {
+  display: block;
+  font-size: 11px;
+  color: #999;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  margin-top: 3px;
+  padding-bottom: 2px;
+}
+
 .card-content {
   padding: 25px;
 }
