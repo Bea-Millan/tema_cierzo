@@ -23,8 +23,14 @@
 {% set ano = node.hasField('field_ano') ? node.field_ano.value : '' %}
 {% set etiqueta = [categoria, ano]|filter(v => v)|join(' · ') %}
 
-{# Botón de vuelta a la línea de tiempo de los conciertos #}
-{% set volver_url = '/conciertos-de-carnaval' %}
+{# Botón de vuelta a la línea de tiempo de su categoría.
+   Al crear una categoría nueva en Itinerarios, añadir aquí su página. #}
+{% set paginas_itinerario = {
+  'Carnaval': '/conciertos-de-carnaval',
+  'Santa Cecilia': '/conciertos-de-santa-cecilia',
+  'Curso de verano': '/curso-de-verano',
+} %}
+{% set volver_url = paginas_itinerario[categoria] ?? '/conciertos-de-carnaval' %}
 
 <article{{ attributes.addClass('node', 'node--type-elemento-de-itinerario') }}>
   <main class="site-content">
