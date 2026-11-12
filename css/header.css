@@ -12,7 +12,9 @@
 
 /* ajustes cabecera */
 
-header {
+/* Solo la cabecera del sitio: otros <header> (cabecera de una vista,
+   de un artículo…) no deben volverse sticky ni taparla. */
+header.site-header {
   position: sticky;
   top: 0;
   background-color: transparent;
@@ -102,7 +104,7 @@ header:not(.menu_negro) header.site-header.scrolled {
  * =======================================================
  */
 
-header {
+header.site-header {
   position: -webkit-sticky; /* Para compatibilidad */
   position: sticky;
   /* Se pega justo debajo de la barra de admin de Drupal (si existe) */
@@ -199,7 +201,7 @@ header {
 
 /* Submenús */
 .main-menu li .submenu {
-  display: none;
+  display: flex;
   position: absolute;
   top: 100%; /* Posiciona el inicio del submenú justo debajo del elemento <li> padre */
   left: 0;
@@ -209,6 +211,14 @@ header {
   z-index: 30;
   flex-direction: column;
   gap: 0;
+  /* Aparece suave: fundido + baja 8px. Al salir espera un poco
+     para que no se cierre si el ratón se escapa un instante. */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+  transition-delay: 0.12s;
 }
 
 /* Elemento ::before para el submenú */
@@ -224,8 +234,19 @@ header {
 */
 
 .main-menu li:hover > .submenu,
-.main-menu li .submenu:hover {
-  display: flex;
+.main-menu li:focus-within > .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-menu li .submenu {
+    transition: none;
+    transform: none;
+  }
 }
 
 /* Ítems dentro de submenús y sub-submenús */
@@ -501,6 +522,12 @@ header:not(.menu_negro) .main-menu span::after,
   .main-menu li .submenu {
     position: static; /* Dejan de ser flotantes */
     display: none; /* Ocultos por defecto, se mostrarán al hacer hover en el LI padre */
+    /* En móvil sin animación de escritorio */
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+    transition: none;
     width: 100%;
     padding: 0;
     /* padding: 1.0rem 0; */ /* Considerar si este padding es necesario o se ajusta en móvil */
