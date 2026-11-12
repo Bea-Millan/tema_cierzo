@@ -120,9 +120,27 @@
   color: #333;
 }
 
-/* Aire entre la banda de arriba y el título de la línea de tiempo */
+/* Aire encima del título de la línea de tiempo */
 .contenedor-itinerario-wrapper {
-  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-top: 2rem;
+}
+
+/* Si la línea de tiempo va después de otra banda: rayita fina de
+   separación y algo más de aire (p. ej. /conciertos-de-santa-cecilia). */
+.site-content div + div > .contenedor-itinerario-wrapper {
+  position: relative;
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.site-content div + div > .contenedor-itinerario-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1100px, calc(100% - 40px));
+  height: 1px;
+  background: #e2dcd5;
 }
 
 .titulo-itinerario{
