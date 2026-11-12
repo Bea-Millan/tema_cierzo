@@ -214,10 +214,10 @@ header.site-header {
      para que no se cierre si el ratón se escapa un instante. */
   opacity: 0;
   visibility: hidden;
-  transform: translateY(8px);
+  transform: translateY(12px);
   pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
-  transition-delay: 0.12s;
+  /* Cierre: espera 0,1 s, se desvanece en 0,35 s y solo entonces se oculta */
+  transition: opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s, visibility 0s linear 0.45s;
 }
 
 /* Elemento ::before para el submenú */
@@ -238,7 +238,7 @@ header.site-header {
   visibility: visible;
   transform: translateY(0);
   pointer-events: auto;
-  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s;
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s;
 }
 
 @media (prefers-reduced-motion: reduce) {
