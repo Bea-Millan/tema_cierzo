@@ -758,3 +758,33 @@ a.panel-boton span {
 .path-frontpage [id^="block-tema-cierzo-primary-admin-actions"] {
   display: none;
 }
+
+/* Fotos metidas dentro del texto con el editor (botón «Subir imagen»).
+   CKEditor les pone el ancho real de la foto (p. ej. width="4000"):
+   así nunca se salen de la columna ni en el móvil, y se ven centradas
+   con aire alrededor. Vale para blog, páginas y bandas. */
+.texto-articulo .field--name-body img,
+.field--name-body img,
+.text-formatted img,
+.cuerpo-texto img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: 8px;
+}
+
+/* Si la foto lleva pie (CKEditor la mete en <figure>) */
+.field--name-body figure,
+.text-formatted figure {
+  max-width: 100%;
+  margin: 1.5rem auto;
+}
+
+.field--name-body figure figcaption,
+.text-formatted figure figcaption {
+  font-size: 0.9rem;
+  color: #6b6b6b;
+  text-align: center;
+  margin-top: 0.5rem;
+}
