@@ -210,15 +210,14 @@ header.site-header {
   z-index: 30;
   flex-direction: column;
   gap: 0;
-  /* Aparece suave: fundido + baja 8px. Al salir espera un poco
-     para que no se cierre si el ratón se escapa un instante. */
   /* Se despliega de arriba abajo como una persiana: el recorte
-     inferior pasa del 100 % (todo tapado) al 0 % (todo visible). */
+     inferior pasa del 100 % (todo tapado) al 0 % (todo visible).
+     Sin pointer-events: none. Al salir con el ratón, el submenú sigue
+     siendo clicable durante el retraso de cierre (0,3 s), así que si el
+     ratón se escapa un instante se puede volver a entrar sin que se cierre. */
   clip-path: inset(0 0 100% 0);
   visibility: hidden;
-  pointer-events: none;
-  /* Cierre: espera 0,1 s, se recoge hacia arriba y luego se oculta */
-  transition: clip-path 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s, visibility 0s linear 0.5s;
+  transition: clip-path 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.3s, visibility 0s linear 0.65s;
 }
 
 /* Elemento ::before para el submenú */
@@ -237,8 +236,7 @@ header.site-header {
 .main-menu li:focus-within > .submenu {
   clip-path: inset(0 0 0 0);
   visibility: visible;
-  pointer-events: auto;
-  transition: clip-path 0.45s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s;
+  transition: clip-path 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -523,7 +521,6 @@ header:not(.menu_negro) .main-menu span::after,
     /* En móvil sin animación de escritorio */
     clip-path: none;
     visibility: visible;
-    pointer-events: auto;
     transition: none;
     width: 100%;
     padding: 0;
