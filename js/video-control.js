@@ -5,7 +5,7 @@
   // Altura real de la cabecera para que el vídeo de portada quede justo
   // debajo de ella, sin hueco gris (ver .paragraph--full-width-video en header.css).
   function actualizarAltoCabecera() {
-    const header = document.querySelector('header');
+    const header = document.querySelector('header.site-header');
     if (header) {
       document.documentElement.style.setProperty('--alto-cabecera', header.offsetHeight + 'px');
     }

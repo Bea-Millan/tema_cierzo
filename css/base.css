@@ -749,3 +749,12 @@ a.panel-boton span {
   margin-top: 1.5rem;
   color: #666;
 }
+
+/* Portada: las pestañas Ver/Editar (solo usuarios con sesión) se metían
+   entre la cabecera transparente y el vídeo y dejaban una franja.
+   En portada se editan desde la barra de administración o el lápiz. */
+.path-frontpage [id^="block-tema-cierzo-primary-local-tasks"],
+.path-frontpage [id^="block-tema-cierzo-secondary-local-tasks"],
+.path-frontpage [id^="block-tema-cierzo-primary-admin-actions"] {
+  display: none;
+}
