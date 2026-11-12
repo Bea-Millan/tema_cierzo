@@ -763,3 +763,10 @@ a[href$="#nuevo"]::before {
     text-transform: none;
   }
 }
+
+/* Con sesión iniciada, la barra de administración de Drupal es fija arriba:
+   la cabecera se pega justo debajo de ella en vez de quedar tapada.
+   Drupal calcula su altura en --drupal-displace-offset-top. */
+body.toolbar-fixed header.site-header {
+  top: var(--drupal-displace-offset-top, 0px);
+}
