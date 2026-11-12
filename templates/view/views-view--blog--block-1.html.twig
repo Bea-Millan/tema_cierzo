@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Bloque de últimas noticias del blog (portada y bandas «Vista»).
+ *
+ * No pinta la cabecera de la vista: esa entradilla («Conciertos,
+ * audiciones, cursos y consejos…») es solo para la página /blog
+ * (views-view--blog--page.html.twig). Aquí el título y el texto
+ * los pone la banda que contiene el bloque.
+ */
+#}
+{%
+  set classes = [
+    'view',
+    'view-' ~ id|clean_class,
+    'view-id-' ~ id,
+    'view-display-id-' ~ display_id,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {{ exposed }}
+  {{ attachment_before }}
+
+  {% if rows -%}
+    {{ rows }}
+  {% elseif empty -%}
+    {{ empty }}
+  {% endif %}
+
+  {{ pager }}
+  {{ attachment_after }}
+  {{ more }}
+  {{ footer }}
+  {{ feed_icons }}
+</div>
