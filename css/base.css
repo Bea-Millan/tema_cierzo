@@ -665,3 +665,87 @@ main.full .aviso-borrador,
 main.full #block-tema-cierzo-primary-local-tasks {
   width: calc(100% - 40px);
 }
+
+/* ============ Panel de redacción (/panel, vista panel_redaccion) ============ */
+.view-id-panel_redaccion {
+  max-width: 1200px;
+  margin: 2rem auto 4rem;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.panel-intro {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.panel-acciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+a.panel-boton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 10px;
+  background: #cc202c;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+a.panel-boton--gris {
+  background: #404139;
+}
+
+a.panel-boton:hover,
+a.panel-boton:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
+  color: #fff;
+}
+
+a.panel-boton strong {
+  font-size: 1.15rem;
+}
+
+a.panel-boton span {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.panel-subtitulo {
+  font-size: 1.35rem;
+  margin: 0 0 1rem;
+}
+
+.view-id-panel_redaccion table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.view-id-panel_redaccion th,
+.view-id-panel_redaccion td {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid #ece7e1;
+}
+
+.view-id-panel_redaccion th {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #777;
+}
+
+.panel-ayuda,
+.panel-vacio {
+  margin-top: 1.5rem;
+  color: #666;
+}
