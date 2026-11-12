@@ -974,3 +974,8 @@ background-color: var(--estilo-oscuro-bg, #ddd0c0) !important;
   display: inline-block;
   text-align: left;
 }
+
+/* Hito con texto largo (repertorios): el cartel arriba, junto al título, no centrado a media altura */
+.node--type-elemento-de-itinerario .texto-imagen {
+  align-items: flex-start;
+}
