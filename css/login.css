@@ -1,105 +1,160 @@
-/* --- Estilos para la Página de Login (/user/login) --- */
+/* ============ Páginas de acceso: /user/login y /user/password ============ */
 
-/* 1. Contenedor principal que hemos creado en el .twig
-  - Ocupa toda la altura de la ventana.
-  - Usa Flexbox para centrar su contenido (el formulario).
-  - Tiene un fondo gris claro para que el formulario blanco resalte.
-*/
-.login-page-wrapper {
-  background-color: #f4f4f4; /* Mantenemos el fondo gris claro */
-  padding: 5rem 2rem;       /* AÑADIDO: Padding generoso arriba/abajo (5rem) y a los lados (2rem) */
-  /* ELIMINADO: Las siguientes líneas ya no son necesarias para este layout */
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* min-height: calc(100vh - 150px); */
+.acceso {
+  background: #f4f1ed;
+  padding: 4rem 20px 5rem;
 }
 
-/* 2. Estilos para el bloque que contiene el formulario de login.
-  Drupal suele añadir la clase 'user-login-form' al <form>.
-  Lo metemos dentro de la clase de nuestro wrapper para no afectar a otros formularios.
-*/
-.login-page-wrapper .user-login-form {
-  background-color: #ffffff;
-  padding: 2.5rem 3rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  max-width: 400px;         /* Ancho máximo del formulario (puedes ajustarlo si quieres) */
-  width: 100%;
-  margin: 0 auto;           /* AÑADIDO: Esto centrará el formulario horizontalmente dentro del wrapper */
+.acceso__tarjeta {
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem 2rem;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
 }
 
-/* 3. Título del formulario (si lo tuviera, como "Iniciar sesión")
-*/
-.login-page-wrapper .user-login-form h1#page-title {
+.acceso__titulo {
+  font-family: "Red Hat Text", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: #2f3337;
   text-align: center;
-  margin-bottom: 2rem;
-  color: #333;
+  margin: 0 0 0.5rem;
 }
 
-
-/* 4. Estilos para los campos de texto (usuario y contraseña)
-*/
-.login-page-wrapper .form-item label {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  display: block; /* Asegura que la etiqueta esté encima del campo */
+.acceso__titulo::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  margin: 0.9rem auto 0;
+  background: #cc202c;
 }
 
-.login-page-wrapper .form-item input[type="text"],
-.login-page-wrapper .form-item input[type="password"] {
-  width: 100%;
-  padding: 12px 15px; /* Campos más altos y con más espacio */
-  font-size: 1.1rem;   /* Texto más grande dentro del campo */
-  border: 1px solid #ccc;
-  border-radius: 8px; /* Bordes ligeramente redondeados para los campos */
-  box-sizing: border-box; /* Importante para que el padding no afecte al ancho total */
-}
-
-/* 5. Estilos para el botón de "Iniciar sesión"
-*/
-.login-page-wrapper .form-actions input#edit-submit {
-  width: 100%;
-  padding: 15px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #ffffff; /* Texto blanco */
-  background-color: #D40024; /* El rojo corporativo de tu web */
-  border: none;
-  border-radius: 50px; /* ¡Botón bien redondeado! */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 1rem;
-}
-
-/* Efecto hover para el botón */
-.login-page-wrapper .form-actions input#edit-submit:hover {
-  background-color: #A3001C; /* Un rojo un poco más oscuro al pasar el ratón */
-}
-
-/* 6. Estilos para los enlaces de "¿Ha olvidado su contraseña?"
-*/
-.login-page-wrapper .item-list {
+.acceso__intro {
   text-align: center;
-  margin-top: 1.5rem;
+  color: #6b6b6b;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 1rem 0 1.75rem;
 }
 
-.login-page-wrapper .item-list ul {
-  padding: 0;
+/* Lo que pinta Drupal en la región Contenido y aquí sobra:
+   pestañas, título de página y el texto de ayuda propio del formulario */
+.acceso [id^="block-tema-cierzo-primary-local-tasks"],
+.acceso [id^="block-tema-cierzo-secondary-local-tasks"],
+.acceso [id^="block-tema-cierzo-primary-admin-actions"],
+.acceso [id^="block-tema-cierzo-titulodelapagina"],
+.acceso .user-pass > p,
+.acceso .user-pass .description,
+.acceso .user-login-form .description {
+  display: none;
+}
+
+/* Formularios */
+.acceso form {
   margin: 0;
 }
 
-.login-page-wrapper .item-list li {
-  list-style: none;
-  display: inline;
-  margin: 0 10px;
+.acceso .form-item {
+  margin: 0 0 1.1rem;
 }
 
-.login-page-wrapper .item-list a {
-  color: #D40024;
+.acceso .form-item label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #404139;
+  margin-bottom: 0.4rem;
+}
+
+.acceso .form-item input[type="text"],
+.acceso .form-item input[type="email"],
+.acceso .form-item input[type="password"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.8rem 1rem;
+  font-size: 1.05rem;
+  border: 1px solid #cfc9c2;
+  border-radius: 8px;
+  background: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.acceso .form-item input:focus {
+  outline: none;
+  border-color: #cc202c;
+  box-shadow: 0 0 0 3px rgba(204, 32, 44, 0.15);
+}
+
+/* Casilla «Recordarme» (Persistent Login) */
+.acceso .form-type-checkbox,
+.acceso .js-form-type-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.acceso .form-type-checkbox label,
+.acceso .js-form-type-checkbox label {
+  display: inline;
+  margin: 0;
+  font-weight: 400;
+}
+
+.acceso .form-actions {
+  margin: 0.5rem 0 0;
+}
+
+.acceso .form-actions input[type="submit"] {
+  width: 100%;
+  padding: 0.95rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  background: #cc202c;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.acceso .form-actions input[type="submit"]:hover,
+.acceso .form-actions input[type="submit"]:focus {
+  background: #a3001c;
+}
+
+.acceso__alternativa {
+  text-align: center;
+  margin: 1.5rem 0 0;
+  font-size: 0.95rem;
+}
+
+.acceso__alternativa a {
+  color: #cc202c;
   text-decoration: none;
 }
 
-.login-page-wrapper .item-list a:hover {
+.acceso__alternativa a:hover {
   text-decoration: underline;
+}
+
+/* Mensajes de Drupal (error de contraseña, correo enviado…) */
+.acceso .messages,
+.acceso [role="alert"],
+.acceso [role="contentinfo"][aria-label] {
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 500px) {
+  .acceso {
+    padding: 2rem 16px 3rem;
+  }
+
+  .acceso__tarjeta {
+    padding: 2rem 1.5rem 1.5rem;
+  }
 }

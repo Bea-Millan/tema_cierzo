@@ -1,19 +1,41 @@
-{# themes/custom/cierzo_theme/templates/layout/page--user--login.html.twig #}
+{#
+/**
+ * @file
+ * Páginas de acceso: /user/login y /user/password (ver tema_cierzo.theme).
+ * Una tarjeta centrada con título, explicación, el formulario y el enlace a la otra pantalla.
+ */
+#}
+{% set recuperar = ruta_usuario == 'user.pass' %}
+
 <div class="layout-container">
-{% include "@tema_cierzo/layout/includes/header.html.twig" %}
-<div class="container">
-<article class="page-contact">
-  <div class="login-page-wrapper">
-  {# El contenido principal de la página, que en este caso es el bloque del formulario de login #}
-  <main role="main" class="main-content">
-    <a id="main-content" tabindex="-1"></a>{# Enlace de anclaje para accesibilidad #}
-    {{ page.content }}
+  {% include "@tema_cierzo/layout/includes/header.html.twig" %}
+
+  <main role="main" class="acceso">
+    <a id="main-content" tabindex="-1"></a>
+
+    <div class="acceso__tarjeta">
+      {% if recuperar %}
+        <h1 class="acceso__titulo">¿Has olvidado tu contraseña?</h1>
+        <p class="acceso__intro">Escribe tu nombre de usuario o el correo con el que te diste de alta y te enviaremos un enlace para crear una nueva.</p>
+      {% else %}
+        <h1 class="acceso__titulo">Acceso familias y profesores</h1>
+        <p class="acceso__intro">Entra con el usuario y la contraseña que te enviamos por correo al hacer la inscripción.</p>
+      {% endif %}
+
+      {{ page.content }}
+
+      <p class="acceso__alternativa">
+        {% if recuperar %}
+          <a href="{{ path('user.login') }}">← Volver a iniciar sesión</a>
+        {% else %}
+          <a href="{{ path('user.pass') }}">¿Has olvidado tu contraseña?</a>
+        {% endif %}
+      </p>
+    </div>
   </main>
-</div>
-</article>
-</div>
- <footer role="contentinfo">
-  {{ page.footer }}
-  {% include "@tema_cierzo/layout/includes/footer.html.twig" %}
-</footer>
+
+  <footer role="contentinfo">
+    {{ page.footer }}
+    {% include "@tema_cierzo/layout/includes/footer.html.twig" %}
+  </footer>
 </div>

@@ -34,6 +34,12 @@ function tema_cierzo_theme_suggestions_page_alter(array &$suggestions, array $va
      $suggestions[] = 'page__contacto';
   }
 
+  // Login y «he olvidado mi contraseña» comparten la misma página-tarjeta.
+  $ruta = \Drupal::routeMatch()->getRouteName();
+  if (in_array($ruta, ['user.login', 'user.pass'], TRUE)) {
+    $suggestions[] = 'page__user__login';
+  }
+
 }
 
 /**
@@ -54,4 +60,12 @@ function tema_cierzo_preprocess_node(array &$variables) {
  */
 function tema_cierzo_preprocess_paragraph(array &$variables) {
   $variables['es_portada'] = \Drupal::service('path.matcher')->isFrontPage();
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page templates.
+ */
+function tema_cierzo_preprocess_page(array &$variables) {
+  // La plantilla de login la usan /user/login y /user/password.
+  $variables['ruta_usuario'] = \Drupal::routeMatch()->getRouteName();
 }
