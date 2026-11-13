@@ -788,3 +788,14 @@ a.panel-boton span {
   text-align: center;
   margin-top: 0.5rem;
 }
+
+/* Panel de redacción: línea de enlaces de ayuda bajo los botones */
+.panel-ayuda {
+  margin: -1.25rem 0 2.5rem;
+  font-size: 0.95rem;
+  color: #6b6b6b;
+}
+
+.panel-ayuda a {
+  color: #cc202c;
+}
