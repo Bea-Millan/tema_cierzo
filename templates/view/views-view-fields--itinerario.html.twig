@@ -1,11 +1,24 @@
 {#
-  Template para cada fila de la línea de tiempo.
-  Campos asumidos: field_imagen, field_titulo, field_texto_corto, field_enlace
+/**
+ * @file
+ * Cada concierto (Elemento de Itinerario) en la línea de tiempo.
+ *
+ * Debajo del texto salen hasta dos enlaces, solo si tienen sentido:
+ * - «Más información»: si el concierto tiene contenido propio en su página
+ *   (texto largo/repertorio en el cuerpo o fotos en la Galería).
+ * - «Lee la crónica»: si tiene algo en el campo Enlace (normalmente la
+ *   entrada del blog). El texto del enlace se puede cambiar en el campo.
+ * Si no tiene ninguna de las dos cosas, la tarjeta no enlaza a nada.
+ */
 #}
+{% set hito = row._entity %}
+{% set tiene_pagina = (hito.body.value|striptags|trim is not empty)
+  or (hito.hasField('field_galeria') and not hito.field_galeria.isEmpty()) %}
+{% set tiene_enlace = hito.hasField('field_enlace') and not hito.field_enlace.isEmpty() %}
+{% set url_hito = path('entity.node.canonical', {'node': hito.id}) %}
 
 <div class="timeline-item" data-aos="fade-up">
 
-{# Bloque para la fecha/año al lado izquierdo #}
   <div class="timeline-date">
     {% if fields.field_ano.content|render|trim %}
       {{ fields.field_ano.content }}
@@ -14,27 +27,40 @@
     {% endif %}
   </div>
 
-
   <div class="timeline-dot"></div>
 
   <div class="timeline-content">
     {% if fields.field_imagen.content %}
       <div class="timeline-image">
-        {{ fields.field_imagen.content }}
+        {% if tiene_pagina %}
+          <a href="{{ url_hito }}" tabindex="-1" aria-hidden="true">{{ fields.field_imagen.content }}</a>
+        {% else %}
+          {{ fields.field_imagen.content }}
+        {% endif %}
       </div>
     {% endif %}
 
     <div class="timeline-text">
-      {# Título enlazado a la página del hito; su ::after estira el clic a toda la tarjeta #}
       <h3 class="timeline-title">
-        <a href="{{ path('entity.node.canonical', {'node': row._entity.id}) }}" class="timeline-stretched-link">{{ row._entity.label }}</a>
+        {% if tiene_pagina %}
+          <a href="{{ url_hito }}">{{ hito.label }}</a>
+        {% else %}
+          {{ hito.label }}
+        {% endif %}
       </h3>
+
       <div class="timeline-body">
         {{ fields.field_texto_corto.content }}
       </div>
-      {% if fields.field_enlace.content %}
-        <div class="timeline-link">
-          {{ fields.field_enlace.content }}
+
+      {% if tiene_pagina or tiene_enlace %}
+        <div class="timeline-acciones">
+          {% if tiene_pagina %}
+            <a href="{{ url_hito }}" class="timeline-accion">Más información <span aria-hidden="true">→</span></a>
+          {% endif %}
+          {% if tiene_enlace %}
+            <a href="{{ hito.field_enlace.0.url.toString() }}" class="timeline-accion timeline-accion--blog">{{ hito.field_enlace.title ?: 'Lee la crónica' }} <span aria-hidden="true">→</span></a>
+          {% endif %}
         </div>
       {% endif %}
     </div>

@@ -66,41 +66,42 @@
 }
 
 /* Toda la tarjeta es pulsable: el ::after del enlace del título la cubre entera */
-.timeline-stretched-link {
+.timeline-title a {
   color: inherit;
   text-decoration: none;
 }
 
-.timeline-stretched-link::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  border-radius: 12px;
-}
-
-.timeline-content:hover {
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-.timeline-content:hover .timeline-stretched-link {
+.timeline-title a:hover,
+.timeline-title a:focus-visible {
   color: #cc202c;
 }
 
-.timeline-stretched-link:focus-visible {
-  outline: none;
+/* Enlaces del concierto: «Más información» y «Lee la crónica» */
+.timeline-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1rem;
 }
 
-.timeline-stretched-link:focus-visible::after {
-  outline: 2px solid #cc202c;
-  outline-offset: 3px;
+.timeline-accion {
+  color: #cc202c;
+  font-weight: 600;
+  text-decoration: none;
 }
 
-/* El enlace propio del hito (si lo tiene) queda por encima y sigue funcionando */
-.timeline-link {
-  position: relative;
-  z-index: 2;
+.timeline-accion span {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.timeline-accion:hover,
+.timeline-accion:focus-visible {
+  text-decoration: underline;
+}
+
+.timeline-accion:hover span {
+  transform: translateX(3px);
 }
 
 .timeline-image {
