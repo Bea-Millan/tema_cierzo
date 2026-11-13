@@ -767,3 +767,41 @@ main.site-content > .galeria .galeria-imagenes video {
     height: 130px;
   }
 }
+
+
+/* «✎ Editar» en cada foto de la galería: solo para quien puede editarla */
+.galeria-item {
+  position: relative;
+}
+
+.galeria-editar {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 3;
+  padding: 2px 9px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #404139;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50px;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.galeria-item:hover .galeria-editar,
+.galeria-editar:focus-visible {
+  opacity: 1;
+}
+
+.galeria-editar:hover {
+  color: #cc202c;
+}
+
+/* En pantallas táctiles no hay «hover»: que se vea siempre */
+@media (hover: none) {
+  .galeria-editar {
+    opacity: 1;
+  }
+}

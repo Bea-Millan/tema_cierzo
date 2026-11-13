@@ -10,6 +10,9 @@
  *   (primer segundo, sin reproducir) y se abre como vídeo.
  * - Vídeo remoto (field_media_oembed_video): miniatura de YouTube/Vimeo
  *   y se abre con su reproductor.
+ *
+ * Quien puede editar la foto ve «✎ Editar» en su esquina (item.editar_url,
+ * calculado en tema_cierzo_preprocess_field()).
  */
 #}
 <div class="galeria-imagenes">
@@ -22,6 +25,7 @@
         {% set uri = media.field_media_image.entity.uri.value %}
         {% set alt = media.field_media_image.alt ?: media.label %}
         <div class="galeria-item">
+          {% if item.editar_url %}<a class="galeria-editar" href="{{ item.editar_url }}" title="Editar esta foto (punto de enfoque, texto alternativo…)">✎ Editar</a>{% endif %}
           <a href="{{ file_url(uri) }}" class="glightbox" data-gallery="galeria" title="{{ alt }}">
             <img src="{{ uri|image_style('galeria') }}" alt="{{ alt }}" loading="lazy">
           </a>
@@ -30,6 +34,7 @@
       {% elseif media.hasField('field_media_video_file') and media.field_media_video_file.entity %}
         {% set video_url = file_url(media.field_media_video_file.entity.uri.value) %}
         <div class="galeria-item galeria-item--video">
+          {% if item.editar_url %}<a class="galeria-editar" href="{{ item.editar_url }}" title="Editar esta foto (punto de enfoque, texto alternativo…)">✎ Editar</a>{% endif %}
           <a href="{{ video_url }}" class="glightbox" data-gallery="galeria" data-type="video" title="{{ alt }}">
             <video src="{{ video_url }}#t=1" muted playsinline preload="metadata" aria-hidden="true"></video>
             <span class="galeria-play" aria-hidden="true"></span>
@@ -40,6 +45,7 @@
       {% elseif media.hasField('field_media_oembed_video') and media.field_media_oembed_video.value %}
         {% set thumb = media.thumbnail.entity ? media.thumbnail.entity.uri.value|image_style('galeria') : '' %}
         <div class="galeria-item galeria-item--video">
+          {% if item.editar_url %}<a class="galeria-editar" href="{{ item.editar_url }}" title="Editar esta foto (punto de enfoque, texto alternativo…)">✎ Editar</a>{% endif %}
           <a href="{{ media.field_media_oembed_video.value }}" class="glightbox" data-gallery="galeria" title="{{ alt }}">
             {% if thumb %}
               <img src="{{ thumb }}" alt="" loading="lazy">

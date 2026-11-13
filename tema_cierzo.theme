@@ -129,3 +129,32 @@ function tema_cierzo_preprocess_views_view_fields(array &$variables) {
     ])->toString();
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for field templates.
+ *
+ * Galerías (field_galeria): a quien puede editar cada foto/vídeo se le pasa
+ * la dirección de edición, para el botón «✎ Editar» de la plantilla.
+ */
+function tema_cierzo_preprocess_field(array &$variables) {
+  if (($variables['field_name'] ?? '') !== 'field_galeria') {
+    return;
+  }
+  $destino = \Drupal::destination()->getAsArray();
+  $cache = \Drupal\Core\Cache\CacheableMetadata::createFromRenderArray($variables)
+    ->addCacheContexts(['user.permissions', 'url.path']);
+
+  foreach ($variables['items'] as $delta => $item) {
+    $variables['items'][$delta]['editar_url'] = NULL;
+    $media = $item['content']['#media'] ?? NULL;
+    if (!$media instanceof \Drupal\media\MediaInterface) {
+      continue;
+    }
+    $acceso = $media->access('update', NULL, TRUE);
+    $cache->addCacheableDependency($acceso);
+    if ($acceso->isAllowed()) {
+      $variables['items'][$delta]['editar_url'] = $media->toUrl('edit-form', ['query' => $destino])->toString();
+    }
+  }
+  $cache->applyTo($variables);
+}
