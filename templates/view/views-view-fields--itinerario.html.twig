@@ -15,7 +15,7 @@
  */
 #}
 {% set hito = row._entity %}
-{% set tiene_pagina = (hito.body.value|striptags|trim is not empty)
+{% set tiene_pagina = (hito.body.value|default('')|striptags|trim is not empty)
   or (hito.hasField('field_galeria') and not hito.field_galeria.isEmpty()) %}
 {% set tiene_enlace = hito.hasField('field_enlace') and not hito.field_enlace.isEmpty() %}
 {% set url_hito = path('entity.node.canonical', {'node': hito.id}) %}
