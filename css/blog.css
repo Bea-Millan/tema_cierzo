@@ -3,6 +3,8 @@
   display: block;
   width: 100%;
   object-fit: cover;
+  /* Recorte centrado en el punto de enfoque marcado al subir la foto */
+  object-position: var(--foco, 50% 50%);
   height: 100%;
 }
 

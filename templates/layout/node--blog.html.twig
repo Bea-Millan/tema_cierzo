@@ -26,7 +26,8 @@
 
     <div class="texto-articulo{{ envolver_texto_activo ? ' con-ajuste-texto' : ' sin-ajuste-texto' }}{{ portada_vertical ? ' portada-vertical' : ' portada-horizontal' }}">
       {% if content.field_foto_portada %}
-        <div class="imagen-articulo">
+        {# --foco: punto de enfoque de la foto (Focal Point), ver tema_cierzo_preprocess_node() #}
+        <div class="imagen-articulo" style="--foco: {{ foco_portada|default('50% 50%') }};">
           {{ content.field_foto_portada }}
         </div>
       {% endif %}

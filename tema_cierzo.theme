@@ -50,6 +50,35 @@ function tema_cierzo_theme_suggestions_page_alter(array &$suggestions, array $va
  */
 function tema_cierzo_preprocess_node(array &$variables) {
   $variables['es_portada'] = \Drupal::service('path.matcher')->isFrontPage();
+
+  // Entradas de blog: punto de enfoque (Focal Point) de la foto de portada.
+  // La portada se recorta con CSS (object-fit: cover); con esto el recorte
+  // se centra en lo que se marcó (una cara…) en vez de en el centro.
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $variables['foco_portada'] = '50% 50%';
+  if ($node->bundle() === 'blog'
+    && $node->hasField('field_foto_portada')
+    && !$node->get('field_foto_portada')->isEmpty()
+    && \Drupal::hasService('focal_point.manager')) {
+    $item = $node->get('field_foto_portada')->first();
+    $file = $item->entity;
+    $ancho = (int) $item->width;
+    $alto = (int) $item->height;
+    if ($file && $ancho && $alto) {
+      $tipo_crop = \Drupal::config('focal_point.settings')->get('crop_type') ?: 'focal_point';
+      $crop = \Drupal::service('focal_point.manager')->getCropEntity($file, $tipo_crop);
+      if ($crop && !$crop->isNew()) {
+        $pos = $crop->position();
+        $x = max(0, min(100, round($pos['x'] / $ancho * 100)));
+        $y = max(0, min(100, round($pos['y'] / $alto * 100)));
+        $variables['foco_portada'] = $x . '% ' . $y . '%';
+        \Drupal\Core\Cache\CacheableMetadata::createFromRenderArray($variables)
+          ->addCacheableDependency($crop)
+          ->applyTo($variables);
+      }
+    }
+  }
 }
 
 /**
