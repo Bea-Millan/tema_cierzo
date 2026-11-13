@@ -69,3 +69,34 @@ function tema_cierzo_preprocess_page(array &$variables) {
   // La plantilla de login la usan /user/login y /user/password.
   $variables['ruta_usuario'] = \Drupal::routeMatch()->getRouteName();
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for views_view_fields.
+ *
+ * Línea de tiempo (vista «itinerario»): ¿puede quien mira editar este
+ * concierto? Twig no permite llamar a access(), así que se calcula aquí.
+ */
+function tema_cierzo_preprocess_views_view_fields(array &$variables) {
+  if ($variables['view']->id() !== 'itinerario') {
+    return;
+  }
+  $variables['puede_editar'] = FALSE;
+  $hito = $variables['row']->_entity ?? NULL;
+  if (!$hito instanceof \Drupal\node\NodeInterface) {
+    return;
+  }
+
+  $acceso = $hito->access('update', NULL, TRUE);
+  // La respuesta depende de quién mira: que la caché lo tenga en cuenta.
+  \Drupal\Core\Cache\CacheableMetadata::createFromRenderArray($variables)
+    ->addCacheableDependency($acceso)
+    ->addCacheContexts(['user.permissions', 'url.path'])
+    ->applyTo($variables);
+
+  if ($acceso->isAllowed()) {
+    $variables['puede_editar'] = TRUE;
+    $variables['url_editar'] = $hito->toUrl('edit-form', [
+      'query' => \Drupal::destination()->getAsArray(),
+    ])->toString();
+  }
+}

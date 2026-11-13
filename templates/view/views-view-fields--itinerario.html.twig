@@ -20,9 +20,6 @@
 {% set tiene_enlace = hito.hasField('field_enlace') and not hito.field_enlace.isEmpty() %}
 {% set url_hito = path('entity.node.canonical', {'node': hito.id}) %}
 
-{# El enlace «Editar» depende de los permisos de quien mira: que la caché lo sepa #}
-{{ {'#cache': {'contexts': ['user.permissions', 'url.path']}} }}
-
 <div class="timeline-item" data-aos="fade-up">
 
   <div class="timeline-date">
@@ -36,10 +33,9 @@
   <div class="timeline-dot"></div>
 
   <div class="timeline-content">
-    {% if hito.access('update') %}
-      <a class="timeline-editar"
-         href="{{ path('entity.node.edit_form', {'node': hito.id}, {'query': {'destination': path('<current>')}}) }}"
-         title="Editar «{{ hito.label }}»">✎ Editar</a>
+    {# puede_editar y url_editar vienen de tema_cierzo_preprocess_views_view_fields() #}
+    {% if puede_editar %}
+      <a class="timeline-editar" href="{{ url_editar }}" title="Editar «{{ hito.label }}»">✎ Editar</a>
     {% endif %}
     {% if fields.field_imagen.content %}
       <div class="timeline-image">
