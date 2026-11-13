@@ -174,3 +174,33 @@
   .timeline-content { margin-left: 0; flex-direction: column; }
   .timeline-image { flex: 0 0 auto; width: 100%; }
 }
+
+
+/* «✎ Editar» en cada concierto: solo lo ven quienes pueden editarlo */
+.timeline-content {
+  position: relative;
+}
+
+.timeline-editar {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  z-index: 3;
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #404139;
+  background: #fff;
+  border: 1px solid #ddd5cd;
+  border-radius: 50px;
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.timeline-editar:hover,
+.timeline-editar:focus-visible {
+  opacity: 1;
+  color: #cc202c;
+  border-color: #cc202c;
+}
