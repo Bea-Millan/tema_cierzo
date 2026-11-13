@@ -4,7 +4,8 @@
  * Galería (field_galeria): imágenes, vídeos subidos y vídeos de YouTube/Vimeo.
  *
  * Todos se abren en el visor GLightbox (js/glightbox-init.js):
- * - Imagen (field_media_image): miniatura con estilo 'large'.
+ * - Imagen (field_media_image): miniatura con estilo 'galeria' (600x400,
+ *   recortada alrededor del punto de enfoque de Focal Point).
  * - Vídeo local (field_media_video_file): miniatura con el propio vídeo
  *   (primer segundo, sin reproducir) y se abre como vídeo.
  * - Vídeo remoto (field_media_oembed_video): miniatura de YouTube/Vimeo
@@ -22,7 +23,7 @@
         {% set alt = media.field_media_image.alt ?: media.label %}
         <div class="galeria-item">
           <a href="{{ file_url(uri) }}" class="glightbox" data-gallery="galeria" title="{{ alt }}">
-            <img src="{{ uri|image_style('large') }}" alt="{{ alt }}" loading="lazy">
+            <img src="{{ uri|image_style('galeria') }}" alt="{{ alt }}" loading="lazy">
           </a>
         </div>
 
@@ -37,7 +38,7 @@
         </div>
 
       {% elseif media.hasField('field_media_oembed_video') and media.field_media_oembed_video.value %}
-        {% set thumb = media.thumbnail.entity ? media.thumbnail.entity.uri.value|image_style('large') : '' %}
+        {% set thumb = media.thumbnail.entity ? media.thumbnail.entity.uri.value|image_style('galeria') : '' %}
         <div class="galeria-item galeria-item--video">
           <a href="{{ media.field_media_oembed_video.value }}" class="glightbox" data-gallery="galeria" title="{{ alt }}">
             {% if thumb %}
